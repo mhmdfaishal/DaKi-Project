@@ -18,15 +18,11 @@ class HomeController extends Controller
         $data_gunung = Gunung::latest()->search(request(['search', 'filter']))->paginate(5);
 
         // return response()->json($data_gunung);
-        return view('home', [
-            "allgunung" => Gunung::all()
-        ]);
+        return view('home', compact('data_gunung'));
     }
 
     public function detail(Gunung $gunung)
     {
-        return view('detail_gunung',[
-            "gunung" => $gunung
-        ]);
+        return view('detail_gunung',compact('gunung'));
     }
 }
