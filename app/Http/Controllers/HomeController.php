@@ -7,18 +7,26 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function landingpage(){
-        $data_gunung = Gunung::where('status','Buka')->latest()->take(3)->get();
+    public function landingpage()
+    {
+        $data_gunung = Gunung::where('status', 'Buka')->latest()->take(3)->get();
 
         return response()->json($data_gunung);
     }
-    public function index(){
-        $data_gunung = Gunung::latest()->search(request(['search','filter']))->paginate(5);
+    public function index()
+    {
+        $data_gunung = Gunung::latest()->search(request(['search', 'filter']))->paginate(5);
 
-        return response()->json($data_gunung);
+        // return response()->json($data_gunung);
+        return view('home', [
+            "allgunung" => Gunung::all()
+        ]);
     }
 
-    public function detail(){
-        
+    public function detail(Gunung $gunung)
+    {
+        return view('detail_gunung',[
+            "gunung" => $gunung
+        ]);
     }
 }
