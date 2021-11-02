@@ -23,6 +23,7 @@ class GunungSeeder extends Seeder
             'htm' => '50000',
             'kuota_pendaki' => '200',
             'kontak' => '022634578987',
+            'url_gmaps' => 'https://goo.gl/maps/KTunD68CmRxPDsF57',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -35,6 +36,7 @@ class GunungSeeder extends Seeder
             'htm' => '30000',
             'kuota_pendaki' => '300',
             'kontak' => '022634578986',
+            'url_gmaps' => 'https://goo.gl/maps/WqaFHgofRD8J5Kng9',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -47,6 +49,7 @@ class GunungSeeder extends Seeder
             'htm' => '40000',
             'kuota_pendaki' => '100',
             'kontak' => '022634578985',
+            'url_gmaps' => 'https://goo.gl/maps/2fM24SUQppZ422d49',
             'created_at' => now(),
             'updated_at' => now()
         ]);

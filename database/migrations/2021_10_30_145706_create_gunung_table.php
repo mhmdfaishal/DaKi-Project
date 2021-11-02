@@ -24,7 +24,9 @@ class CreateGunungTable extends Migration
             $table->string('htm');
             $table->string('kuota_pendaki');
             $table->string('kontak');
-            $table->timestamps();
+            $table->string('url_gmaps');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

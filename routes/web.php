@@ -18,3 +18,6 @@ Route::get('/', [HomeController::class, 'landingpage'])->name('landingpage');
 Route::get('/home', [HomeController::class, 'index'])->name('index');
 Route::get('/home/{gunung:nama_gunung}', [HomeController::class, 'detail']);
 
+Route::post('/home/gunung/store', [HomeController::class, 'storeGunung']);
+Route::post('/home/gunung/update', [HomeController::class, 'updateGunung']);
+

@@ -10,7 +10,7 @@
     <h3>Daftar Gunung</h3>
 
     <ul>
-        @foreach ($allgunung as $gunung)
+        @foreach ($data_gunung as $gunung)
             <li><a href="/home/{{ $gunung->nama_gunung }}">{{ $gunung->nama_gunung }}</a></li>
         @endforeach
     </ul>
