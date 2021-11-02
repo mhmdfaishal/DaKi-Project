@@ -126,7 +126,7 @@ a.nav-link:visited{
     z-index: 1;
   }
   
-  .login-form .sign-in-form {
+  .sign-in-form {
     z-index: 2;
   }
 
@@ -314,12 +314,12 @@ a.nav-link:visited{
     left: 25%;
   }
   
-  .login-content.sign-up-mode form.sign-up-form {
+  .login-content.sign-up-mode .sign-up-form {
     opacity: 1;
     z-index: 2;
   }
   
-  .login-content.sign-up-mode form.sign-in-form {
+  .login-content.sign-up-mode .sign-in-form {
     opacity: 0;
     z-index: 1;
   }
