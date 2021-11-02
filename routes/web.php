@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,9 +16,18 @@ use Illuminate\Support\Facades\Route;
 */
 //routes home (gunung)
 Route::get('/', [HomeController::class, 'landingpage'])->name('landingpage');
-Route::get('/home', [HomeController::class, 'index'])->name('index');
-Route::get('/home/{gunung:nama_gunung}', [HomeController::class, 'detail'])->name('detail.gunung');
+Route::prefix('home')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('index');
+    Route::get('/{gunung:nama_gunung}', [HomeController::class, 'detail'])->name('detail.gunung');
 
-Route::post('/home/gunung/store', [HomeController::class, 'storeGunung']);
-Route::post('/home/gunung/update', [HomeController::class, 'updateGunung']);
+    Route::post('/gunung/store', [HomeController::class, 'storeGunung']);
+    Route::post('/gunung/update', [HomeController::class, 'updateGunung']);
+    Route::delete('/gunung/delete', [HomeController::class, 'destroyGunung']);
+});
+
+
+// Authentication's Route
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'onLogin'])->name('login');
+Route::post('/register', [RegisterController::class, 'onRegister'])->name('register');
 

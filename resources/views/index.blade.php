@@ -13,31 +13,36 @@
                 <div class="login-content" style="border-radius: 20px;">
                     <div class="forms-container">
                         <div class="signin-signup">
-                            <form action="#" class="login-form sign-in-form">
+                            <form action="{{ route('login')}}" method="post" class="login-form sign-in-form">
                                 <h2 class="title">Masuk akun</h2>
                                 <div class="input-field">
                                     <i class="fas fa-user"></i>
-                                    <input type="text" placeholder="Username" />
+                                    <input type="email" name="email" placeholder="Email" required />
                                 </div>
                                 <div class="input-field">
                                     <i class="fas fa-lock"></i>
-                                    <input type="password" placeholder="Password" />
+                                    <input type="password" name="password" placeholder="Password" required/>
                                 </div>
                                 <input type="submit" value="Masuk" class="btn btn-login-modal solid" />
                             </form>
-                            <form action="#" class="login-form sign-up-form">
+                            <form action="{{ route('register') }}" method="POST" class="login-form sign-up-form" enctype="multipart/form-data">
+                                @csrf
                                 <h2 class="title">Daftar akun</h2>
                                 <div class="input-field">
-                                    <i class="fas fa-user"></i>
-                                    <input type="text" placeholder="Username" />
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" name="email" placeholder="Email" required/>
                                 </div>
                                 <div class="input-field">
-                                    <i class="fas fa-envelope"></i>
-                                    <input type="email" placeholder="Email" />
+                                    <i class="fas fa-user-circle"></i>
+                                    <input type="text" name="nama" placeholder="Nama" required/>
                                 </div>
                                 <div class="input-field">
                                     <i class="fas fa-lock"></i>
-                                    <input type="password" placeholder="Password" />
+                                    <input type="password" name="password" placeholder="Password" required/>
+                                </div>
+                                <div class="input-field">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" name="confirm_password" placeholder="Konfirmasi Password" required/>
                                 </div>
                                 <input type="submit" class="btn btn-login-modal" value="Daftar" />
                             </form>
@@ -100,7 +105,7 @@
             <div class="card-gunung d-flex">
                     @if(isset($data_gunung[1]))
                     <div class="card card-left" data-aos="fade-up" data-aos-duration="5000">
-                        <a href="{{route('detail.gunung',$data_gunung[1]->nama_gunung)}}"><img class="card-img-top" src="{{asset('images/'.$data_gunung[1]->gambar_gunung.'')}}" alt="Card image cap"></a>
+                        <a href="{{route('detail.gunung',$data_gunung[1]->nama_gunung)}}"><img class="card-img-top" src="{{asset('images/gunung/'.$data_gunung[1]->gambar_gunung.'')}}" alt="Card image cap"></a>
                         <div class="card-body">
                           <p class="card-text"><a href="{{route('detail.gunung',$data_gunung[1]->nama_gunung)}}" style="color:black;">{{$data_gunung[1]->nama_gunung}}</a></p>
                         </div>
@@ -115,7 +120,7 @@
                     @endif
                     @if(isset($data_gunung[0]))
                     <div class="card card-mid" data-aos="fade-up" data-aos-duration="4000">
-                        <a href="{{route('detail.gunung',$data_gunung[0]->nama_gunung)}}"><img class="card-img-top" src="{{asset('images/'.$data_gunung[0]->gambar_gunung.'')}}" alt="Card image cap"></a>
+                        <a href="{{route('detail.gunung',$data_gunung[0]->nama_gunung)}}"><img class="card-img-top" src="{{asset('images/gunung/'.$data_gunung[0]->gambar_gunung.'')}}" alt="Card image cap"></a>
                         <div class="card-body">
                           <p class="card-text"><a href="{{route('detail.gunung',$data_gunung[0]->nama_gunung)}}" style="color:black;">{{$data_gunung[0]->nama_gunung}}</a></p>
                         </div>
@@ -130,7 +135,7 @@
                     @endif
                     @if(isset($data_gunung[2]))
                     <div class="card card-right" data-aos="fade-up" data-aos-duration="5000">
-                        <a href="{{route('detail.gunung',$data_gunung[2]->nama_gunung)}}"><img class="card-img-top" src="{{asset('images/'.$data_gunung[2]->gambar_gunung.'')}}" alt="Card image cap"></a>
+                        <a href="{{route('detail.gunung',$data_gunung[2]->nama_gunung)}}"><img class="card-img-top" src="{{asset('images/gunung/'.$data_gunung[2]->gambar_gunung.'')}}" alt="Card image cap"></a>
                         <div class="card-body">
                           <p class="card-text"><a href="{{route('detail.gunung',$data_gunung[2]->nama_gunung)}}" style="color:black;">{{$data_gunung[2]->nama_gunung}}</a></p>
                         </div>

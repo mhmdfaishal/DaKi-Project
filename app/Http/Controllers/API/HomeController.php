@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Models\Gunung;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -9,23 +10,6 @@ use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
-    public function landingpage()
-    {
-        $data_gunung = Gunung::latest()->take(3)->get();
-        return view('index', compact('data_gunung'));
-    }
-    public function index()
-    {
-        $data_gunung = Gunung::latest()->search(request(['search', 'filter']))->paginate(5);
-
-        return view('home', compact('data_gunung'));
-    }
-
-    public function detail(Gunung $gunung)
-    {
-        return view('detail_gunung',compact('gunung'));
-    }
-
     public function storeGunung(Request $request)
     {
         $gambar = $request->file('gambar');
@@ -57,9 +41,7 @@ class HomeController extends Controller
             }
         }
     }
-    public function editGunung($gunung){
-        return view('detail_gunung',compact('gunung'));
-    }
+
     public function updateGunung(Request $request){
         $gambar = $request->file('gambar');
         $name= $gambar->getClientOriginalName();
