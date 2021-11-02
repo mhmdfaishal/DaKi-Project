@@ -1,5 +1,7 @@
 <?php
-
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +14,20 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//routes home (gunung)
+Route::get('/', [HomeController::class, 'landingpage'])->name('landingpage');
+Route::prefix('home')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('index');
+    Route::get('/{gunung:nama_gunung}', [HomeController::class, 'detail'])->name('detail.gunung');
 
-Route::get('/', function () {
-    return view('index');
+    Route::post('/gunung/store', [HomeController::class, 'storeGunung']);
+    Route::post('/gunung/update', [HomeController::class, 'updateGunung']);
+    Route::delete('/gunung/delete', [HomeController::class, 'destroyGunung']);
 });
+
+
+// Authentication's Route
+Route::post('/login', [LoginController::class, 'onLogin'])->name('login');
+Route::post('/register', [RegisterController::class, 'onRegister'])->name('register');
+Route::get('/logout', [LoginController::class, 'onLogout'])->middleware('useres')->name('logout');
+
