@@ -29,5 +29,5 @@ Route::prefix('home')->group(function () {
 // Authentication's Route
 Route::post('/login', [LoginController::class, 'onLogin'])->name('login');
 Route::post('/register', [RegisterController::class, 'onRegister'])->name('register');
-Route::get('/logout', [LoginController::class, 'onLogout'])->name('logout');
+Route::get('/logout', [LoginController::class, 'onLogout'])->middleware('useres')->name('logout');
 
