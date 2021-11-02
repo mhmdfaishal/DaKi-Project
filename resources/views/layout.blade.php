@@ -31,11 +31,17 @@
                 <a class="nav-link" href="/sewa">Sewa</a>
             </span>
             <span id="nav">|</span>
+            @if (Auth::check())
+            <span>
+                <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+            </span>
+            @else
             <span>
                 <form class="d-flex">
                     <button type="button" class="btn btn-login" data-toggle="modal" data-target=".login-modal">Login</button>
                 </form>
             </span>
+            @endif
         </div>
     </nav>
     @yield('main')

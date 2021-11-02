@@ -23,7 +23,7 @@ Route::post('/home/gunung/store', [HomeController::class, 'storeGunung']);
 Route::post('/home/gunung/update', [HomeController::class, 'updateGunung']);
 
 // Authentication's Route
-Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'onLogin'])->name('login');
 Route::post('/register', [RegisterController::class, 'onRegister'])->name('register');
+Route::get('/logout', [LoginController::class, 'onLogout'])->name('logout');
 

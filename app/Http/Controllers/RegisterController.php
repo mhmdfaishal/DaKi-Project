@@ -10,13 +10,14 @@ use Illuminate\Support\Facades\Validator;
 class RegisterController extends Controller
 {
     public function onRegister(Request $request) {
+        
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:users',
             'nama' => 'required',
-            'passwoord' => 'required|min:8',
+            'password' => 'required|min:8',
             'confirm_password' => 'same:password|required'
         ]);
-
+        
         if ($validator->fails()) {
             return redirect()->route('landingpage')->withErrors($validator)->withInput()->with('validation_register', 'true');
         }
@@ -28,6 +29,5 @@ class RegisterController extends Controller
             'role' => 1
         ]);
         return redirect()->route('landingpage');
-        // dd($request);
     }
 }

@@ -7,21 +7,59 @@
 @section('title', 'DaKi | Dasbor Pendaki')
 
 @section('main')
+@if (session('validation_login') || session('fail_login'))
+<script>
+    $(document).ready(function(){
+        $(".login-modal").modal('show');
+    });
+</script>
+@elseif (session('validation_register'))
+<script>
+    $(document).ready(function(){
+        $(".login-modal").modal('show');
+        $(".login-content").addClass('sign-up-mode')
+    });
+</script>
+@endif
     <div class="modal fade bd-example-modal-lg login-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="border-radius: 20px;">
                 <div class="login-content" style="border-radius: 20px;">
                     <div class="forms-container">
                         <div class="signin-signup">
-                            <form action="{{ route('login')}}" method="post" class="login-form sign-in-form">
+                            <form action="{{ route('login')}}" method="post" class="login-form sign-in-form" enctype="multipart/form-data">
+                                @csrf
                                 <h2 class="title">Masuk akun</h2>
+                                @if (session('fail_login'))
+                                <div class="alert" role="alert">
+                                    {{ session('fail_login') }}
+                                </div>
+                                @endif
                                 <div class="input-field">
                                     <i class="fas fa-user"></i>
-                                    <input type="email" name="email" placeholder="Email" required />
+                                    <input type="email" name="email" placeholder="Email" value="{{old('email')}}" required />
                                 </div>
+                                @if (session('validation_login'))
+                                @error('email')
+                                <div class="alert" role="alert">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                                @endif
                                 <div class="input-field">
                                     <i class="fas fa-lock"></i>
-                                    <input type="password" name="password" placeholder="Password" required/>
+                                    <input type="password" name="password" placeholder="Password" value="{{old('password')}}" required/>
+                                </div>
+                                @if (session('validation_login'))
+                                @error('password')
+                                <div class="alert" role="alert">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                                @endif
+                                <div class="me-4 d-flex align-items-center remember-me">
+                                    <input type="checkbox" name="remember" id="remember" class="me-2">
+                                    <label for="remember-me">Remember Me</label>
                                 </div>
                                 <input type="submit" value="Masuk" class="btn btn-login-modal solid" />
                             </form>
@@ -30,20 +68,48 @@
                                 <h2 class="title">Daftar akun</h2>
                                 <div class="input-field">
                                     <i class="fas fa-envelope"></i>
-                                    <input type="email" name="email" placeholder="Email" required/>
+                                    <input type="email" name="email" placeholder="Email" value="{{old('email')}}" required/>
                                 </div>
+                                @if (session('validation_register'))
+                                @error('email')
+                                <div class="alert" role="alert">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                                @endif
                                 <div class="input-field">
                                     <i class="fas fa-user-circle"></i>
-                                    <input type="text" name="nama" placeholder="Nama" required/>
+                                    <input type="text" name="nama" placeholder="Nama" value="{{old('nama')}}" required/>
                                 </div>
+                                @if (session('validation_register'))
+                                @error('nama')
+                                <div class="alert" role="alert">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                                @endif
                                 <div class="input-field">
                                     <i class="fas fa-lock"></i>
-                                    <input type="password" name="password" placeholder="Password" required/>
+                                    <input type="password" name="password" placeholder="Password" value="{{old('password')}}" required/>
                                 </div>
+                                @if (session('validation_register'))
+                                @error('password')
+                                <div class="alert" role="alert">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                                @endif
                                 <div class="input-field">
                                     <i class="fas fa-lock"></i>
-                                    <input type="password" name="confirm_password" placeholder="Konfirmasi Password" required/>
+                                    <input type="password" name="confirm_password" placeholder="Konfirmasi Password" value="{{old('confirm_password')}}" required/>
                                 </div>
+                                @if (session('validation_register'))
+                                @error('confirm_password')
+                                <div class="alert" role="alert">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                                @endif
                                 <input type="submit" class="btn btn-login-modal" value="Daftar" />
                             </form>
                         </div>
@@ -77,7 +143,6 @@
             </div>
         </div>
     </div>
-
     <div class="container-fluid">
         <div class="row">
             <div class="col">
