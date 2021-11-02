@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 //routes home (gunung)
 Route::get('/', [HomeController::class, 'landingpage'])->name('landingpage');
 Route::get('/home', [HomeController::class, 'index'])->name('index');
-Route::get('/home/{gunung:nama_gunung}', [HomeController::class, 'detail']);
+Route::get('/home/{gunung:nama_gunung}', [HomeController::class, 'detail'])->name('detail.gunung');
 
 Route::post('/home/gunung/store', [HomeController::class, 'storeGunung']);
 Route::post('/home/gunung/update', [HomeController::class, 'updateGunung']);

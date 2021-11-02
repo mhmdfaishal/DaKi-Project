@@ -11,8 +11,7 @@ class HomeController extends Controller
 {
     public function landingpage()
     {
-        $data_gunung = Gunung::where('status', 'Buka')->latest()->take(3)->get();
-
+        $data_gunung = Gunung::latest()->take(3)->get();
         return view('index', compact('data_gunung'));
     }
     public function index()
