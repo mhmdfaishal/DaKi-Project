@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,9 @@ Route::get('/home/{gunung:nama_gunung}', [HomeController::class, 'detail'])->nam
 
 Route::post('/home/gunung/store', [HomeController::class, 'storeGunung']);
 Route::post('/home/gunung/update', [HomeController::class, 'updateGunung']);
+
+// Authentication's Route
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'onLogin'])->name('login');
+Route::post('/register', [RegisterController::class, 'onRegister'])->name('register');
 
