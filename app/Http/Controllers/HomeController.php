@@ -16,9 +16,13 @@ class HomeController extends Controller
     }
     public function index()
     {
-        $data_gunung = Gunung::latest()->search(request(['search', 'filter']))->paginate(5);
-
-        return view('home', compact('data_gunung'));
+        $data_gunung = Gunung::latest()->search(request(['search', 'location']))->paginate(5);
+        $all_data = Gunung::latest()->paginate(5);
+        $location = "";
+        if(request('location')){
+            $location = request('location');
+        }
+        return view('home', compact('data_gunung','all_data','location'));
     }
 
     public function detail(Gunung $gunung)
@@ -43,6 +47,7 @@ class HomeController extends Controller
                 'nama_gunung' => $request->nama,
                 'gambar_gunung' => $name.".".$ext,
                 'lokasi' => $request->lokasi,
+                'provinsi' => $request->provinsi,
                 'status' => $request->status,
                 'ketinggian' => $request->ketinggian,
                 'htm' => $request->htm,
@@ -71,6 +76,7 @@ class HomeController extends Controller
         $data = Gunung::where('nama_gunung',$request->nama)->update([
             'gambar_gunung' => $name.".".$ext,
             'lokasi' => $request->lokasi,
+            'provinsi' => $request->provinsi,
             'status' => $request->status,
             'ketinggian' => $request->ketinggian,
             'htm' => $request->htm,

@@ -10,6 +10,8 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
     @stack('styles')
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -17,7 +19,7 @@
     <title>@yield('title')</title>
 </head>
 <body>
-    <nav class="navbar navbar-light" style="background-color: #12372A">
+    <nav class="navbar navbar-light" style="background-color: #12372A;">
         <div class="container">
             <a class="navbar-brand" href="/">
                 <span class="navbar-toogle-icon">
@@ -44,6 +46,128 @@
             @endif
         </div>
     </nav>
+    <div class="modal fade bd-example-modal-lg login-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="border-radius: 20px;">
+                <div class="login-content" style="border-radius: 20px;">
+                    <div class="forms-container">
+                        <div class="signin-signup">
+                            <form action="{{ route('login')}}" method="post" class="login-form sign-in-form" enctype="multipart/form-data">
+                                @csrf
+                                <h2 class="title">Masuk akun</h2>
+                                @if (session('fail_login'))
+                                <div class="alert" role="alert">
+                                    {{ session('fail_login') }}
+                                </div>
+                                @endif
+                                <div class="input-field">
+                                    <i class="fas fa-user"></i>
+                                    <input type="email" name="email" placeholder="Email" value="{{old('email')}}" required />
+                                </div>
+                                @if (session('validation_login'))
+                                @error('email')
+                                <div class="alert" role="alert">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                                @endif
+                                <div class="input-field">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" name="password" placeholder="Password" value="{{old('password')}}" required/>
+                                </div>
+                                @if (session('validation_login'))
+                                @error('password')
+                                <div class="alert" role="alert">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                                @endif
+                                <div class="me-4 d-flex align-items-center remember-me">
+                                    <input type="checkbox" name="remember" id="remember" class="me-2">
+                                    <label for="remember-me">Remember Me</label>
+                                </div>
+                                <input type="submit" value="Masuk" class="btn btn-login-modal solid" />
+                            </form>
+                            <form action="{{ route('register') }}" method="POST" class="login-form sign-up-form" enctype="multipart/form-data">
+                                @csrf
+                                <h2 class="title">Daftar akun</h2>
+                                <div class="input-field">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" name="email" placeholder="Email" value="{{old('email')}}" required/>
+                                </div>
+                                @if (session('validation_register'))
+                                @error('email')
+                                <div class="alert" role="alert">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                                @endif
+                                <div class="input-field">
+                                    <i class="fas fa-user-circle"></i>
+                                    <input type="text" name="nama" placeholder="Nama" value="{{old('nama')}}" required/>
+                                </div>
+                                @if (session('validation_register'))
+                                @error('nama')
+                                <div class="alert" role="alert">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                                @endif
+                                <div class="input-field">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" name="password" placeholder="Password" value="{{old('password')}}" required/>
+                                </div>
+                                @if (session('validation_register'))
+                                @error('password')
+                                <div class="alert" role="alert">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                                @endif
+                                <div class="input-field">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" name="confirm_password" placeholder="Konfirmasi Password" value="{{old('confirm_password')}}" required/>
+                                </div>
+                                @if (session('validation_register'))
+                                @error('confirm_password')
+                                <div class="alert" role="alert">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                                @endif
+                                <input type="submit" class="btn btn-login-modal" value="Daftar" />
+                            </form>
+                        </div>
+                    </div>
+                    <div class="panels-container">
+                        <div class="panel left-panel">
+                            <div class="content">
+                                <h3>Belum memiliki akun?</h3>
+                                <p>Daftar dulu!</p>
+                                <button class="btn btn-login-modal transparent" id="sign-up-btn">
+                                Daftar
+                                </button>
+                            </div>
+                            <img src="{{asset('images/log.svg') }}" class="image" alt="" />
+                        </div>
+                        <div class="panel right-panel">
+                            <div class="content">
+                                <h3>Sudah punya akun?</h3>
+                                <p>
+                                Masuk akun untuk menjadi pendaki sejati!
+                                </p>
+                                <button class="btn btn-login-modal transparent" id="sign-in-btn">
+                                Masuk
+                                </button>
+                            </div>
+                            <img src="{{asset('images/register.svg') }}" class="image" alt="" />
+                        </div>
+                    </div>
+                </div>
+            <!-- End Of Content -->
+            </div>
+        </div>
+    </div>
     @yield('main')
     <footer class="footer">
         <div class="container">
