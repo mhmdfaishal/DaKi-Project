@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+b{
+  font-size: 0.75cm;
+  line-height: 150px;
+}
+
+.tabel{
+    text-align: center;
+}
+
+table{
+  margin: 0 auto;
+  background-color: #12372A;
+  border-radius: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+th{
+  color: white;
+  padding: 20px 100px;
+}
+
+.detail{
+  padding: 10px;
+}
+
+.detail:hover{
+  background-color: #0b221a;
+  border-radius: 15px;
+}
+
+.prev{
+  color: gray;
+  float: left;
+  margin-left: 50px;
+  width: 100px;
+}
+
+.next{
+  color: gray;
+  float: right;
+  margin-right: 50px;
+  width: 100px;
+}
+
+a:hover{
+  color: #247257;
+}
+
+.footer{
+  z-index: -1 !important;
+  background-color: #247257;
+  padding-bottom: 20%;
+  padding-top: 5%;
+  margin-top: 100px;
+}
+.title-footer{
+  text-align: center;
+  color: white;
+}
+.desc-title{
+  text-align: center;
+  color: white;
+}
+.email-footer{
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  margin-top: 5%;
+}
+.socmed{
+  text-align: center;
+  margin-top: 16%;
+  color: white;
+}
+.socmed a{
+  margin: 5px;
+  font-size: 25px;
+  color: white;
+}
+.socmed a:hover{
+  color: #C9DB43;
+}
+.copyright-footer{
+  text-align: center;
+  color: white;
+  margin-bottom: -25%;
+  margin-top: 10%;
+  font-style: italic;
+}
+/*end*/
