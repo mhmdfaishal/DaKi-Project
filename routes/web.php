@@ -30,4 +30,5 @@ Route::prefix('home')->group(function () {
 Route::post('/login', [LoginController::class, 'onLogin'])->name('login');
 Route::post('/register', [RegisterController::class, 'onRegister'])->name('register');
 Route::get('/logout', [LoginController::class, 'onLogout'])->middleware('useres')->name('logout');
-
+Route::get('/auth/google/redirect', [LoginController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('/auth/callback', [RegisterController::class, 'handleGoogleCallback']);

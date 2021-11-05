@@ -7,20 +7,6 @@
 @section('title', 'DaKi | Dasbor Pendaki')
 
 @section('main')
-@if (session('validation_login') || session('fail_login'))
-<script>
-    $(document).ready(function(){
-        $(".login-modal").modal('show');
-    });
-</script>
-@elseif (session('validation_register'))
-<script>
-    $(document).ready(function(){
-        $(".login-modal").modal('show');
-        $(".login-content").addClass('sign-up-mode')
-    });
-</script>
-@endif
     <div class="container-fluid">
         <div class="row">
             <div class="col">

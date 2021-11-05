@@ -19,6 +19,33 @@
     <title>@yield('title')</title>
 </head>
 <body>
+    @if (session('validation_login') || session('fail_login'))
+    <script>
+        $(document).ready(function(){
+            $(".login-modal").modal('show');
+        });
+    </script>
+    @elseif (session('validation_register'))
+    <script>
+        $(document).ready(function(){
+            $(".login-modal").modal('show');
+            $(".login-content").addClass('sign-up-mode')
+        });
+    </script>
+    @elseif (session('register_with_google'))
+    <input type="hidden" name="email_with_google" id="email_with_google" value="{{session('email')}}">
+    <input type="hidden" name="nama_with_google" id="nama_with_google" value="{{session('nama')}}">
+    <script>
+        $(document).ready(function(){
+            var email = $('#email_with_google').val();
+            var nama = $('#nama_with_google').val();
+            $(".login-modal").modal('show');
+            $(".login-content").addClass('sign-up-mode');
+            $("#email").val(email);
+            $("#nama").val(nama);
+        });
+    </script>
+    @endif
     <nav class="navbar navbar-light" style="background-color: #12372A;">
         <div class="container">
             <a class="navbar-brand" href="/">
@@ -48,7 +75,7 @@
     </nav>
     <div class="modal fade bd-example-modal-lg login-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content" style="border-radius: 20px;">
+            <div class="modal-content modal-login" style="border-radius: 20px;">
                 <div class="login-content" style="border-radius: 20px;">
                     <div class="forms-container">
                         <div class="signin-signup">
@@ -93,7 +120,7 @@
                                 <h2 class="title">Daftar akun</h2>
                                 <div class="input-field">
                                     <i class="fas fa-envelope"></i>
-                                    <input type="email" name="email" placeholder="Email" value="{{old('email')}}" required/>
+                                    <input type="email" name="email" id="email" placeholder="Email" value="{{old('email')}}" required/>
                                 </div>
                                 @if (session('validation_register'))
                                 @error('email')
@@ -104,7 +131,7 @@
                                 @endif
                                 <div class="input-field">
                                     <i class="fas fa-user-circle"></i>
-                                    <input type="text" name="nama" placeholder="Nama" value="{{old('nama')}}" required/>
+                                    <input type="text" name="nama" id="nama" placeholder="Nama" value="{{old('nama')}}" required/>
                                 </div>
                                 @if (session('validation_register'))
                                 @error('nama')
@@ -135,6 +162,27 @@
                                 </div>
                                 @enderror
                                 @endif
+                                <div class="form-group d-flex">
+                                    <label class="custom-switch">
+                                        <input type="checkbox" name="role" id="role" value="1" class="custom-switch-input" >   
+                                        <span class="custom-switch-indicator"></span>
+                                        <span class="custom-switch-description">@lang('Pendaki')</span>
+                                    </label>
+                                    <label class="custom-switch">
+                                        <input type="checkbox" name="role" id="role" value="2" class="custom-switch-input" >   
+                                        <span class="custom-switch-indicator"></span>
+                                        <span class="custom-switch-description">@lang('Pemilik Toko')</span>
+                                    </label>
+                                    <label class="custom-switch">
+                                        <input type="checkbox" name="role" id="role" value="3" class="custom-switch-input" >   
+                                        <span class="custom-switch-indicator"></span>
+                                        <span class="custom-switch-description">@lang('Pengelola Basecamp')</span>
+                                    </label>
+                                </div>
+                                <div class="input-field" id="token_field" style="display: none;">
+                                    <i class="fas fa-key"></i>
+                                    <input type="password" name="token" placeholder="Masukkan Token" value="{{old('Token')}}"/>
+                                </div>
                                 <input type="submit" class="btn btn-login-modal" value="Daftar" />
                             </form>
                         </div>
@@ -146,6 +194,12 @@
                                 <p>Daftar dulu!</p>
                                 <button class="btn btn-login-modal transparent" id="sign-up-btn">
                                 Daftar
+                                </button>
+                                <p style="margin-top:2% !important;margin-bottom:0%;">atau</p>
+                                <button class="btn btn-login-google-modal">
+                                    <a href="{{ route('google.login') }}" class="text-decoration-none" style="color:white;">
+                                        <i class="fab fa-google"></i>
+                                    </a>
                                 </button>
                             </div>
                             <img src="{{asset('images/log.svg') }}" class="image" alt="" />
@@ -186,9 +240,33 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="{{asset('js/app.js') }}"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"
+    integrity="sha256-sPB0F50YUDK0otDnsfNHawYmA5M0pjjUf4TvRJkGFrI=" crossorigin="anonymous"></script>
     <script>
       AOS.init();
-    </script>  
+    </script> 
+    <script>
+    $("input:checkbox").on('click', function() {
+        var $box = $(this);
+        if ($box.is(":checked")) {
+            var group = "input:checkbox[name='" + $box.attr("name") + "']";
+            $(group).prop("checked", false);
+            $box.prop("checked", true);
+        }else {
+            $box.prop("checked", false);
+        }
+        if ($box.val() == "3") {
+            $('#token_field').show();
+        }else{
+            $('#token_field').hide();
+        }
+        if(!$box.is(":checked")){
+            $('#token_field').hide();
+        }
+    });
+    </script> 
     @stack('scripts')
 </body>
 </html>
