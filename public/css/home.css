@@ -1,0 +1,158 @@
+
+.navbar{
+    background: none !important;
+    position:absolute !important;
+    width: 100%;
+}
+.header{
+    text-align: center;
+    color: #C9DB43;
+    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.548)), url('../images/home.jpg') !important;
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat !important;
+    /* filter: brightness(10%); */
+    padding: 20%;
+    width:auto;
+    height: 100%;
+}
+.header .head-title{
+    margin-bottom: -20%;
+}
+.head-title h3{
+    font-size: 38px;
+}
+.under-split{
+    border: 3px solid #C9DB43;
+    background-color: #C9DB43;
+    width: 20%;
+    margin-left: 40%;
+}
+.body-content{
+    padding:2%;
+}
+.box-container{
+    background-color: white;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border-radius: 0px 0px 20px 20px;
+}
+
+.home_gambar_gunung{
+    width: 25%;
+    height: auto;
+    position: relative;
+    border-radius: 10px;
+    margin-right: 5%;
+}
+.list-gunung{
+    border-radius: 10px;
+    padding:2%;
+    min-height: 190px;
+    margin-bottom: 3%;
+    box-shadow: 2px 5px 5px rgb(0 0 0 / 0.2);
+}
+.list-gunung:hover{
+    box-shadow: 5px 5px 10px #12372A;
+    cursor: pointer;
+}
+.list-gunung h4{
+    flex-direction: column !important;
+    margin-top: 2%;
+    font-size: 23px;
+}
+.list-gunung .detail a{
+    color: black;
+}
+.list-gunung .detail h3{
+    font-size: 25px;
+    width: 125%;
+}
+.list-gunung .wrap-list .detail{
+    line-height: 35px;
+    margin-top: 2%;
+    margin-left: -2%;
+    max-width: 20%;
+}
+.detail-other{
+    padding: 5%;
+    width: 50%;
+    /* border: 2px solid black; */
+}
+.detail-other .height-mount{
+    padding: 0;
+    margin-right: 10%;
+    margin-top: 3%;
+}
+.detail-other .status-mount{
+    font-size: 18px;
+    margin-top: 3%;
+}
+.btn-detail-gunung{
+    margin-left: auto;
+    margin-top: 6%;
+    font-size: 25px;
+    color: black;
+}
+.btn-detail-gunung:hover{
+    color: #1c5e47;
+}
+.sidebar-left{
+    box-shadow: 2px 5px 20px rgb(0 0 0 / 0.2);
+    border-radius: 10px;
+    padding: 2%;
+    width: 30%;
+    height: 800px;
+    margin-right: 5%;
+}
+.sidebar-left h2{
+    text-align: center;
+    font-size: 25px;
+    letter-spacing:2px
+}
+
+/*Search bar*/
+.btn-search{
+    background:none;
+    border: none;
+}
+.search-bar{
+    margin-top: 10%;
+}
+.search-bar .input-group span i{
+    color: rgb(161, 159, 159);
+}
+.search-box{
+    padding-left: 15%;
+}
+#search-addon{
+    margin-left: 3%;
+    position: absolute;
+    margin-top: 3%;
+    z-index: 5;
+}
+.location-title{
+    margin-top: 10%;
+    padding: 5%;
+}
+.location_form{
+    display: flex;
+    flex-direction: column;
+}
+.location_filter{
+    display: flex;
+}
+.location_filter label{
+    font-size: 20px;
+}
+.location_filter .location_name{
+    margin-right: 10%;
+    -ms-transform: scale(1.7); /* IE */
+    -moz-transform: scale(1.7); /* FF */
+    -webkit-transform: scale(1.7); /* Safari and Chrome */
+    -o-transform: scale(1.7); /* Opera */
+    transform: scale(1.7);
+}
+/*End*/
+
+
+

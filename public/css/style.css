@@ -226,8 +226,27 @@ a.nav-link:visited{
     cursor: pointer;
     transition: 0.5s;
   }
-  
+  .btn-login-google-modal {
+    width: 100px;
+    background-color: #C9DB43;
+    border: none;
+    outline: none;
+    height: 49px;
+    border-radius: 49px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0px 0;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+  .btn-login-google-modal:hover{
+    color: black;
+  }
   .btn-login-modal:hover {
+    background-color: #93D643;
+  }
+  .btn-login-google-modal:hover {
     background-color: #93D643;
   }
   .panels-container {
@@ -350,7 +369,7 @@ a.nav-link:visited{
   @media (max-width: 870px) {
     .login-content {
       min-height: 800px;
-      height: 100vh;
+      height: 150vh;
     }
     .signin-signup {
       width: 100%;
@@ -607,4 +626,84 @@ hr{
   padding: 0 7px;
   margin: 0;
   color: red;
+}
+
+.custom-switch {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.custom-switch-input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.custom-switches-stacked {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.custom-switches-stacked .custom-switch {
+  margin-bottom: .5rem;
+}
+
+.custom-switch-indicator {
+  display: inline-block;
+  height: 1.25rem;
+  width: 2.25rem;
+  background: #e9ecef;
+  border-radius: 50px;
+  position: relative;
+  vertical-align: bottom;
+  border: 1px solid rgba(0, 40, 100, 0.12);
+  transition: .3s border-color, .3s background-color;
+}
+
+.custom-switch-indicator:before {
+  content: '';
+  position: absolute;
+  height: calc(1.25rem - 4px);
+  width: calc(1.25rem - 4px);
+  top: 1px;
+  left: 1px;
+  background: #fff;
+  border-radius: 50%;
+  transition: .3s left;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+}
+
+.custom-switch-input:checked ~ .custom-switch-indicator {
+  background: #C9DB43;
+}
+
+.custom-switch-input:checked ~ .custom-switch-indicator:before {
+  left: calc(1rem + 1px);
+}
+
+.custom-switch-input:focus ~ .custom-switch-indicator {
+  box-shadow: 0 0 0 2px rgba(70, 127, 207, 0.25);
+  border-color: #C9DB43;
+}
+
+.custom-switch-description {
+  /* margin-left: .5rem; */
+  color: #6e7687;
+  transition: .3s color;
+}
+
+.custom-switch-input:checked ~ .custom-switch-description {
+  color: #495057;
+}
+
+.split{
+  text-align: center;
+  margin-top: -25%;
 }
