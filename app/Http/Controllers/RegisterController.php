@@ -39,13 +39,14 @@ class RegisterController extends Controller
         if ($validator->fails()) {
             return redirect()->route('landingpage')->withErrors($validator)->withInput()->with('validation_register', 'true');
         }
-        User::create([
+        $user = User::create([
             'email' => $request->email,
             'nama' => $request->nama,
             'password' => Hash::make($request->password),
             'role' => $request->role
         ]);
-        return redirect()->route('landingpage');
+        Auth::login($user);
+        return redirect()->route('index');
     }
 
     public function handleGoogleCallback(Request $request)
@@ -64,6 +65,5 @@ class RegisterController extends Controller
         } catch (\Throwable $th) {
             return redirect()->route('index');
         }
-
     }
 }

@@ -61,9 +61,16 @@
             </span>
             <span id="nav">|</span>
             @if (Auth::check())
-            <span>
-                <a class="nav-link" href="{{ route('logout') }}">{{Auth::user()->nama}}</a>
-            </span>
+            <div class="dropdown1">
+                <button onclick="myFunction()" class="btn dropbtn">{{Auth::user()->nama}}</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a class="first-menu" href="#home"><i class="fas fa-user"></i> Profile</a>
+                    @if(Auth::user()->role == 2)
+                    <a href="{{route('pesanan')}}"><i class="fas fa-shopping-cart"></i> Pesanan</a>
+                    @endif
+                    <a class="last-menu" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
             @else
             <span>
                 <form class="d-flex">
