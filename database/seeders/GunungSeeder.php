@@ -15,9 +15,11 @@ class GunungSeeder extends Seeder
     public function run()
     {
         DB::table('gunung')->insert([
+            'user_id' => '1',
             'nama_gunung' => 'Bromo',
             'gambar_gunung' => 'bromo.jpg',
             'lokasi' => 'Jawa Timur',
+            'provinsi' => 'Jawa Timur',
             'status' => 'Buka',
             'ketinggian' => '2329',
             'htm' => '50000',
@@ -28,9 +30,11 @@ class GunungSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('gunung')->insert([
+            'user_id' => '1',
             'nama_gunung' => 'Rinjani',
             'gambar_gunung' => 'rinjani.jpg',
             'lokasi' => 'Lombok',
+            'provinsi' => 'Lombok',
             'status' => 'Buka',
             'ketinggian' => '3726',
             'htm' => '30000',
@@ -41,9 +45,11 @@ class GunungSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('gunung')->insert([
+            'user_id' => '1',
             'nama_gunung' => 'Prau',
             'gambar_gunung' => 'prau.jpg',
             'lokasi' => 'Jawa Tengah',
+            'provinsi' => 'Jawa Tengah',
             'status' => 'Buka',
             'ketinggian' => '2565',
             'htm' => '40000',
