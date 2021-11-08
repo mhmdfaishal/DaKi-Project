@@ -21,7 +21,8 @@ Route::get('/', [HomeController::class, 'landingpage'])->name('landingpage');
 Route::prefix('home')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/{gunung:nama_gunung}', [HomeController::class, 'detail'])->name('detail.gunung');
-
+    Route::get('/gunung/getdata', [HomeController::class, 'getGunung'])->name('get.gunung');
+    
     Route::post('/gunung/store', [HomeController::class, 'storeGunung']);
     Route::post('/gunung/update', [HomeController::class, 'updateGunung']);
     Route::delete('/gunung/delete', [HomeController::class, 'destroyGunung']);

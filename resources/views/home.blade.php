@@ -38,18 +38,18 @@
                 @if(request('search'))
                   <input type="hidden" name="search" id="search" value="{{ request('search') }}">
                 @endif
-                @foreach ($all_data->unique('provinsi') as $gunung)
+                {{-- @foreach ($all_data->unique('provinsi') as $gunung)
                   <div class="location_filter container">
                       <input type ="checkbox" name="location" class="location_name" id="location_name" value="{{$gunung->provinsi}}" @if($location == $gunung->provinsi) checked @endif/>
                       <label for="location">{{$gunung->provinsi}}</label>
                   </div>
-                @endforeach
+                @endforeach --}}
               </form>
             </div>
         </div>
-        <div class="container">
+        <div class="container" id="list-element-gunung">
           <input type="hidden" name="url" id="url" value="{{env('APP_URL')}}">
-          @if($data_gunung->count() == 0)
+          {{-- @if($data_gunung->count() == 0)
           <h2 style="text-align:center;">Tidak ada data</h2>
           @else
             @foreach ($data_gunung as $gunung)
@@ -68,12 +68,12 @@
                 </div>
             </div>
             @endforeach
-            @endif
+            @endif --}}
         </div>
     </div>
     <div class="Page navigation example">
         <ul class="pagination justify-content-center">
-          @if($data_gunung->lastPage() > 1)
+          {{-- @if($data_gunung->lastPage() > 1)
           @if($data_gunung->currentPage() == 1)
           <li class="page-item disabled">
             <a class="page-link" href="">Previous</a>
@@ -98,7 +98,7 @@
             <a class="page-link" href="{{ $data_gunung->url($data_gunung->currentPage() + 1) }}">Next</a>
           </li>
           @endif
-          @endif
+          @endif --}}
         </ul>
       </div>
 </div>
@@ -109,5 +109,6 @@
   <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"
   integrity="sha256-sPB0F50YUDK0otDnsfNHawYmA5M0pjjUf4TvRJkGFrI=" crossorigin="anonymous"></script>
+  <script src="{{asset('js/list-gunung.js')}}"></script>
   <script src="{{asset('js/home.js')}}"></script>
 @endpush
