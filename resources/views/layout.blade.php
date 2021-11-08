@@ -203,11 +203,11 @@
                                 Daftar
                                 </button>
                                 <p style="margin-top:2% !important;margin-bottom:0%;">atau</p>
+                                <a href="{{ route('google.login') }}" class="text-decoration-none" style="color:white;">
                                 <button class="btn btn-login-google-modal">
-                                    <a href="{{ route('google.login') }}" class="text-decoration-none" style="color:white;">
                                         <i class="fab fa-google"></i>
-                                    </a>
-                                </button>
+                                    </button>
+                                </a>
                             </div>
                             <img src="{{asset('images/log.svg') }}" class="image" alt="" />
                         </div>
