@@ -47,37 +47,44 @@
     </script>
     @endif
     <nav class="navbar navbar-light" style="background-color: #12372A;">
-        <div class="container">
+        <div class="container-nav">
             <a class="navbar-brand" href="/">
                 <span class="navbar-toogle-icon">
                     <img class="btn-logo-home" src="{{ asset('images/logo6.png') }}" alt="logo" width="140" height="140">
                 </span>
             </a>
-            <span>
-                <a class="nav-link" href="/home">Home</a>
-            </span>
-            <span>
-                <a class="nav-link" href="/sewa">Sewa</a>
-            </span>
-            <span id="nav">|</span>
-            @if (Auth::check())
-            <div class="dropdown1">
-                <button onclick="myFunction()" class="btn dropbtn">{{Auth::user()->nama}}</button>
-                <div id="myDropdown" class="dropdown-content">
-                    <a class="first-menu" href="#home"><i class="fas fa-user"></i> Profile</a>
-                    @if(Auth::user()->role == 2)
-                    <a href="{{route('pesanan')}}"><i class="fas fa-shopping-cart"></i> Pesanan</a>
-                    @endif
-                    <a class="last-menu" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <ul class="nav-menu">
+                <span class="nav-item">
+                    <a class="nav-link" href="/home">Home</a>
+                </span>
+                <span class="nav-item">
+                    <a class="nav-link" href="/sewa">Sewa</a>
+                </span>
+                <span class="nav-item" id="navSplit">|</span>
+                @if (Auth::check())
+                <div class="dropdown1">
+                    <button onclick="myFunction()" class="btn dropbtn">{{Auth::user()->nama}}</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a class="first-menu" href="#home"><i class="fas fa-user"></i> Profile</a>
+                        @if(Auth::user()->role == 2)
+                        <a href="{{route('pesanan')}}"><i class="fas fa-shopping-cart"></i> Pesanan</a>
+                        @endif
+                        <a class="last-menu" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
                 </div>
-            </div>
-            @else
-            <span>
-                <form class="d-flex">
-                    <button type="button" class="btn btn-login" data-toggle="modal" data-target=".login-modal">Login</button>
-                </form>
-            </span>
-            @endif
+                @else
+                <span class="nav-item">
+                    <form class="d-flex">
+                        <button type="button" class="btn btn-login nav-link" data-toggle="modal" data-target=".login-modal">Login</button>
+                    </form>
+                </span>
+                @endif
+            </ul>
+        </div>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
     </nav>
     <div class="modal fade bd-example-modal-lg login-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -244,6 +251,7 @@
             <p class="copyright-footer">DaKi Company &copy;2021</p>
         </div>
     </footer>
+    <script src="/js/layout.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="{{asset('js/app.js') }}"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
