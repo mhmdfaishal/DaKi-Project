@@ -37,63 +37,67 @@
     border-radius: 0px 0px 20px 20px;
 }
 
-.home_gambar_gunung{
-    width: 25%;
-    height: auto;
+.home_gambar_toko{
+    max-width: 15%;
+    max-height: 10%;
     position: relative;
     border-radius: 10px;
     margin-right: 5%;
 }
-.list-gunung{
+.list-toko{
     border-radius: 10px;
-    padding:2%;
-    min-height: 190px;
+    padding:1%;
+    min-height: 100px;
+    max-height: 170px;
     margin-bottom: 3%;
     box-shadow: 2px 5px 5px rgb(0 0 0 / 0.2);
 }
-.list-gunung:hover{
+.list-toko:hover{
     box-shadow: 5px 5px 10px #12372A;
     cursor: pointer;
 }
-.list-gunung h4{
+.list-toko h4{
     flex-direction: column !important;
     margin-top: 2%;
     font-size: 23px;
 }
-.list-gunung .detail a{
+.list-toko .detail a{
     color: black;
 }
-.list-gunung .detail h3{
+.list-toko .detail h3{
     font-size: 25px;
     width: 125%;
 }
-.list-gunung .wrap-list .detail{
+.list-toko .wrap-list .detail{
     line-height: 35px;
     margin-top: 2%;
     margin-left: -2%;
-    max-width: 20%;
+    max-width: 25%;
+    width: 25%;
+    /* border: 2px solid black; */
 }
 .detail-other{
-    padding: 5%;
+    padding: 6%;
     width: 50%;
     /* border: 2px solid black; */
 }
-.detail-other .height-mount{
+.detail-other .jumlah-barang{
     padding: 0;
-    margin-right: 10%;
     margin-top: 3%;
+    padding-right: 45%;
 }
-.detail-other .status-mount{
+.detail-other .rating-toko{
     font-size: 18px;
     margin-top: 3%;
+    color: #adc01c;
 }
-.btn-detail-gunung{
+.btn-detail-toko{
     margin-left: auto;
     margin-top: 6%;
     font-size: 25px;
     color: black;
 }
-.btn-detail-gunung:hover{
+.btn-detail-toko:hover{
     color: #1c5e47;
 }
 .sidebar-left{
