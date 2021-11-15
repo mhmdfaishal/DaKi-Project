@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{{asset('css/marketplace.css') }}">
 @endpush
 
-@section('title', 'Marketplasce | Dasbor Pendaki')
+@section('title', 'Marketplace | Dasbor Pendaki')
 
 @section('main')
 <div class="container-fluid header">

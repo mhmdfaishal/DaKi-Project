@@ -1,6 +1,7 @@
 function main () {
+  url = $('#url').val();
   const getAllData = () => {
-    fetch('http://127.0.0.1:8000/home/gunung/getdata')
+    fetch(`${url}/home/gunung/getdata`)
       .then(response => {
         return response.json();
       })
@@ -18,7 +19,7 @@ function main () {
   };
 
   const getFilterData = (location) => {
-    fetch(`http://127.0.0.1:8000/home/gunung/getdata?location=${location}`)
+    fetch(`${url}/home/gunung/getdata?location=${location}`)
       .then(response => {
         return response.json();
       })
@@ -26,6 +27,7 @@ function main () {
         if(responseJson.error) {
           showResponseMessage(responseJson.status);
         } else {
+          // document.location.href = `/home/gunung/getdata?location=${location}`;
           renderGunung(responseJson.data);
           renderCheckbox(responseJson.data);
         }
@@ -36,7 +38,7 @@ function main () {
   };
 
   const getSearchData = (search) => {
-    fetch(`http://127.0.0.1:8000/home/gunung/getdata?search=${search}`)
+    fetch(`${url}/home/gunung/getdata?search=${search}`)
       .then(response => {
         return response.json();
       })
@@ -62,7 +64,7 @@ function main () {
         listGunungElement.innerHTML += `
         <div class="list-gunung" data-id="${gunung.nama_gunung}" id="list_gunung" data-aos="fade-up">
         <div class="wrap-list d-flex">
-            <img src="http://127.0.0.1:8000/images/gunung/${gunung.gambar_gunung}" alt="" class="home_gambar_gunung">
+            <img src="${url}/images/gunung/${gunung.gambar_gunung}" alt="" class="home_gambar_gunung">
             <div class="detail" id="detail">
               <h3>Gunung ${gunung.nama_gunung}</h3>
               <i class="fas fa-map-marker-alt"></i><a href="${gunung.url_gmaps}" target="_blank" class="location-mount"> ${gunung.lokasi}</a>
@@ -71,7 +73,7 @@ function main () {
               <p class="height-mount"><i class="fas fa-mountain"></i> ${gunung.ketinggian} MDPL</p>
               <p class="status-mount">Status : ${gunung.status}</p>
             </div>
-            <a href="{{route('detail.gunung',${gunung.nama_gunung})}}" class="btn-detail-gunung"><i class="fas fa-chevron-circle-right"></i></a>
+            <a href="/home/${gunung.nama_gunung}" class="btn-detail-gunung"><i class="fas fa-chevron-circle-right"></i></a>
         </div>
       </div>
         `

@@ -19,7 +19,7 @@
         <div class="sidebar-left">
             <h2 style="font-weight: 300;"><i class="fas fa-filter"></i> Filters</h2>
             <div class="search-bar">
-              <form role="search" method="GET" id="searchform" action="{{route('index')}}">
+              <form role="search" method="GET" id="searchform">
                 <div class="input-group rounded">
                   @if(request('location'))
                   <input type="hidden" name="location" id="location" value="{{ request('location') }}">

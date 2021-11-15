@@ -25,11 +25,12 @@ body{
 .navbar-brand{
   float: right;
   width: 40%;
+  margin-left: 5%;
 }
 .navbar-nav{
   float: inline-end;
 }
-#nav{
+#navSplit{
   color:white;
 }
 .nav-link{
@@ -69,9 +70,8 @@ a.nav-link:visited{
     color: #12372A;
 }
 #scrolldown{
-    margin-top: 100px;
-    margin-bottom: -20px;
-    margin-left: auto;
+  margin-top: 50px;
+  margin-left: auto;
 }
 
 .cf:before,
@@ -610,7 +610,10 @@ hr{
     flex-direction: column;
   }
   .card{
-    width: 100% !important;
+    width: 450px !important;
+    height: 450px !important;
+    margin-left: auto;
+    margin-right: auto;
   }
   .h1{
     font-size: 25px;
@@ -773,3 +776,139 @@ hr{
 }
 
 .show {display: block;}
+
+.container-nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  width: 100%;
+}
+.hamburger{
+  display: none;
+}
+.bar{
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #ffffff;
+}
+.nav-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-item {
+  margin-left: 65px;
+}
+
+@media(max-width : 768px){
+  .container-nav{
+    width: 90%;
+  }
+  .nav-menu{
+    z-index: 900;
+    position: absolute;
+    left: -100%;
+    top: 0rem;
+    flex-direction: column;
+    border-color: #12372A;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 
+        0 10px 27px rgba(0, 0, 0, 0.05);
+    background-color: #12372A;
+    padding-top: 5rem;
+    padding-bottom: 20px;
+  }
+  .nav-item{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .nav-menu.active{
+    left: 0;
+  }
+  .hamburger{
+    display: block;
+    cursor: pointer;
+    z-index: 901;
+  }
+  .hamburger.active .bar:nth-child(2){
+    opacity: 0;
+  }
+  .hamburger.active .bar:nth-child(1){
+    -webkit-transform: translateY(8px) rotate(45deg);
+    transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger.active .bar:nth-child(3){
+    -webkit-transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  #navSplit{
+    visibility: hidden;
+    font-size: 0;
+  }
+
+  .title-daftar-gunung{
+    font-size: 30px;
+  }
+  .card{
+    height: 310px !important;
+    width: 250px !important;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .footer{
+    z-index: -1 !important;
+    /* background-color: #247257; */
+    padding-bottom: 20%;
+    padding-top: 5%;
+  }
+  .title-footer{
+    text-align: center;
+    color: white;
+    font-size: 24px;
+  }
+  .desc-title{
+    text-align: center;
+    color: white;
+    font-size: 14px;
+  }
+  .email-footer{
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    margin-top: 5%;
+  }
+  .socmed{
+    text-align: center;
+    margin-top: 16%;
+    color: white;
+  }
+  .socmed h2{
+    font-size: 20px;
+  }
+  .socmed a{
+    margin: 5px;
+    font-size: 18px;
+    color: white;
+  }
+  .socmed a:hover{
+    color: #C9DB43;
+  }
+  .copyright-footer{
+    text-align: center;
+    color: white;
+    margin-bottom: -25%;
+    margin-top: 10%;
+    font-style: italic;
+    font-size: 16px;
+  }
+} 
