@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gunung;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -12,6 +13,10 @@ class HomeController extends Controller
     public function landingpage()
     {
         $data_gunung = Gunung::latest()->take(3)->get();
+        if(Auth::check()){
+            $nama = explode(" ",strval(Auth::user()->nama));
+            return view('index', compact('data_gunung','nama'));
+        }
         return view('index', compact('data_gunung'));
     }
     public function index()
@@ -29,6 +34,10 @@ class HomeController extends Controller
         //     'all_data' => $all_data,
         //     'location' => $location
         // ]);
+        if(Auth::check()){
+            $nama = explode(" ",strval(Auth::user()->nama));
+            return view('home', compact('nama'));
+        }
         return view('home');
     }
 
@@ -48,6 +57,10 @@ class HomeController extends Controller
 
     public function detail(Gunung $gunung)
     {
+        if(Auth::check()){
+            $nama = explode(" ",strval(Auth::user()->nama));
+            return view('detail_gunung', compact('gunung','nama'));
+        }
         return view('detail_gunung',compact('gunung'));
     }
 

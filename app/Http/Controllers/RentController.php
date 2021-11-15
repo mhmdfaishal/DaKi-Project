@@ -15,6 +15,10 @@ class RentController extends Controller
         if(request('location')){
             $location = request('location');
         }
+        if(Auth::check()){
+            $nama = explode(" ",strval(Auth::user()->nama));
+            return view('marketplace', compact('data_toko','nama','all_data','location'));
+        }
         return view('marketplace',compact('data_toko','all_data','location'));
     }
     public function detailToko(){

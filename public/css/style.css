@@ -31,7 +31,8 @@ body{
   float: inline-end;
 }
 #navSplit{
-  color:white;
+  border-left: 2px solid white;
+  height: 30px;
 }
 .nav-link{
   font-family: 'Poppins', sans-serif;
@@ -721,6 +722,13 @@ hr{
   padding: 16px;
   font-size: 16px;
   cursor: pointer;
+  width: 75%;
+  min-width: 75px;
+  max-height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline-start: 5%;
 }
 
 .dropbtn:hover, .dropbtn:focus {
@@ -833,6 +841,10 @@ hr{
   }
   .nav-menu.active{
     left: 0;
+  }
+  .dropbtn{
+    margin-right: 25%;
+    max-width: 50%;
   }
   .hamburger{
     display: block;
