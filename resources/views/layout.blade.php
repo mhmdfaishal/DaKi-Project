@@ -60,10 +60,10 @@
                 <span class="nav-item">
                     <a class="nav-link" href="/sewa">Sewa</a>
                 </span>
-                <span class="nav-item" id="navSplit">|</span>
+                <span class="nav-item" id="navSplit"></span>
                 @if (Auth::check())
                 <div class="dropdown1">
-                    <button onclick="myFunction()" class="btn dropbtn">{{Auth::user()->nama}}</button>
+                    <button onclick="myFunction()" class="btn dropbtn nav-item">{{Auth::user()->nama}}</button>
                     <div id="myDropdown" class="dropdown-content">
                         <a class="first-menu" href="#home"><i class="fas fa-user"></i> Profile</a>
                         @if(Auth::user()->role == 2)
