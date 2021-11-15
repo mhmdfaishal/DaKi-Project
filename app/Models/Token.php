@@ -16,5 +16,5 @@ class Token extends Model
     public function token() {
         return $this->belongsTo(User::class);
     }
-    
+
 }

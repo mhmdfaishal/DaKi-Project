@@ -16,13 +16,12 @@ class Gunung extends Model
     }
 
     public function scopeSearch($query, array $filters){
-        $query->when($filters['search'] ?? false, function($query, $search){
-            return $query->where('nama_gunung','like',"%". $search."%")->orWhere('provinsi', 'like',"%". $search."%");
-        });
-
         $query->when($filters['location'] ?? false, function($query, $location){
             return $query->where('provinsi',  'like',"%". $location."%");
         });
 
+        $query->when($filters['search'] ?? false, function($query, $search){
+            return $query->where('nama_gunung','like',"%". $search."%")->orWhere('provinsi', 'like',"%". $search."%");
+        });
     }
 }

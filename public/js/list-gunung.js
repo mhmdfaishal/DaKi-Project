@@ -1,25 +1,95 @@
+function updateQueryStringParameter(uri, key, value) {
+  var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+  var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+  if (uri.match(re)) {
+    return uri.replace(re, '$1' + key + "=" + value + '$2');
+  }
+  else {
+    return uri + separator + key + "=" + value;
+  }
+}
+
 function main () {
   url = $('#url').val();
   const getAllData = () => {
-    fetch(`${url}/home/gunung/getdata`)
-      .then(response => {
-        return response.json();
-      })
-      .then(responseJson => {
-        if(responseJson.error) {
-          showResponseMessage(responseJson.status);
-        } else {
-          renderGunung(responseJson.data);
-          renderCheckbox(responseJson.data);
-        }
-      })
-      .catch(error => {
-        showResponseMessage(error);
-      })
+    const params = new URLSearchParams(window.location.search);
+    if(params.has('search')){
+      fetch(`${url}/home/gunung/getdata?search=${params.get('search')}`)
+        .then(response => {
+          return response.json();
+        })
+        .then(responseJson => {
+          if(responseJson.error) {
+            showResponseMessage(responseJson.status);
+          } else {
+            var newUrl=updateQueryStringParameter(window.location.href,"search",`${params.get('search')}`);
+            window.history.pushState("", "Daki", newUrl);
+  
+            renderGunung(responseJson.data);
+            renderCheckbox(responseJson.data);
+          }
+        })
+        .catch(error => {
+          showResponseMessage(error);
+        })
+    }else if (params.has('location')){
+      fetch(`${url}/home/gunung/getdata?location=${params.get('location')}`)
+        .then(response => {
+          return response.json();
+        })
+        .then(responseJson => {
+          if(responseJson.error) {
+            showResponseMessage(responseJson.status);
+          } else {
+            var newUrl=updateQueryStringParameter(window.location.href,"location",`${params.get('location')}`);
+            window.history.pushState("", "Daki", newUrl);
+  
+            renderGunung(responseJson.data);
+            renderCheckbox(responseJson.data);
+          }
+        })
+        .catch(error => {
+          showResponseMessage(error);
+        })
+    }else if(params.get('search') == "" || params.get('location') == ""){
+      fetch(`${url}/home/gunung/getdata`)
+        .then(response => {
+          return response.json();
+        })
+        .then(responseJson => {
+          if(responseJson.error) {
+            showResponseMessage(responseJson.status);
+          } else {
+            renderGunung(responseJson.data);
+            renderCheckbox(responseJson.data);
+          }
+        })
+        .catch(error => {
+          showResponseMessage(error);
+        })
+    }else{
+      fetch(`${url}/home/gunung/getdata`)
+        .then(response => {
+          return response.json();
+        })
+        .then(responseJson => {
+          if(responseJson.error) {
+            showResponseMessage(responseJson.status);
+          } else {
+            renderGunung(responseJson.data);
+            renderCheckbox(responseJson.data);
+          }
+        })
+        .catch(error => {
+          showResponseMessage(error);
+        })
+    }
   };
 
   const getFilterData = (location) => {
-    fetch(`${url}/home/gunung/getdata?location=${location}`)
+    const params = new URLSearchParams(window.location.search);
+    if(params.has('search')){
+      fetch(`${url}/home/gunung/getdata?search=${params.get('search')}&location=${location}`)
       .then(response => {
         return response.json();
       })
@@ -27,7 +97,8 @@ function main () {
         if(responseJson.error) {
           showResponseMessage(responseJson.status);
         } else {
-          // document.location.href = `/home/gunung/getdata?location=${location}`;
+          var newUrl=updateQueryStringParameter(window.location.href,"location",`${location}`);
+          window.history.pushState("", "Daki", newUrl);
           renderGunung(responseJson.data);
           renderCheckbox(responseJson.data);
         }
@@ -35,10 +106,31 @@ function main () {
       .catch(error => {
         showResponseMessage(error);
       })
+    }else{
+      fetch(`${url}/home/gunung/getdata?location=${location}`)
+        .then(response => {
+          return response.json();
+        })
+        .then(responseJson => {
+          if(responseJson.error) {
+            showResponseMessage(responseJson.status);
+          } else {
+            var newUrl=updateQueryStringParameter(window.location.href,"location",`${location}`);
+            window.history.pushState("", "Daki", newUrl);
+            renderGunung(responseJson.data);
+            renderCheckbox(responseJson.data);
+          }
+        })
+        .catch(error => {
+          showResponseMessage(error);
+        })
+    }
   };
 
   const getSearchData = (search) => {
-    fetch(`${url}/home/gunung/getdata?search=${search}`)
+    const params = new URLSearchParams(window.location.search);
+    if(params.has('location')){
+      fetch(`${url}/home/gunung/getdata?location=${params.get('location')}&search=${search}`)
       .then(response => {
         return response.json();
       })
@@ -46,6 +138,9 @@ function main () {
         if(responseJson.error) {
           showResponseMessage(responseJson.status);
         } else {
+          var newUrl=updateQueryStringParameter(window.location.href,"search",`${search}`);
+          window.history.pushState("", "Daki", newUrl);
+
           renderGunung(responseJson.data);
           renderCheckbox(responseJson.data);
         }
@@ -53,6 +148,27 @@ function main () {
       .catch(error => {
         showResponseMessage(error);
       })
+    }else{
+      fetch(`${url}/home/gunung/getdata?search=${search}`)
+        .then(response => {
+          return response.json();
+        })
+        .then(responseJson => {
+          if(responseJson.error) {
+            showResponseMessage(responseJson.status);
+          } else {
+            var newUrl=updateQueryStringParameter(window.location.href,"search",`${search}`);
+            window.history.pushState("", "Daki", newUrl);
+  
+            renderGunung(responseJson.data);
+            renderCheckbox(responseJson.data);
+          }
+        })
+        .catch(error => {
+          showResponseMessage(error);
+        })
+
+    }
   }
 
 
@@ -119,6 +235,8 @@ function main () {
       button.addEventListener("click", event => {
         if(button.checked === false) {
           button.checked = true;
+          var newUrl=updateQueryStringParameter(window.location.href,"location","");
+          window.history.pushState("", "Daki", newUrl);
           getAllData();
         } else {
           const btnValue = event.target.value;

@@ -60,14 +60,19 @@
                 <span class="nav-item">
                     <a class="nav-link" href="/sewa">Sewa</a>
                 </span>
-                <span class="nav-item" id="navSplit">|</span>
+                <span class="nav-item" id="navSplit"></span>
                 @if (Auth::check())
                 <div class="dropdown1">
-                    <button onclick="myFunction()" class="btn dropbtn">{{Auth::user()->nama}}</button>
+                    @if(count($nama) > 1 )
+                    <button onclick="myFunction()" class="btn dropbtn nav-item">{{ $nama[1]; }}</button>
+                    @else
+                    <button onclick="myFunction()" class="btn dropbtn nav-item">{{ $nama[0]; }}</button>
+                    @endif
                     <div id="myDropdown" class="dropdown-content">
                         <a class="first-menu" href="#home"><i class="fas fa-user"></i> Profile</a>
                         @if(Auth::user()->role == 2)
                         <a href="{{route('pesanan')}}"><i class="fas fa-shopping-cart"></i> Pesanan</a>
+                        <a href="{{route('admin.detail.toko')}}"><i class="fas fa-shopping-cart"></i> Toko Ku</a>
                         @endif
                         <a class="last-menu" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </div>
@@ -183,7 +188,7 @@
                                         <span class="custom-switch-description">@lang('Pendaki')</span>
                                     </label>
                                     <label class="custom-switch">
-                                        <input type="checkbox" name="role" id="role" value="2" class="custom-switch-input" >   
+                                        <input type="checkbox" name="role" id="role" value="2" class="custom-switch-input" @if(session('validation_token')) checked @endif> 
                                         <span class="custom-switch-indicator"></span>
                                         <span class="custom-switch-description">@lang('Pemilik Toko')</span>
                                     </label>

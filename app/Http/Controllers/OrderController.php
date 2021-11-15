@@ -11,7 +11,8 @@ class OrderController extends Controller
         $user = Auth::user();
 
         if(Auth::check() && $user->role==2){
-            return view('daftar_pesanan');
+            $nama = explode(" ",strval(Auth::user()->nama));
+            return view('daftar_pesanan', compact('nama'));
         }
         return redirect()->back();
     }

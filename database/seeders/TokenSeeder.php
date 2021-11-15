@@ -31,4 +31,8 @@ class TokenSeeder extends Seeder
             ]);
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/main

@@ -44,6 +44,7 @@ class RegisterController extends Controller
                 return redirect()->route('landingpage')->withErrors($validator)->withInput()->with('validation_register', 'true');
             }
         }
+        
         $user = User::create([
             'email' => $request->email,
             'nama' => $request->nama,
