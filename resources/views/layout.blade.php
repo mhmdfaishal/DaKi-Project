@@ -25,7 +25,7 @@
             $(".login-modal").modal('show');
         });
     </script>
-    @elseif (session('validation_register'))
+    @elseif (session('validation_register') || session('validation_token'))
     <script>
         $(document).ready(function(){
             $(".login-modal").modal('show');
@@ -188,15 +188,21 @@
                                         <span class="custom-switch-description">@lang('Pemilik Toko')</span>
                                     </label>
                                     <label class="custom-switch">
-                                        <input type="checkbox" name="role" id="role" value="3" class="custom-switch-input" >   
+                                        <input type="checkbox" name="role" id="role" value="3" class="custom-switch-input" @if(session('validation_token')) checked @endif>   
                                         <span class="custom-switch-indicator"></span>
                                         <span class="custom-switch-description">@lang('Pengelola Basecamp')</span>
                                     </label>
                                 </div>
-                                <div class="input-field" id="token_field" style="display: none;">
+                                <div class="input-field" id="token_field" style="display: none"  >
                                     <i class="fas fa-key"></i>
                                     <input type="password" name="token" placeholder="Masukkan Token" value="{{old('Token')}}"/>
                                 </div>
+                                @if (session('validation_token'))
+                                <script>$('#token_field').show()</script>
+                                <div class="alert" role="alert">
+                                    Token Invalid
+                                </div>
+                                @endif
                                 <input type="submit" class="btn btn-login-modal" value="Daftar" />
                             </form>
                         </div>

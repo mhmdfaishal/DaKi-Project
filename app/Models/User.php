@@ -43,4 +43,8 @@ class User extends Authenticatable
      public function gunung(){
         return $this->belongsTo(Gunung::class);
      }
+
+     public function token(){
+         return $this->belongsTo(Token::class);
+     }
 }
