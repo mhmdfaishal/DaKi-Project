@@ -723,8 +723,6 @@ hr{
   cursor: pointer;
   width: 75%;
   min-width: 75px;
-  overflow: hidden;
-  text-overflow: clip;
   max-height: 20px;
   display: flex;
   align-items: center;

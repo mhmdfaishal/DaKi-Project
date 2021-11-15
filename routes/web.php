@@ -4,6 +4,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RentController;
+use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,9 @@ Route::prefix('sewa')->group(function () {
     Route::get('/{toko}', [RentController::class, 'detailToko'])->name('detail.toko');
 });
 
+Route::prefix('store')->group(function () {
+    Route::get('/detail', [StoreController::class, 'detail'])->name('admin.detail.toko');
+});
 
 // Authentication's Route
 Route::post('/login', [LoginController::class, 'onLogin'])->name('login');

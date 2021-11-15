@@ -63,11 +63,12 @@
                 <span class="nav-item" id="navSplit"></span>
                 @if (Auth::check())
                 <div class="dropdown1">
-                    <button onclick="myFunction()" class="btn dropbtn nav-item">{{Auth::user()->nama}}</button>
+                    <button onclick="myFunction()" class="btn dropbtn nav-item">{{ $nama[1]; }}</button>
                     <div id="myDropdown" class="dropdown-content">
                         <a class="first-menu" href="#home"><i class="fas fa-user"></i> Profile</a>
                         @if(Auth::user()->role == 2)
                         <a href="{{route('pesanan')}}"><i class="fas fa-shopping-cart"></i> Pesanan</a>
+                        <a href="{{route('admin.detail.toko')}}"><i class="fas fa-shopping-cart"></i> Toko Ku</a>
                         @endif
                         <a class="last-menu" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </div>
