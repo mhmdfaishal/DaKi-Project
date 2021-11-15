@@ -62,6 +62,7 @@ a.nav-link:visited{
 .col img{
   width: 425px;
   border-radius: 10px;
+  min-width: 200px;
 }
 .h1{
   font-weight: bold;
@@ -153,7 +154,7 @@ a.nav-link:visited{
     max-width: 380px;
     width: 100%;
     background-color: #f0f0f0;
-    margin: 10px 0;
+    margin: 5px 0;
     height: 55px;
     border-radius: 55px;
     display: grid;
@@ -843,7 +844,7 @@ hr{
     left: 0;
   }
   .dropbtn{
-    margin-right: 25%;
+    margin-right: 9%;
     max-width: 50%;
   }
   .hamburger{
@@ -864,7 +865,8 @@ hr{
   }
   #navSplit{
     visibility: hidden;
-    font-size: 0;
+    border-left: 0px;
+    height: 0px;
   }
 
   .title-daftar-gunung{
