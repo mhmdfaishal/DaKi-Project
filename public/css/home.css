@@ -204,3 +204,50 @@ input[type=checkbox]:hover{
 }
 /*End*/
 
+@media(max-width : 1125px){
+    .list-gunung .detail h3{
+        font-size: 20px;
+        width: 300%;
+    }
+}
+@media(max-width : 768px){
+    .head-title h3{
+        font-size: 28px;
+    }
+    .sidebar-left h2{
+        font-size: 18px;
+    }
+    .location_filter label{
+        font-size: 16px;
+    }
+
+    .home_gambar_gunung{
+        max-width: 100%;
+        height: auto;
+    }
+    .list-gunung{
+        border-radius: 10px;
+        padding:2%;
+        min-height: 130px;
+        margin-bottom: 3%;
+        box-shadow: 2px 5px 5px rgb(0 0 0 / 0.2);
+    }
+    .list-gunung .detail h3{
+        font-size: 20px;
+        width: 300%;
+    }
+    .fas .fa-map-marker-alt{
+        font-size: 16px !important;
+        width: 300%;
+    }
+    .height-mount{
+        padding-top: 12% !important;
+        font-size: 16px !important;
+        width: 300%;
+    }
+    .status-mount{
+        padding-top: 12%;
+        font-size: 16px !important;
+        width: 300%;
+    }
+}

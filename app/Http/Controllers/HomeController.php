@@ -16,13 +16,34 @@ class HomeController extends Controller
     }
     public function index()
     {
+        // $data_gunung = Gunung::latest()->search(request(['search', 'location']))->paginate(5);
+        // $all_data = Gunung::latest()->paginate(5);
+        // $location = "";
+        // if(request('location')){
+        //     $location = request('location');
+        // }
+        // return view('home', compact('data_gunung','all_data','location'));
+        // return response()->json([
+        //     'status' => 'success',
+        //     'data_gunung' => $data_gunung,
+        //     'all_data' => $all_data,
+        //     'location' => $location
+        // ]);
+        return view('home');
+    }
+
+    public function getGunung() {
         $data_gunung = Gunung::latest()->search(request(['search', 'location']))->paginate(5);
         $all_data = Gunung::latest()->paginate(5);
         $location = "";
         if(request('location')){
             $location = request('location');
         }
-        return view('home', compact('data_gunung','all_data','location'));
+        $data = [$data_gunung,$all_data,$location];
+        return response()->json([
+                'status' => 'success',
+                'data' => $data,
+        ]);
     }
 
     public function detail(Gunung $gunung)

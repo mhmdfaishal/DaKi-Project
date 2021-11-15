@@ -69,8 +69,13 @@ a.nav-link:visited{
     color: #12372A;
 }
 #scrolldown{
+<<<<<<< HEAD
     margin-top: 50px;
     margin-left: auto;
+=======
+  margin-top: 50px;
+  margin-left: auto;
+>>>>>>> main
 }
 
 .cf:before,
@@ -910,4 +915,8 @@ hr{
     font-style: italic;
     font-size: 16px;
   }
+<<<<<<< HEAD
 }
+=======
+} 
+>>>>>>> main
