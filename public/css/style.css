@@ -61,6 +61,7 @@ a.nav-link:visited{
 .col img{
   width: 425px;
   border-radius: 10px;
+  min-width: 200px;
 }
 .h1{
   font-weight: bold;
@@ -842,7 +843,7 @@ hr{
     left: 0;
   }
   .dropbtn{
-    margin-right: 25%;
+    margin-right: 9%;
     max-width: 50%;
   }
   .hamburger{
@@ -863,7 +864,8 @@ hr{
   }
   #navSplit{
     visibility: hidden;
-    font-size: 0;
+    border-left: 0px;
+    height: 0px;
   }
 
   .title-daftar-gunung{
