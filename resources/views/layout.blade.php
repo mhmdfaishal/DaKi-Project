@@ -188,12 +188,12 @@
                                         <span class="custom-switch-description">@lang('Pendaki')</span>
                                     </label>
                                     <label class="custom-switch">
-                                        <input type="checkbox" name="role" id="role" value="2" class="custom-switch-input" @if(session('validation_token')) checked @endif> 
+                                        <input type="checkbox" name="role" id="role" value="2" class="custom-switch-input" > 
                                         <span class="custom-switch-indicator"></span>
                                         <span class="custom-switch-description">@lang('Pemilik Toko')</span>
                                     </label>
                                     <label class="custom-switch">
-                                        <input type="checkbox" name="role" id="role" value="3" class="custom-switch-input" >   
+                                        <input type="checkbox" name="role" id="role" value="3" class="custom-switch-input" @if(session('validation_token')) checked @endif>   
                                         <span class="custom-switch-indicator"></span>
                                         <span class="custom-switch-description">@lang('Pengelola Basecamp')</span>
                                     </label>
