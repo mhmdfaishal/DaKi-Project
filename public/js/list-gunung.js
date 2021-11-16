@@ -22,7 +22,7 @@ function main () {
           if(responseJson.error) {
             showResponseMessage(responseJson.status);
           } else {
-            var newUrl=updateQueryStringParameter(window.location.href,"search",`${params.get('search')}`);
+            var newUrl=updateQueryStringParameter(window.location.href,"search",`${params.get('search').replace(/ /g,"+").toLowerCase()}`);
             window.history.pushState("", "Daki", newUrl);
   
             renderGunung(responseJson.data);
@@ -41,7 +41,7 @@ function main () {
           if(responseJson.error) {
             showResponseMessage(responseJson.status);
           } else {
-            var newUrl=updateQueryStringParameter(window.location.href,"location",`${params.get('location')}`);
+            var newUrl=updateQueryStringParameter(window.location.href,"location",`${params.get('location').replace(/ /g,"+").toLowerCase()}`);
             window.history.pushState("", "Daki", newUrl);
   
             renderGunung(responseJson.data);
@@ -97,7 +97,7 @@ function main () {
         if(responseJson.error) {
           showResponseMessage(responseJson.status);
         } else {
-          var newUrl=updateQueryStringParameter(window.location.href,"location",`${location}`);
+          var newUrl=updateQueryStringParameter(window.location.href,"location",`${location.replace(/ /g,"+").toLowerCase()}`);
           window.history.pushState("", "Daki", newUrl);
           renderGunung(responseJson.data);
           renderCheckbox(responseJson.data);
@@ -115,7 +115,7 @@ function main () {
           if(responseJson.error) {
             showResponseMessage(responseJson.status);
           } else {
-            var newUrl=updateQueryStringParameter(window.location.href,"location",`${location}`);
+            var newUrl=updateQueryStringParameter(window.location.href,"location",`${location.replace(/ /g,"+").toLowerCase()}`);
             window.history.pushState("", "Daki", newUrl);
             renderGunung(responseJson.data);
             renderCheckbox(responseJson.data);
@@ -138,11 +138,11 @@ function main () {
         if(responseJson.error) {
           showResponseMessage(responseJson.status);
         } else {
-          var newUrl=updateQueryStringParameter(window.location.href,"search",`${search}`);
+          var newUrl=updateQueryStringParameter(window.location.href,"search",`${search.replace(/ /g,"+").toLowerCase()}`);
           window.history.pushState("", "Daki", newUrl);
 
           renderGunung(responseJson.data);
-          renderCheckbox(responseJson.data);
+          // renderCheckbox(responseJson.data);
         }
       })
       .catch(error => {
@@ -157,7 +157,7 @@ function main () {
           if(responseJson.error) {
             showResponseMessage(responseJson.status);
           } else {
-            var newUrl=updateQueryStringParameter(window.location.href,"search",`${search}`);
+            var newUrl=updateQueryStringParameter(window.location.href,"search",`${search.replace(/ /g,"+").toLowerCase()}`);
             window.history.pushState("", "Daki", newUrl);
   
             renderGunung(responseJson.data);

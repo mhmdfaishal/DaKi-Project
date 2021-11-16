@@ -1,0 +1,29 @@
+.container-update {
+    background-color: white;
+    padding: 15px;
+}
+.container-form {
+    border-style: groove;
+    width: 75%;
+    margin: auto;
+    padding: 15px;
+}
+.container-form img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-bottom: 15px;
+}
+
+.container-form form {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+input {
+    border-radius: 10px;
+}
