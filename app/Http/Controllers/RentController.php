@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Toko;
+use App\Models\Barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -45,6 +46,7 @@ class RentController extends Controller
             $nama = explode(" ",strval(Auth::user()->nama));
             return view('detail_toko', compact('toko','nama'));
         }
-        return view('detail_toko',compact('toko'));
+        $barangs = $toko->barang;
+        return view('detail_toko',compact('toko','barangs'));
     }
 }
