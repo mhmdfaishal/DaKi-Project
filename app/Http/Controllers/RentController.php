@@ -38,4 +38,13 @@ class RentController extends Controller
             return view('marketplace_layout', compact('data_toko','all_data','location'))->render();
         }
     }
+
+    public function detailToko(Toko $toko)
+    {
+        if(Auth::check()){
+            $nama = explode(" ",strval(Auth::user()->nama));
+            return view('detail_toko', compact('toko','nama'));
+        }
+        return view('detail_toko',compact('toko'));
+    }
 }

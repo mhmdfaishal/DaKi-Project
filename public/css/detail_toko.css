@@ -1,0 +1,89 @@
+.navbar {
+    background: none !important;
+    position: absolute !important;
+    width: 100%;
+}
+.header {
+    text-align: center;
+    color: #c9db43;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.548)),
+        url("../images/home.jpg") !important;
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat !important;
+    /* filter: brightness(10%); */
+    padding: 20%;
+    width: auto;
+    height: 100%;
+}
+.head-title h3 {
+    text-align: center;
+    font-size: 38px;
+    color: #12372a;
+}
+hr {
+    background-color: #12372a;
+    color: #12372a;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.body-content {
+    padding: 2%;
+}
+.box-container {
+    background-color: white;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border-radius: 0px 0px 20px 20px;
+}
+.content-mount {
+    background-color: #12372a;
+    margin-left: 4%;
+    margin-right: 4%;
+    padding: 3%;
+    border-radius: 15px;
+    color: white;
+    width: 100%;
+}
+.content-mount a:link {
+    color: white;
+}
+.content-mount a:visited {
+    color: white;
+}
+.mount-detail {
+    margin-bottom: 2%;
+}
+.content-mount h2 {
+    margin-bottom: 3%;
+}
+.mount-detail h6 {
+    margin-bottom: 2%;
+    display: inline;
+}
+.mount-detail .material-icons-outlined {
+    margin-right: 1%;
+}
+.mount-pict {
+    max-width: 20%;
+    height: auto;
+    float: left;
+    border-radius: 5px;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+}
+
+@media (max-width: 768px) {
+    .head-title h3 {
+        font-size: 30px;
+    }
+    .content-mount h2 {
+        font-size: 24px;
+    }
+    .mount-detail .material-icons-outlined {
+        margin-right: 1%;
+        font-size: 15px;
+    }
+}
