@@ -17,10 +17,10 @@ class CreateGunungTable extends Migration
         Schema::create('gunung', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->string('provinsi_id');
             $table->string('nama_gunung');
             $table->string('gambar_gunung');
             $table->string('lokasi');
-            $table->string('provinsi');
             $table->string('status');
             $table->string('ketinggian');
             $table->string('htm');

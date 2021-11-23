@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Token;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -13,20 +14,25 @@ class RegisterController extends Controller
 {
     public function onRegister(Request $request) {
         
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email|unique:users',
-            'nama' => 'required',
-            'password' => 'required|min:8',
-            'confirm_password' => 'same:password|required'
-        ]);
         if($request->role == 3){
-            $validator = Validator::make($request->all(), [
-                'email' => 'required|email|unique:users',
-                'nama' => 'required',
-                'password' => 'required|min:8',
-                'confirm_password' => 'same:password|required',
-                'token' => 'required'
-            ]);
+            $check_token = Token::where('token_value', $request->token)->first();
+            if($check_token == null || $check_token->user_email != null){
+                return redirect()->route('landingpage')->withInput()->with('validation_token', 'true');
+            } else {
+                $validator = Validator::make($request->all(), [
+                    'email' => 'required|email|unique:users',
+                    'nama' => 'required',
+                    'password' => 'required|min:8',
+                    'confirm_password' => 'same:password|required',
+                    'token' => 'required'
+                ]);
+                if ($validator->fails()) {
+                    return redirect()->route('landingpage')->withErrors($validator)->withInput()->with('validation_register', 'true');
+                }
+                Token::where('token_value', $request->token)->update([
+                    'user_email' => $request->email
+                ]);
+            } 
         }else{
             $validator = Validator::make($request->all(), [
                 'email' => 'required|email|unique:users',
@@ -34,11 +40,11 @@ class RegisterController extends Controller
                 'password' => 'required|min:8',
                 'confirm_password' => 'same:password|required'
             ]);
+            if ($validator->fails()) {
+                return redirect()->route('landingpage')->withErrors($validator)->withInput()->with('validation_register', 'true');
+            }
         }
         
-        if ($validator->fails()) {
-            return redirect()->route('landingpage')->withErrors($validator)->withInput()->with('validation_register', 'true');
-        }
         $user = User::create([
             'email' => $request->email,
             'nama' => $request->nama,

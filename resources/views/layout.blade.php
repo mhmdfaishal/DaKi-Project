@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('images/logo6.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -16,6 +16,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous" ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css"
+    integrity="sha256-pODNVtK3uOhL8FUNWWvFQK0QoQoV3YA9wGGng6mbZ0E=" crossorigin="anonymous" />
     <title>@yield('title')</title>
 </head>
 <body>
@@ -25,7 +27,7 @@
             $(".login-modal").modal('show');
         });
     </script>
-    @elseif (session('validation_register'))
+    @elseif (session('validation_register') || session('validation_token'))
     <script>
         $(document).ready(function(){
             $(".login-modal").modal('show');
@@ -63,12 +65,18 @@
                 <span class="nav-item" id="navSplit"></span>
                 @if (Auth::check())
                 <div class="dropdown1">
+                    @if(count($nama) > 1 )
                     <button onclick="myFunction()" class="btn dropbtn nav-item">{{ $nama[1]; }}</button>
+                    @else
+                    <button onclick="myFunction()" class="btn dropbtn nav-item">{{ $nama[0]; }}</button>
+                    @endif
                     <div id="myDropdown" class="dropdown-content">
                         <a class="first-menu" href="#home"><i class="fas fa-user"></i> Profile</a>
                         @if(Auth::user()->role == 2)
                         <a href="{{route('pesanan')}}"><i class="fas fa-shopping-cart"></i> Pesanan</a>
                         <a href="{{route('admin.detail.toko')}}"><i class="fas fa-shopping-cart"></i> Toko Ku</a>
+                        @elseif(Auth::user()->role == 3)
+                        <a href="{{route('index.admin.gunung')}}"><i class="fas fa-campground"></i> Basecamp</a>
                         @endif
                         <a class="last-menu" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </div>
@@ -184,12 +192,12 @@
                                         <span class="custom-switch-description">@lang('Pendaki')</span>
                                     </label>
                                     <label class="custom-switch">
-                                        <input type="checkbox" name="role" id="role" value="2" class="custom-switch-input" >   
+                                        <input type="checkbox" name="role" id="role" value="2" class="custom-switch-input" > 
                                         <span class="custom-switch-indicator"></span>
                                         <span class="custom-switch-description">@lang('Pemilik Toko')</span>
                                     </label>
                                     <label class="custom-switch">
-                                        <input type="checkbox" name="role" id="role" value="3" class="custom-switch-input" >   
+                                        <input type="checkbox" name="role" id="role" value="3" class="custom-switch-input" @if(session('validation_token')) checked @endif>   
                                         <span class="custom-switch-indicator"></span>
                                         <span class="custom-switch-description">@lang('Pengelola Basecamp')</span>
                                     </label>
@@ -198,6 +206,12 @@
                                     <i class="fas fa-key"></i>
                                     <input type="password" name="token" placeholder="Masukkan Token" value="{{old('Token')}}"/>
                                 </div>
+                                @if (session('validation_token'))
+                                <script>$('#token_field').show()</script>
+                                <div class="alert" role="alert">
+                                    Token Invalid
+                                </div>
+                                @endif
                                 <input type="submit" class="btn btn-login-modal" value="Daftar" />
                             </form>
                         </div>

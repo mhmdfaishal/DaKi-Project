@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RentController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\BasecampController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,16 +20,22 @@ use Illuminate\Support\Facades\Route;
 */
 //routes home (gunung)
 Route::get('/', [HomeController::class, 'landingpage'])->name('landingpage');
+Route::get('/fetchgunung', [HomeController::class, 'fetchGunung']);
+Route::get('/fetchtoko', [RentController::class, 'fetchToko']);
 Route::prefix('home')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/{gunung:nama_gunung}', [HomeController::class, 'detail'])->name('detail.gunung');
-    Route::get('/gunung/getdata', [HomeController::class, 'getGunung'])->name('get.gunung');
-    
-    Route::post('/gunung/store', [HomeController::class, 'storeGunung']);
-    Route::post('/gunung/update', [HomeController::class, 'updateGunung']);
-    Route::delete('/gunung/delete', [HomeController::class, 'destroyGunung']);
+    // Route::get('/gunung/getdata', [HomeController::class, 'getGunung'])->name('get.gunung');
+   
 });
+
 //routes sewa (toko)
+Route::prefix('basecamp')->group(function() {
+    Route::get('/', [BasecampController::class, 'index'])->name('index.admin.gunung');
+    Route::post('/gunung/store', [BasecampController::class, 'storeGunung']);
+    Route::post('/gunung/update', [BasecampController::class, 'updateGunung']);
+    Route::delete('/gunung/delete/{id}', [BasecampController::class, 'destroyGunung']);
+});
 Route::prefix('sewa')->group(function () {
     Route::get('/', [RentController::class, 'index'])->name('index.marketplace');
     Route::get('/{toko}', [RentController::class, 'detailToko'])->name('detail.toko');
