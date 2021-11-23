@@ -20,7 +20,10 @@
   </div>
 </div>
 <div class="box-container" id="container_home">
-  @include('home_layout')
+  <div class="body-content d-flex">
+    @include('sidebar_left')
+    @include('home_layout')
+  </div>
 </div>
 @endsection
 
@@ -33,7 +36,4 @@
   <script src="{{asset('js/home.js')}}"></script>
   <script src="{{asset('js/list-gunung.js')}}"></script>
 
-  <script>
-    
-</script>
 @endpush

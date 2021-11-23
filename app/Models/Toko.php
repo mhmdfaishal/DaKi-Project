@@ -25,4 +25,8 @@ class Toko extends Model
 
 
     }
+
+    public function barang(){
+        return $this->hasMany(Barang::class);
+    }
 }

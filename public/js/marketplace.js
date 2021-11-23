@@ -1,6 +1,6 @@
 $(document).on('click', '#list_toko', function () {
-    var nama_gunung = $(this).data('id');
-    window.location.href = $('#url').val()+'/home/'+nama_gunung;
+    var nama_toko = $(this).data('id');
+    window.location.href = $('#url').val()+'/sewa/'+nama_toko;
 });
 $("input:checkbox").on('click', function() {
     var $box = $(this);

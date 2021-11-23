@@ -1,0 +1,25 @@
+.container{
+    padding: 2% !important;
+}
+.card {
+    min-width: 20% !important;
+    max-width: auto;
+    margin: 2% !important;
+    padding: 0 !important;
+    border-radius: 10px !important;
+    filter: drop-shadow(10px 15px 15px rgba(0, 0, 0, 0.1)) !important;
+}
+.pagination{
+    margin-left: 50% !important;
+}
+.nama-barang{
+    text-align: center;
+    font-size: 20px;
+}
+.card-img-top{
+    background-size: auto;
+    background-color: rgba(0, 0, 0, 0.699);
+}
+.card:hover{
+    cursor: pointer;
+}

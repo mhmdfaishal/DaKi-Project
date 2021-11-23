@@ -48,7 +48,7 @@
         });
     </script>
     @endif
-    <nav class="navbar navbar-light" style="background-color: #12372A;">
+    <nav class="navbar" style="background-color: #12372A;">
         <div class="container-nav">
             <a class="navbar-brand" href="/">
                 <span class="navbar-toogle-icon">

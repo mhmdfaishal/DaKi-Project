@@ -21,12 +21,13 @@ use Illuminate\Support\Facades\Route;
 //routes home (gunung)
 Route::get('/', [HomeController::class, 'landingpage'])->name('landingpage');
 Route::get('/fetchgunung', [HomeController::class, 'fetchGunung']);
+Route::get('/fetchlocation', [HomeController::class, 'fetchLocation']);
 Route::get('/fetchtoko', [RentController::class, 'fetchToko']);
+Route::get('/fetchbarang', [RentController::class, 'fetchBarang']);
 Route::prefix('home')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/{gunung:nama_gunung}', [HomeController::class, 'detail'])->name('detail.gunung');
     // Route::get('/gunung/getdata', [HomeController::class, 'getGunung'])->name('get.gunung');
-   
 });
 
 //routes sewa (toko)
@@ -41,7 +42,7 @@ Route::prefix('sewa')->group(function () {
     Route::get('/{toko}', [RentController::class, 'detailToko'])->name('detail.toko');
 });
 
-Route::prefix('store')->group(function () {
+Route::prefix('toko')->group(function () {
     Route::get('/detail', [StoreController::class, 'detail'])->name('admin.detail.toko');
 });
 

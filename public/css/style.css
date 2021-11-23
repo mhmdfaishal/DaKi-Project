@@ -528,6 +528,7 @@ hr{
   margin: 3%;
   margin-top: 20%;
   border-radius: 15px;
+  min-width: 30% !important;
   height: 350px !important;
   filter: drop-shadow(0px 24px 45px rgba(0, 0, 0, 0.1));
 }
