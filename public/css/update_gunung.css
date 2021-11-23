@@ -1,12 +1,16 @@
 .container-update {
     background-color: white;
     padding: 15px;
+    
 }
 .container-form {
-    border-style: groove;
+    box-shadow: 5px 5px 10px 10px rgb(0 0 0 / 0.2);
     width: 75%;
     margin: auto;
-    padding: 15px;
+    padding: 5%;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    margin-top: 5%;
 }
 .container-form img {
     display: block;
@@ -26,4 +30,32 @@
 
 input {
     border-radius: 10px;
+}
+
+.btn-save{
+    border-radius: 10px;
+}
+.btn-post{
+    border-radius: 10px;
+}
+.btn-delete{
+    margin-left: 2%;
+    border-radius: 10px;
+}
+
+.form-img{
+    border-radius: 10px;
+}
+.title-basecamp{
+    margin-top: 2%;
+    text-align: center;
+    color: #12372A;
+}
+.container-update hr{
+    background-color: #12372A;
+    border-color: #12372A;
+    color: #12372A;
+    width: 15%;
+    margin: auto;
+    margin-top: 1%;
 }

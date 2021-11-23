@@ -15,13 +15,14 @@ class Toko extends Model
     }
 
     public function scopeSearch($query, array $filters){
+        
         $query->when($filters['search'] ?? false, function($query, $search){
-            return $query->where('kotakabupaten',  $search);
+            return $query->where('kotakabupaten', 'like', "%".  $search . "%")->orWhere('nama_toko', 'like', "%".$search."%");
         });
-
         $query->when($filters['location'] ?? false, function($query, $location){
             return $query->where('kotakabupaten', $location);
         });
+
 
     }
 }

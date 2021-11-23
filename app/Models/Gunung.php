@@ -15,13 +15,17 @@ class Gunung extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function provinsi(){
+        return $this->belongsTo(Provinces::class);
+    }
+
     public function scopeSearch($query, array $filters){
         $query->when($filters['location'] ?? false, function($query, $location){
-            return $query->where('provinsi',  'like',"%". $location."%");
+            return $query->where('provinsi_id',  'like',"%". $location."%");
         });
 
         $query->when($filters['search'] ?? false, function($query, $search){
-            return $query->where('nama_gunung','like',"%". $search."%")->orWhere('provinsi', 'like',"%". $search."%");
+            return $query->where('nama_gunung','like',"%". $search."%");
         });
     }
 }
