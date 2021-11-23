@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.has-login{
+  position: relative;
+  float: right;
+  margin-right: 10px;
+}
+
+h2{
+  text-align: center;
+  padding-top: 100px;
+}
+
+.user-pho{
+  display: block;
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  margin-top: 100px;
+}
+
+.bukti-pho{
+  width: 350px;
+  height: 450px;
+  margin: 100px 30px 0px 30px;
+  border-radius: 20px;
+}
+
+.content{
+  position: relative;
+  display: inline-flex;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.tools img{
+  width: 200px;
+  height: 200px;
+  margin: 0px 40px 0px 60px;
+  border-top-left-radius: 10px ;
+  border-top-right-radius: 10px ;
+  padding-top: 20px;
+}
+
+.tools{
+  background-color: rgb(204, 200, 200);
+  background-size: 10px 10px;
+}
+
+.tools:hover{
+  background-color: rgb(155, 155, 155);
+  box-shadow: black;
+}
+
+.button{
+  margin-top: 50px;
+}
+
+.del{
+  position: relative;
+  float: left;
+  margin-left: 20px;
+  padding: 2px;
+  width: 200px;
+  text-align: center;
+  background-color: #C9DB43;
+  border-radius: 10px;
+}
+
+.acc{
+  position: relative;
+  float: right;
+  margin-right: 20px;
+  padding: 2px;
+  width: 200px;
+  text-align: center;
+  background-color: #247257;
+  border-radius: 10px;
+}
+
+.acc:hover, .del:hover{
+  text-decoration: none;
+  color: white;
+}
+
+.footer{
+    z-index: -1 !important;
+    background-color: #247257;
+    padding-bottom: 20%;
+    padding-top: 5%;
+    margin-top: 100px;
+  }
+  .title-footer{
+    text-align: center;
+    color: white;
+  }
+  .desc-title{
+    text-align: center;
+    color: white;
+  }
+  .email-footer{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    margin-top: 5%;
+  }
+  .socmed{
+    text-align: center;
+    margin-top: 16%;
+    color: white;
+  }
+  .socmed a{
+    margin: 5px;
+    font-size: 25px;
+    color: white;
+  }
+  .socmed a:hover{
+    color: #C9DB43;
+  }
+  .copyright-footer{
+    text-align: center;
+    color: white;
+    margin-bottom: -25%;
+    margin-top: 10%;
+    font-style: italic;
+  }
+
+  @media(max-width: 1313px){
+    .bukti-pho{
+      width: 350px;
+      height: 450px;
+      border-radius: 20px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .content{
+      display: flex;
+      margin-top: 100px;
+      justify-content: center;
+    }
+  }
+
+  @media(max-width: 897px){
+    
+    .content{
+      display: block;
+      margin-top: 100px;
+      justify-content: center;
+    }
+  }
