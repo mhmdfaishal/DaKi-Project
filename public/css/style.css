@@ -816,6 +816,10 @@ hr{
 }
 
 @media(max-width : 768px){
+  .btn-logo-home{
+    width: 45%;
+    height: 45%;
+  }
   .container-nav{
     width: 90%;
   }
@@ -927,3 +931,19 @@ hr{
     font-size: 16px;
   }
 } 
+@media(max-width : 500px){
+  .bar{
+    width: 15px;
+    height: 1.8px;
+    margin: 3px auto;
+  }
+  
+    .hamburger.active .bar:nth-child(1){
+        -webkit-transform: translateY(4.5px) rotate(45deg);
+        transform: translateY(4.5px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3){
+        -webkit-transform: translateY(-4.5px) rotate(-45deg);
+        transform: translateY(-4.5px) rotate(-45deg);
+    }
+  } 
