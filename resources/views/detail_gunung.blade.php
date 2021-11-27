@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
 @endpush
 
-@section('title', '{{$gunung->nama_gunung}} | Dasbor Pendaki')
+@section('title', 'Detail Gunung | Dasbor Pendaki')
 
 @section('main')
 <div class="container-fluid header"></div>

@@ -11,7 +11,7 @@ class RentController extends Controller
 {
     public function index(){
         $data_toko = Toko::orderBy('rating','DESC')->search(request(['search', 'location']))->paginate(5);
-        $all_data = Toko::latest()->paginate(5);
+        $all_data = Toko::latest()->get();
         $location = "";
         if(request('location')){
             $location = request('location');
@@ -26,6 +26,18 @@ class RentController extends Controller
         if($request->ajax())
         {
             $data_toko = Toko::latest()->search(request(['search', 'location']))->paginate(5);
+            
+            if(Auth::check()){
+                $nama = explode(" ",strval(Auth::user()->nama));
+                return view('marketplace_layout', compact('nama','data_toko'));
+            }
+
+            return view('marketplace_layout', compact('data_toko'))->render();
+        }
+    }
+    public function fetchLocation(Request $request){
+        if($request->ajax())
+        {
             $all_data = Toko::latest()->get();
             $location = "";
             if(request('location')){
@@ -34,9 +46,10 @@ class RentController extends Controller
 
             if(Auth::check()){
                 $nama = explode(" ",strval(Auth::user()->nama));
-                return view('marketplace_layout', compact('nama','data_toko','all_data','location'));
+                return view('location_filter_marketplace', compact('nama','all_data','location'));
             }
-            return view('marketplace_layout', compact('data_toko','all_data','location'))->render();
+
+            return view('location_filter_marketplace', compact('all_data','location'))->render();
         }
     }
     public function detailToko($toko)

@@ -23,10 +23,11 @@ Route::get('/', [HomeController::class, 'landingpage'])->name('landingpage');
 Route::get('/fetchgunung', [HomeController::class, 'fetchGunung']);
 Route::get('/fetchlocation', [HomeController::class, 'fetchLocation']);
 Route::get('/fetchtoko', [RentController::class, 'fetchToko']);
+Route::get('/fetchlocationtoko', [RentController::class, 'fetchLocation']);
 Route::get('/fetchbarang', [RentController::class, 'fetchBarang']);
 Route::prefix('home')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');
-    Route::get('/{gunung:nama_gunung}', [HomeController::class, 'detail'])->name('detail.gunung');
+    Route::get('/{gunung:id}', [HomeController::class, 'detail'])->name('detail.gunung');
     // Route::get('/gunung/getdata', [HomeController::class, 'getGunung'])->name('get.gunung');
 });
 

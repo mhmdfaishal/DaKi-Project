@@ -1,6 +1,6 @@
 $(document).on('click', '#list_gunung', function () {
-    var nama_gunung = $(this).data('id');
-    window.location.href = '/home/'+nama_gunung;
+    var id = $(this).data('id');
+    window.location.href = '/home/'+id;
 });
 // $("input:checkbox").on('click', function() {
 //     var $box = $(this);

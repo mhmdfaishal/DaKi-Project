@@ -112,7 +112,9 @@
     padding-bottom: 2%;
     border-radius: 0px 0px 20px 20px;
 }
-
+.list-element-toko{
+    width: 100%;
+}
 .home_gambar_toko{
     max-width: 15%;
     max-height: 10%;
