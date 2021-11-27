@@ -43,6 +43,7 @@ Route::prefix('sewa')->group(function () {
 
 Route::prefix('store')->group(function () {
     Route::get('/detail', [StoreController::class, 'detail'])->name('admin.detail.toko');
+    Route::post('/detail/save-detail', [StoreController::class, 'storeToko']);
 });
 
 // Authentication's Route
