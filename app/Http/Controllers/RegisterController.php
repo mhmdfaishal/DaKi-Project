@@ -52,6 +52,9 @@ class RegisterController extends Controller
             'role' => $request->role
         ]);
         Auth::login($user);
+        if($request->role == 2){
+            return redirect()->route('admin.detail.toko');
+        }
         return redirect()->route('index');
     }
 

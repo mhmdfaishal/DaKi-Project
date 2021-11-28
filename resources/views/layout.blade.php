@@ -202,7 +202,7 @@
                                         <span class="custom-switch-description">@lang('Pengelola Basecamp')</span>
                                     </label>
                                 </div>
-                                <div class="input-field" id="token_field" style="display: none;">
+                                <div class="input-field" id="token_field" style="display: none"  >
                                     <i class="fas fa-key"></i>
                                     <input type="password" name="token" placeholder="Masukkan Token" value="{{old('Token')}}"/>
                                 </div>
