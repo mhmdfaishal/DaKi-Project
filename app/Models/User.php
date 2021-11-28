@@ -47,4 +47,7 @@ class User extends Authenticatable
      public function token(){
          return $this->belongsTo(Token::class);
      }
+     public function toko(){
+         return $this->hasMany(Toko::class);
+     }
 }

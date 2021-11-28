@@ -81,7 +81,7 @@
             <div class="mb-3 row">
               <label for="kota_kabupaten" class="col-sm-2 col-form-label">Kota/Kabupaten</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="kota_kabupaten"@if(isset($data)) value="{{ $data->kotakabupaten }}" @endif style="border-radius: 12px">
+                <input type="text" class="form-control" id="kota_kabupaten"@if(isset($data)) value="{{ $data->kotakabupaten }}" @endif placeholder="ex : Kota Bandung" style="border-radius: 12px">
               </div>
             </div>
             <div class="mb-3 row">

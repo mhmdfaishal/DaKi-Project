@@ -9,7 +9,22 @@
 body{
   background-color: #12372A;
 }
-
+.navbar{
+  border-radius: 0px 0px 20px 20px !important;
+  background-color: #12372A !important;
+  width: 100%;
+  height: 20%;
+}
+.header-jumbotron{
+  margin-top: 10% !important;
+}
+.btn-back{
+  font-size: 30px;
+  color: #12372A;
+}
+.btn-back:hover{
+  color: #C9DB43;
+}
 .navbar button{
   outline: solid 1px #C9DB43;
   color: white;
@@ -791,7 +806,7 @@ hr{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.5rem;
+  padding: 0rem 1.5rem;
   width: 100%;
 }
 .hamburger{

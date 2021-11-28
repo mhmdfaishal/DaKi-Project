@@ -11,11 +11,11 @@
 @section('main')
 
 <div class="container-update">
-    <h2 class="title-basecamp">Kelola Gunung</h2>
+    <h2 class="title-basecamp"><a href="/home" class="btn-back"><i class="fas fa-chevron-left"></i></a> Kelola Gunung</h2>
     <hr>
     <div class="container-form">
       @if(isset($getgunung))
-      <img class="form-img" src="{{ asset('images/gunung/'.$getgunung->gambar_gunung.'') }}" alt="gambar">
+      <img class="form-img" src="{{ asset('storage/images/gunung/'.$getgunung->gambar_gunung.'') }}" alt="gambar">
       @else
       <img class="form-img" src="{{ asset('images/home.jpg') }}" alt="gambar">
       @endif

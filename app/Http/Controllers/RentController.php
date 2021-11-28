@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Follower;
 use App\Models\Toko;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,14 +55,15 @@ class RentController extends Controller
     }
     public function detailToko($toko)
     {
+        $user = Auth::user();
         $namatoko = str_replace('-', ' ', strtolower($toko));
         $data_toko = Toko::where('nama_toko',$namatoko)->first();
         $barangs = Barang::latest()->where('toko_id',$data_toko->id)->search(request(['search']))->paginate(16);
-        
         $jumlah = $data_toko->barang;
         if(Auth::check()){
+            $hasfollow = Follower::where('user_id',$user->id)->where('toko_id',$data_toko->id)->first();
             $nama = explode(" ",strval(Auth::user()->nama));
-            return view('detail_toko', compact('data_toko','nama','barangs','jumlah'));
+            return view('detail_toko', compact('data_toko','nama','barangs','jumlah','hasfollow'));
         }
         return view('detail_toko',compact('data_toko','barangs','jumlah'));
     }

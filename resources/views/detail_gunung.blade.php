@@ -12,12 +12,12 @@
 <div class="container-fluid header"></div>
 <div class="box-container">
     <div class="head-title" data-aos="fade-up">
-        <h3>Detail Gunung</h3>
+        <h3><a href="/home" class="btn-back"><i class="fas fa-chevron-left"></i></a> Detail Gunung</h3>
         <hr class="under-split">
     </div>
     <div class="body-content d-flex">
         <div class="content-mount" data-aos="fade-up">
-            <h6><img src="{{asset('images/gunung/'.$gunung->gambar_gunung.'')}}" alt="" class="mount-pict"></h6>
+            <h6><img src="{{asset('storage/images/gunung/'.$gunung->gambar_gunung.'')}}" alt="" class="mount-pict"></h6>
             <h2>Gunung {{ $gunung->nama_gunung }}</h2>
             <div class="mount-detail">
                 <i class="material-icons-outlined">location_on</i>

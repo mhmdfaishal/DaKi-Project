@@ -7,7 +7,7 @@
 @section('title', 'DaKi | Dasbor Pendaki')
 
 @section('main')
-    <div class="container-fluid">
+    <div class="container-fluid header-jumbotron">
         <div class="row">
             <div class="col">
                 <h1 class="h1 display-6" data-aos="fade-up">Teman Mendaki Untuk Para<span id="pendaki"> Pendaki&nbsp;</span></h1>
@@ -34,7 +34,7 @@
             <div class="card-gunung d-flex">
                     @if(isset($data_gunung[1]))
                     <div class="card card-left" data-aos="fade-up" data-aos-duration="5000">
-                        <a href="{{route('detail.gunung',$data_gunung[1]->id)}}"><img class="card-img-top" src="{{asset('images/gunung/'.$data_gunung[1]->gambar_gunung.'')}}" alt="Card image cap"></a>
+                        <a href="{{route('detail.gunung',$data_gunung[1]->id)}}"><img class="card-img-top" src="{{asset('storage/images/gunung/'.$data_gunung[1]->gambar_gunung.'')}}" alt="Card image cap"></a>
                         <div class="card-body">
                           <p class="card-text"><a href="{{route('detail.gunung',$data_gunung[1]->id)}}" style="color:black;">{{$data_gunung[1]->nama_gunung}}</a></p>
                         </div>
@@ -49,7 +49,7 @@
                     @endif
                     @if(isset($data_gunung[0]))
                     <div class="card card-mid" data-aos="fade-up" data-aos-duration="4000">
-                        <a href="{{route('detail.gunung',$data_gunung[0]->id)}}"><img class="card-img-top" src="{{asset('images/gunung/'.$data_gunung[0]->gambar_gunung.'')}}" alt="Card image cap"></a>
+                        <a href="{{route('detail.gunung',$data_gunung[0]->id)}}"><img class="card-img-top" src="{{asset('storage/images/gunung/'.$data_gunung[0]->gambar_gunung.'')}}" alt="Card image cap"></a>
                         <div class="card-body">
                           <p class="card-text"><a href="{{route('detail.gunung',$data_gunung[0]->id)}}" style="color:black;">{{$data_gunung[0]->nama_gunung}}</a></p>
                         </div>
@@ -64,7 +64,7 @@
                     @endif
                     @if(isset($data_gunung[2]))
                     <div class="card card-right" data-aos="fade-up" data-aos-duration="5000">
-                        <a href="{{route('detail.gunung',$data_gunung[2]->id)}}"><img class="card-img-top" src="{{asset('images/gunung/'.$data_gunung[2]->gambar_gunung.'')}}" alt="Card image cap"></a>
+                        <a href="{{route('detail.gunung',$data_gunung[2]->id)}}"><img class="card-img-top" src="{{asset('storage/images/gunung/'.$data_gunung[2]->gambar_gunung.'')}}" alt="Card image cap"></a>
                         <div class="card-body">
                           <p class="card-text"><a href="{{route('detail.gunung',$data_gunung[2]->id)}}" style="color:black;">{{$data_gunung[2]->nama_gunung}}</a></p>
                         </div>

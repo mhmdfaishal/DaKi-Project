@@ -7,7 +7,7 @@
         @foreach ($data_gunung as $gunung)
         <div class="list-gunung" data-id="{{ $gunung->id }}" id="list_gunung" data-aos="fade-up">
             <div class="wrap-list d-flex">
-                <img src="{{asset('images/gunung/'.$gunung->gambar_gunung.'')}}" alt="" class="home_gambar_gunung">
+                <img src="{{asset('storage/images/gunung/'.$gunung->gambar_gunung.'')}}" alt="" class="home_gambar_gunung">
                 <div class="detail" id="detail">
                   <h3>Gunung {{ $gunung->nama_gunung }}</h3>
                   <i class="fas fa-map-marker-alt"></i><a href="{{$gunung->url_gmaps}}" target="_blank" class="location-mount"> {{ $gunung->provinsi->nama_provinsi }}</a>

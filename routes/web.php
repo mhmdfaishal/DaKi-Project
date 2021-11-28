@@ -44,8 +44,10 @@ Route::prefix('sewa')->group(function () {
 });
 
 Route::prefix('toko')->group(function () {
-    Route::get('/detail', [StoreController::class, 'detail'])->name('admin.detail.toko');
+    Route::get('/info', [StoreController::class, 'detail'])->name('admin.detail.toko');
+    Route::delete('/delete/{id}', [StoreController::class, 'destroyToko']);
     Route::post('/detail/save-detail', [StoreController::class, 'storeToko']);
+    Route::post('/followunfollow', [StoreController::class, 'followUnfollow']);
 });
 
 // Authentication's Route

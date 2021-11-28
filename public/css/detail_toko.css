@@ -1,8 +1,17 @@
 .navbar{
     width: 100%;
-    height: 15% !important;
+    height: 20% !important;
+    border-radius: 0px 0px 20px 20px !important;
     background-color: #12372A !important;
-    border-radius: 0px 0px 20px 20px  !important;
+}
+.nav-menu{
+    margin-top: 2% !important;
+}
+.wrap-body{
+    padding-top: 12% !important;
+}
+.logo-toko{
+    border-radius: 5px 5px 5px 5px ;
 }
 .header{
     text-align: center;
@@ -74,7 +83,8 @@ hr{
     height: 175px;
 }
 .logo-toko{
-    max-width: 30%;
+    max-width: 35%;
+    /* height: 5% !important; */
 }
 .nama-toko{
     text-align: center;
@@ -142,4 +152,16 @@ hr{
 }
 .title-daftar-barang{
     text-align: center;
+}
+.btn-edit-toko{
+    margin-left: -35%;
+    width: 155%;
+    padding: 2px;
+    background: none;
+    border: 2px solid #C9DB43;
+    border-radius: 10px 10px 10px 10px;
+    color: white;
+}
+.btn-edit-toko:hover{
+    background: #C9DB43;
 }

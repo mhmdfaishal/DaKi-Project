@@ -14,7 +14,7 @@ if ($("#form-toko").length > 0) {
           formData.append('kontak', $('#kontak').val());
           
           $.ajax({
-              url: "/store/detail/save-detail", 
+              url: "/toko/detail/save-detail", 
               data: formData, 
               type: "POST", 
               dataType: 'json', 
@@ -52,7 +52,7 @@ $(document).on('click', '#delete_button', function(event){
   event.preventDefault(); 
   var id = $(this).data('id');
   $.ajax({
-      url: "/basecamp/gunung/delete/"+id, 
+      url: "/toko/delete/"+id, 
       type: "DELETE", 
       dataType: 'json', 
       cache: false,
