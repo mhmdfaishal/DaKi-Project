@@ -72,7 +72,7 @@
                     <h5><i class="fas fa-users"></i> Pengikut: <span id="jumlah_follower">{{$data_toko->follower}}</span></h5>
                 </div>
             </div>
-            @if(Auth::user()->email == $data_toko->user->email)
+            @if(Auth::check() && Auth::user()->email == $data_toko->user->email)
             <a href="{{route('admin.detail.toko')}}"><button class="btn-edit-toko"><i class="far fa-edit"></i> Edit Toko</button></a>
             @endif
         </div>

@@ -87,7 +87,7 @@
             <div class="mb-3 row">
               <label for="kontak" class="col-sm-2 col-form-label">Kontak</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="kontak" @if(isset($data)) value="{{ $data->kontak }}" @endif style="border-radius: 12px" required>
+                <input type="number" class="form-control" id="kontak" @if(isset($data)) value="{{ $data->kontak }}" @endif style="border-radius: 12px" required>
               </div>
             </div>
             <div class="mb-3 row">

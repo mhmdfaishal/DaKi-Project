@@ -18,8 +18,10 @@ class RentController extends Controller
             $location = request('location');
         }
         if(Auth::check()){
-            $nama = explode(" ",strval(Auth::user()->nama));
-            return view('marketplace', compact('data_toko','nama','all_data','location'));
+            $user = Auth::user();
+            $has_toko = Toko::where('user_id',$user->id)->first();
+            $nama = explode(" ",strval($user->nama));
+            return view('marketplace', compact('data_toko','nama','all_data','location','has_toko'));
         }
         return view('marketplace',compact('data_toko','all_data','location'));
     }
@@ -61,9 +63,11 @@ class RentController extends Controller
         $barangs = Barang::latest()->where('toko_id',$data_toko->id)->search(request(['search']))->paginate(16);
         $jumlah = $data_toko->barang;
         if(Auth::check()){
+            $user = Auth::user();
+            $has_toko = Toko::where('user_id',$user->id)->first();
             $hasfollow = Follower::where('user_id',$user->id)->where('toko_id',$data_toko->id)->first();
             $nama = explode(" ",strval(Auth::user()->nama));
-            return view('detail_toko', compact('data_toko','nama','barangs','jumlah','hasfollow'));
+            return view('detail_toko', compact('data_toko','nama','barangs','jumlah','hasfollow','has_toko'));
         }
         return view('detail_toko',compact('data_toko','barangs','jumlah'));
     }

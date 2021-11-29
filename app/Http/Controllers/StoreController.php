@@ -14,14 +14,14 @@ class StoreController extends Controller
 {
     public function detail(){
         if(Auth::check()){
-            $data = Toko::where('user_id',Auth::user()->id)->first();
             $user = Auth::user();
-            if($data){
-                $nama = explode(" ",strval(Auth::user()->nama));
-                return view('info_toko_admin', compact('nama', 'data'));
+            $data = Toko::where('user_id',$user->id)->first();
+            $nama = explode(" ",strval($user->nama));
+            $has_toko = Toko::where('user_id',$user->id)->first();
+            if($user->role == '2' || $has_toko){
+                return view('info_toko_admin', compact('nama', 'data','has_toko'));
             }elseif($user->role == '1'){
-                $nama = explode(" ",strval(Auth::user()->nama));
-                return view('info_toko_admin', compact('nama'));
+                return view('info_toko_admin', compact('nama','has_toko'));
             }
             return redirect()->back();
         }
