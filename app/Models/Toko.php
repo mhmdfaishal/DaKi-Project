@@ -33,4 +33,8 @@ class Toko extends Model
     public function follower(){
         return $this->hasMany(Follower::class);
     }
+
+    public function keranjang(){
+        return $this->hasMany(Keranjang::class);
+    }
 }

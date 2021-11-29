@@ -50,4 +50,8 @@ class User extends Authenticatable
      public function toko(){
          return $this->hasMany(Toko::class);
      }
+     public function keranjang(){
+        return $this->hasMany(Keranjang::class);
+    }
+     
 }
