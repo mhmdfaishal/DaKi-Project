@@ -48,11 +48,11 @@
         });
     </script>
     @endif
-    <nav class="navbar navbar-light" style="background-color: #12372A;">
+    <nav class="navbar fixed-top">
         <div class="container-nav">
             <a class="navbar-brand" href="/">
                 <span class="navbar-toogle-icon">
-                    <img class="btn-logo-home" src="{{ asset('images/logo6.png') }}" alt="logo" width="140" height="140">
+                    <img class="btn-logo-home" src="{{ asset('images/logo6.png') }}" alt="logo" width="100" height="100">
                 </span>
             </a>
             <ul class="nav-menu">
@@ -72,9 +72,11 @@
                     @endif
                     <div id="myDropdown" class="dropdown-content">
                         <a class="first-menu" href="#home"><i class="fas fa-user"></i> Profile</a>
-                        @if(Auth::user()->role == 2)
+                        @if(Auth::user()->role == 1 || !$has_toko)
+                        <a href="{{route('admin.detail.toko')}}"><i class="fas fa-store"></i> Buat Toko</a>
+                        @elseif(Auth::user()->role == 2 && $has_toko)
                         <a href="{{route('pesanan')}}"><i class="fas fa-shopping-cart"></i> Pesanan</a>
-                        <a href="{{route('admin.detail.toko')}}"><i class="fas fa-shopping-cart"></i> Toko Ku</a>
+                        <a href="{{route('detail.toko',str_replace(' ', '-', strtolower(Auth::user()->toko[0]->nama_toko)))}}"><i class="fas fa-store"></i> Toko Ku</a>
                         @elseif(Auth::user()->role == 3)
                         <a href="{{route('index.admin.gunung')}}"><i class="fas fa-campground"></i> Basecamp</a>
                         @endif
@@ -202,7 +204,7 @@
                                         <span class="custom-switch-description">@lang('Pengelola Basecamp')</span>
                                     </label>
                                 </div>
-                                <div class="input-field" id="token_field" style="display: none;">
+                                <div class="input-field" id="token_field" style="display: none"  >
                                     <i class="fas fa-key"></i>
                                     <input type="password" name="token" placeholder="Masukkan Token" value="{{old('Token')}}"/>
                                 </div>

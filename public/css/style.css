@@ -8,7 +8,22 @@
 body{
   background-color: #12372A;
 }
-
+.navbar{
+  border-radius: 0px 0px 20px 20px !important;
+  background-color: #12372A !important;
+  width: 100%;
+  height: 20%;
+}
+.header-jumbotron{
+  margin-top: 10% !important;
+}
+.btn-back{
+  font-size: 30px;
+  color: #12372A;
+}
+.btn-back:hover{
+  color: #C9DB43;
+}
 .navbar button{
   outline: solid 1px #C9DB43;
   color: white;
@@ -527,6 +542,7 @@ hr{
   margin: 3%;
   margin-top: 20%;
   border-radius: 15px;
+  min-width: 30% !important;
   height: 350px !important;
   filter: drop-shadow(0px 24px 45px rgba(0, 0, 0, 0.1));
 }
@@ -789,7 +805,7 @@ hr{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.5rem;
+  padding: 0rem 1.5rem;
   width: 100%;
 }
 .hamburger{
@@ -930,18 +946,18 @@ hr{
   }
 } 
 @media(max-width : 500px){
-.bar{
-  width: 15px;
-  height: 1.8px;
-  margin: 3px auto;
-}
-
-  .hamburger.active .bar:nth-child(1){
-      -webkit-transform: translateY(4.5px) rotate(45deg);
-      transform: translateY(4.5px) rotate(45deg);
+  .bar{
+    width: 15px;
+    height: 1.8px;
+    margin: 3px auto;
   }
-  .hamburger.active .bar:nth-child(3){
-      -webkit-transform: translateY(-4.5px) rotate(-45deg);
-      transform: translateY(-4.5px) rotate(-45deg);
-  }
-}
+  
+    .hamburger.active .bar:nth-child(1){
+        -webkit-transform: translateY(4.5px) rotate(45deg);
+        transform: translateY(4.5px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3){
+        -webkit-transform: translateY(-4.5px) rotate(-45deg);
+        transform: translateY(-4.5px) rotate(-45deg);
+    }
+  } 

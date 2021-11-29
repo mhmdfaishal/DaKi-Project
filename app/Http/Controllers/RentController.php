@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
+use App\Models\Follower;
 use App\Models\Toko;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,14 +12,16 @@ class RentController extends Controller
 {
     public function index(){
         $data_toko = Toko::orderBy('rating','DESC')->search(request(['search', 'location']))->paginate(5);
-        $all_data = Toko::latest()->paginate(5);
+        $all_data = Toko::latest()->get();
         $location = "";
         if(request('location')){
             $location = request('location');
         }
         if(Auth::check()){
-            $nama = explode(" ",strval(Auth::user()->nama));
-            return view('marketplace', compact('data_toko','nama','all_data','location'));
+            $user = Auth::user();
+            $has_toko = Toko::where('user_id',$user->id)->first();
+            $nama = explode(" ",strval($user->nama));
+            return view('marketplace', compact('data_toko','nama','all_data','location','has_toko'));
         }
         return view('marketplace',compact('data_toko','all_data','location'));
     }
@@ -25,6 +29,18 @@ class RentController extends Controller
         if($request->ajax())
         {
             $data_toko = Toko::latest()->search(request(['search', 'location']))->paginate(5);
+            
+            if(Auth::check()){
+                $nama = explode(" ",strval(Auth::user()->nama));
+                return view('marketplace_layout', compact('nama','data_toko'));
+            }
+
+            return view('marketplace_layout', compact('data_toko'))->render();
+        }
+    }
+    public function fetchLocation(Request $request){
+        if($request->ajax())
+        {
             $all_data = Toko::latest()->get();
             $location = "";
             if(request('location')){
@@ -33,9 +49,37 @@ class RentController extends Controller
 
             if(Auth::check()){
                 $nama = explode(" ",strval(Auth::user()->nama));
-                return view('marketplace_layout', compact('nama','data_toko','all_data','location'));
+                return view('location_filter_marketplace', compact('nama','all_data','location'));
             }
-            return view('marketplace_layout', compact('data_toko','all_data','location'))->render();
+
+            return view('location_filter_marketplace', compact('all_data','location'))->render();
+        }
+    }
+    public function detailToko($toko)
+    {
+        $user = Auth::user();
+        $namatoko = str_replace('-', ' ', strtolower($toko));
+        $data_toko = Toko::where('nama_toko',$namatoko)->first();
+        $barangs = Barang::latest()->where('toko_id',$data_toko->id)->search(request(['search']))->paginate(16);
+        $jumlah = $data_toko->barang;
+        if(Auth::check()){
+            $user = Auth::user();
+            $has_toko = Toko::where('user_id',$user->id)->first();
+            $hasfollow = Follower::where('user_id',$user->id)->where('toko_id',$data_toko->id)->first();
+            $nama = explode(" ",strval(Auth::user()->nama));
+            return view('detail_toko', compact('data_toko','nama','barangs','jumlah','hasfollow','has_toko'));
+        }
+        return view('detail_toko',compact('data_toko','barangs','jumlah'));
+    }
+    public function fetchBarang(Request $request){
+        if($request->ajax())
+        {
+            $barangs = Barang::latest()->where('toko_id',request('id'))->search(request(['search']))->paginate(16);
+            if(Auth::check()){
+                $nama = explode(" ",strval(Auth::user()->nama));
+                return view('list_barang', compact('barangs','nama'));
+            }
+            return view('list_barang', compact('barangs'))->render();
         }
     }
 }

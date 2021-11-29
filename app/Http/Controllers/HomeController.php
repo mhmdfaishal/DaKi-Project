@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gunung;
+use App\Models\Toko;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -14,8 +15,10 @@ class HomeController extends Controller
     {
         $data_gunung = Gunung::latest()->take(3)->get();
         if(Auth::check()){
+            $user = Auth::user();
+            $has_toko = Toko::where('user_id',$user->id)->first();
             $nama = explode(" ",strval(Auth::user()->nama));
-            return view('index', compact('data_gunung','nama'));
+            return view('index', compact('data_gunung','nama','has_toko'));
         }
         return view('index', compact('data_gunung'));
     }
@@ -29,8 +32,10 @@ class HomeController extends Controller
         }
 
         if(Auth::check()){
+            $user = Auth::user();
+            $has_toko = Toko::where('user_id',$user->id)->first();
             $nama = explode(" ",strval(Auth::user()->nama));
-            return view('home', compact('nama','data_gunung','all_data','location'));
+            return view('home', compact('nama','data_gunung','all_data','location','has_toko'));
         }
         return view('home',compact('data_gunung','all_data','location'));
     }
@@ -39,6 +44,16 @@ class HomeController extends Controller
         if($request->ajax())
         {
             $data_gunung = Gunung::orderBy('ketinggian','DESC')->search(request(['search', 'location']))->paginate(5);
+            if(Auth::check()){
+                $nama = explode(" ",strval(Auth::user()->nama));
+                return view('home_layout', compact('nama','data_gunung'));
+            }
+            return view('home_layout', compact('data_gunung'))->render();
+        }
+    }
+    public function fetchLocation(Request $request){
+        if($request->ajax())
+        {
             $all_data = Gunung::latest()->get();
             $location = "";
             if(request('location')){
@@ -47,9 +62,9 @@ class HomeController extends Controller
 
             if(Auth::check()){
                 $nama = explode(" ",strval(Auth::user()->nama));
-                return view('home_layout', compact('nama','data_gunung','all_data','location'));
+                return view('location_filter', compact('nama','all_data','location'));
             }
-            return view('home_layout', compact('data_gunung','all_data','location'))->render();
+            return view('location_filter', compact('all_data','location'))->render();
         }
     }
 
@@ -67,14 +82,14 @@ class HomeController extends Controller
         ]);
     }
 
-    public function detail(Gunung $gunung)
-    {
+    public function detail(Gunung $gunung){
         if(Auth::check()){
+            $user = Auth::user();
+            $has_toko = Toko::where('user_id',$user->id)->first();
             $nama = explode(" ",strval(Auth::user()->nama));
-            return view('detail_gunung', compact('gunung','nama'));
+            return view('detail_gunung', compact('gunung','nama','has_toko'));
         }
         return view('detail_gunung',compact('gunung'));
     }
 
-    
 }

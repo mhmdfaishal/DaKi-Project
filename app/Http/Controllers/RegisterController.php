@@ -52,6 +52,9 @@ class RegisterController extends Controller
             'role' => $request->role
         ]);
         Auth::login($user);
+        if($request->role == 2){
+            return redirect()->route('admin.detail.toko');
+        }
         return redirect()->route('index');
     }
 
@@ -63,7 +66,6 @@ class RegisterController extends Controller
             if($user){
                 Auth::login($user);
                 return redirect()->route('index');
-                
             }else{
                 return redirect()->route('landingpage')->with(['register_with_google'=>'true','email'=>$user_google->getEmail(),'nama'=>$user_google->getName()]);;
             }

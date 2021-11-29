@@ -4,6 +4,11 @@
 <link rel="stylesheet" href="{{asset('css/style.css') }}">
 <link rel="stylesheet" href="{{asset('css/marketplace.css') }}">
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<style>
+  .pagination{
+    margin-left: 50%;
+  }
+</style>
 @endpush
 
 @section('title', 'Marketplace | Dasbor Pendaki')
@@ -40,7 +45,10 @@
       <h3>Daftar Toko</h3>
       <hr class="under-split">
     </div>
-    @include('marketplace_layout')
+    <div class="body-content d-flex">
+      @include('sidebar_left_marketplace')
+      @include('marketplace_layout')
+    </div>
 </div>
 @endsection
 
