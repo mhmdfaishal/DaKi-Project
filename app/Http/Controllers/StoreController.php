@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
 use App\Models\Follower;
 use App\Models\Toko;
 use App\Models\User;
@@ -114,17 +115,20 @@ class StoreController extends Controller
 
     public function destroyToko($id){
         $data = Toko::where('id', $id)->first();
-        if($data){
+        if($data && Auth::check()){
             $user = Auth::user();
-            Storage::delete('public/images/toko/'.$data->logo_toko);
-            $delete = Toko::where('id', $id)->delete();
-            $update_status = User::where('id',$user->id)->update([
-                'role'=>'1',
-            ]);
-            if($delete && $update_status){
-                return response()->json(['message'=>'Delete Succesfully','status' => true]);
-            }else{
-                return response()->json(['error'=>'Delete Failed','status' => false]);
+            if($data->user_id == $user->id){
+                Storage::delete('public/images/toko/'.$data->logo_toko);
+                $delete_barang = Barang::where('toko_id',$data->id)->delete();
+                $delete = Toko::where('id', $id)->delete();
+                $update_status = User::where('id',$user->id)->update([
+                    'role'=>'1',
+                ]);
+                if($delete && $update_status){
+                    return response()->json(['message'=>'Delete Succesfully','status' => true]);
+                }else{
+                    return response()->json(['error'=>'Delete Failed','status' => false]);
+                }
             }
         }else{
             return response()->json(['error'=>'Data not found!','status' => false]);
