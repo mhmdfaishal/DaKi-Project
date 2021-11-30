@@ -81,6 +81,7 @@ hr{
     margin-right: 2%;
     max-width: 30%;
     height: 175px;
+    margin-left: 0;
 }
 .logo-toko{
     max-width: 35%;
@@ -107,13 +108,16 @@ hr{
     font-size: 22px;
     color: white;
     padding: 2%;
+    margin-right: 0;
 }
 .detail-first{
-    max-width: 70%;
+    max-width: 90%;
+    margin-right: 20%;
 }
 .detail-end{
     margin: auto;
     width: 35%;
+    margin-right: -25%;
 }
 /*end*/
 /*Search bar*/
@@ -154,13 +158,14 @@ hr{
     text-align: center;
 }
 .btn-edit-toko{
-    margin-left: -35%;
+    margin-left: 35%;
     width: 155%;
     padding: 2px;
     background: none;
     border: 2px solid #C9DB43;
     border-radius: 10px 10px 10px 10px;
     color: white;
+    margin-right: 0;
 }
 .btn-edit-toko:hover{
     background: #C9DB43;

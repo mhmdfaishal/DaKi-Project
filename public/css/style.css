@@ -830,9 +830,12 @@ hr{
 }
 
 @media(max-width : 768px){
+  .navbar{
+    height: 20%;
+  }
   .btn-logo-home{
-    width: 45%;
-    height: 45%;
+    width: 40%;
+    height: 40%;
   }
   .container-nav{
     width: 90%;
@@ -944,7 +947,12 @@ hr{
     font-style: italic;
     font-size: 16px;
   }
-} 
+}
+@media(max-width : 560px){
+  .navbar{
+    height: 17%;
+  }
+}
 @media(max-width : 500px){
   .bar{
     width: 15px;
@@ -960,4 +968,9 @@ hr{
         -webkit-transform: translateY(-4.5px) rotate(-45deg);
         transform: translateY(-4.5px) rotate(-45deg);
     }
-  } 
+} 
+@media(max-width : 400px){
+    .navbar{
+      height: 13%;
+    }
+}
