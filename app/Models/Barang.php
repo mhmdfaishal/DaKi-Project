@@ -13,6 +13,10 @@ class Barang extends Model
     public function toko(){
         return $this->belongsTo(Toko::class);
     }
+
+    public function keranjang(){
+        return $this->hasMany(Keranjang::class);
+    }
     
     public function scopeSearch($query, array $filters){
         $query->when($filters['search'] ?? false, function($query, $search){
