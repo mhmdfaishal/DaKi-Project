@@ -53,6 +53,7 @@ class StoreController extends Controller
                     'kontak' => $request->kontak,
                     'url_gmaps' => $request->url_gmaps
                 ]);
+                
                 return response()->json(['data' => $cektoko,'message'=>'Update Succesfully','status' => true]);
             }
         } else {
@@ -71,13 +72,13 @@ class StoreController extends Controller
                     'rating' => 0,
                     'follower' => 0
                 ]);
+                $user = Auth::user();
+                if($user->role == '1'){
+                    $update_status = User::where('id',$user->id)->update([
+                        'role' => '2'
+                    ]);
+                }
                 return response()->json(['data' => $cektoko,'message'=>'Update Succesfully','status' => true]);
-            }
-            $user = Auth::user();
-            if($user->role == '1'){
-                $update_status = User::where('id',$user->id)->update([
-                    'role' => '2'
-                ]);
             }
         }
     }

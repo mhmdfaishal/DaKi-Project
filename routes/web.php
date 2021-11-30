@@ -6,6 +6,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RentController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\BasecampController;
+use App\Http\Controllers\KeranjangController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,3 +60,7 @@ Route::get('/auth/callback', [RegisterController::class, 'handleGoogleCallback']
 
 // Pesanan
 Route::get('/cart', [OrderController::class, 'Cart'])->name('pesanan');
+
+
+Route::get('/keranjang', [KeranjangController::class, 'index']);
+Route::post('/keranjang/add', [KeranjangController::class, 'addBarang'])->name('add.cart');
