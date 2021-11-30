@@ -19,6 +19,8 @@ class CreateBarangsTable extends Migration
             $table->string('nama_barang');
             $table->string('gambar_barang');
             $table->string('harga');
+            $table->string('interval');
+            $table->integer('interval_number');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
