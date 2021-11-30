@@ -1,31 +1,111 @@
-
-.navbar{
-    background: none !important;
-    position:absolute !important;
-    width: 100%;
-}
 .header{
-    text-align: center;
-    color: #C9DB43;
-    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.548)), url('../images/home.jpg') !important;
-    background-size: 100% 100% !important;
-    background-repeat: no-repeat !important;
-    /* filter: brightness(10%); */
-    padding: 20%;
-    width:auto;
-    height: 100%;
+    height: 590px;
+    margin-top: -5% !important;
+    margin-bottom: 0 !important;
+}
+.btn-logo-home{
+    width: 13%;
+    height: 13%;
+}
+.navbar{
+    background: #12372A !important;
+    width: 100%;
+    height: 15%;
+    z-index: 999;
+    border-radius: 0px 0px 20px 20px !important;
+    background-color: #12372A !important;
+}
+.site-slider{
+    padding-top: 6.5%;
+    position: relative;
+}
+.site-slider .slider-btn .prev,
+.site-slider .slider-btn .next{
+    background-color: white;
+    padding: 0.5rem 0.95rem;
+    border-radius: 10rem;
+    margin: 0 1rem;
+    opacity: 0;
+    transition: opacity 1s ease;
+    top: 55%;
+}
+.site-slider:hover .slider-btn .prev,
+.site-slider:hover .slider-btn .next{
+    opacity: 1;
+}
+.right-0{
+    right: 0;
+}
+.slick-dots{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 1rem 0;
+    list-style-type: none;
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    left: 50%;
+}
+.slick-dots li{
+    margin: 0 0.6rem;
+
+}
+.slick-dots button{
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    padding: 0;
+    border: none;
+    background-color: white;
+    text-indent: -99999px;
+    border-radius: 100%;
+    
+}
+.slick-dots li.slick-active button{
+    transform: scale(2);
+    box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.205);
+}
+.slider-one img{
+    width: 100%;
+    height: 507px;
+    object-fit: cover;
+    opacity: 0.7;
+}
+.banner2 img{
+    object-position: 100% 2%;
+}
+.banner3 img{
+    object-position: 100% 70%;
+}
+.banner4 img{
+    object-position: 100% 100%;
+}
+.position-top{
+    position: absolute;
+    top: 50%;
+}
+.container-nav{
+    /* padding: 1% !important; */
+    /* margin-top: -1.5%; */
+}
+.nav-menu{
+    margin-top: 1.5%;
 }
 .header .head-title{
     margin-bottom: -20%;
 }
 .head-title h3{
+    text-align: center;
     font-size: 38px;
+    color: #12372A;
 }
 .under-split{
-    border: 3px solid #C9DB43;
-    background-color: #C9DB43;
-    width: 20%;
-    margin-left: 40%;
+    background-color: #12372A;
+    color: #12372A;
+    width: 15%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .body-content{
     padding:2%;
@@ -36,11 +116,15 @@
     padding-bottom: 2%;
     border-radius: 0px 0px 20px 20px;
 }
-
+.list-element-toko{
+    width: 100%;
+}
 .home_gambar_toko{
-    max-width: 15%;
-    max-height: 10%;
+    width: 15%;
+    height: 15%;
     position: relative;
+    margin-top: auto;
+    margin-bottom: 5%;
     border-radius: 10px;
     margin-right: 5%;
 }
@@ -159,5 +243,7 @@
 input[type=checkbox]:hover{
     cursor: pointer;
 }
+.material-icons:visited{
+    color: white;
+}
 /*End*/
-

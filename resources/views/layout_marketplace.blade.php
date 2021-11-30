@@ -18,6 +18,7 @@
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous" ></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css"
     integrity="sha256-pODNVtK3uOhL8FUNWWvFQK0QoQoV3YA9wGGng6mbZ0E=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>@yield('title')</title>
 </head>
 <body>
@@ -48,7 +49,7 @@
         });
     </script>
     @endif
-    <nav class="navbar fixed-top">
+    <nav class="navbar navbar-light fixed-top">
         <div class="container-nav">
             <a class="navbar-brand" href="/">
                 <span class="navbar-toogle-icon">
@@ -57,12 +58,8 @@
             </a>
             <ul class="nav-menu">
                 <span class="nav-item">
-                    <a class="nav-link" href="/home">Home</a>
+                    <a class="nav-link material-icons" href="#">shopping_cart</a>
                 </span>
-                <span class="nav-item">
-                    <a class="nav-link" href="/sewa">Sewa</a>
-                </span>
-                <span class="nav-item" id="navSplit"></span>
                 @if (Auth::check())
                 <div class="dropdown1">
                     @if(count($nama) > 1 )
@@ -72,9 +69,9 @@
                     @endif
                     <div id="myDropdown" class="dropdown-content">
                         <a class="first-menu" href="#home"><i class="fas fa-user"></i> Profile</a>
-                        @if(Auth::user()->role == 1 || !$has_toko)
+                        @if(Auth::user()->role == 1)
                         <a href="{{route('admin.detail.toko')}}"><i class="fas fa-store"></i> Buat Toko</a>
-                        @elseif(Auth::user()->role == 2 && $has_toko)
+                        @elseif(Auth::user()->role == 2)
                         <a href="{{route('pesanan')}}"><i class="fas fa-shopping-cart"></i> Pesanan</a>
                         <a href="{{route('detail.toko',str_replace(' ', '-', strtolower(Auth::user()->toko[0]->nama_toko)))}}"><i class="fas fa-store"></i> Toko Ku</a>
                         @elseif(Auth::user()->role == 3)
@@ -204,7 +201,7 @@
                                         <span class="custom-switch-description">@lang('Pengelola Basecamp')</span>
                                     </label>
                                 </div>
-                                <div class="input-field" id="token_field" style="display: none"  >
+                                <div class="input-field" id="token_field" style="display: none;">
                                     <i class="fas fa-key"></i>
                                     <input type="password" name="token" placeholder="Masukkan Token" value="{{old('Token')}}"/>
                                 </div>

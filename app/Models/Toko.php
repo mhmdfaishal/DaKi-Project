@@ -14,10 +14,6 @@ class Toko extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function barang(){
-        return $this->hasMany(Barang::class);
-    }
-
     public function scopeSearch($query, array $filters){
         
         $query->when($filters['search'] ?? false, function($query, $search){
@@ -28,5 +24,13 @@ class Toko extends Model
         });
 
 
+    }
+
+    public function barang(){
+        return $this->hasMany(Barang::class);
+    }
+
+    public function follower(){
+        return $this->hasMany(Follower::class);
     }
 }

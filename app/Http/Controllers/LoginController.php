@@ -27,7 +27,7 @@ class LoginController extends Controller
         $remember = $request->remember ? true : false;
         if (Auth::attempt($data, $remember)) {
             Auth::logoutOtherDevices($request->password);
-            return redirect()->route('index');
+            return redirect()->back();
 
         }
   

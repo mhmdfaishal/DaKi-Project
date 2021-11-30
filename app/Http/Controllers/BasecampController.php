@@ -7,6 +7,7 @@ use App\Models\Provinces;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class BasecampController extends Controller
 {
@@ -16,7 +17,7 @@ class BasecampController extends Controller
                 $getgunung = Gunung::where('user_id',Auth::user()->id)->first();
                 $provinces = Provinces::all();
                 $nama = explode(" ",strval(Auth::user()->nama));
-                return view('update_gunung',compact('getgunung','nama','provinces'));
+                return view('info_gunung',compact('getgunung','nama','provinces'));
             }
         }
     }
@@ -32,15 +33,19 @@ class BasecampController extends Controller
                         $name= $gambar->getClientOriginalName();
                         $namafile = uniqid();
                         $name= substr(md5($namafile), 6, 6) . '_' . time();
-                        $folder= 'images/gunung';
+                        // $folder= 'images/gunung';
+                        
                         $ext = $gambar->getClientOriginalExtension();
-                        $gambar->move($folder,"$name.$ext");
+                        // $gambar->move($folder,"$name.$ext");
+                        $gambar->storeAs('public/images/gunung/',"$name.$ext");
                         $data = Gunung::where('id', $request->id_gunung)->first();
-                        if($data){
-                            if(file_exists(public_path().'/images/gunung/'.$data->gambar_gunung)){
-                                File::delete(public_path().'/images/gunung/'.$data->gambar_gunung);
-                            }
-                        }
+                        Storage::delete('public/images/gunung/'.$data->gambar_gunung);
+
+                        // if($data){
+                        //     if(file_exists(public_path().'/images/gunung/'.$data->gambar_gunung)){
+                        //         File::delete(public_path().'/images/gunung/'.$data->gambar_gunung);
+                        //     }
+                        // }
                         $data = Gunung::where('id',$request->id_gunung)->update([
                             'nama_gunung' => $request->nama_gunung,
                             'gambar_gunung' => $name.".".$ext,
@@ -62,16 +67,19 @@ class BasecampController extends Controller
                 $name= $gambar->getClientOriginalName();
                 $namafile = uniqid();
                 $name= substr(md5($namafile), 6, 6) . '_' . time();
-                $folder= 'images/gunung';
+                // $folder= 'images/gunung';
                 $ext = $gambar->getClientOriginalExtension();
-                $gambar->move($folder,"$name.$ext");
+                // $gambar->move($folder,"$name.$ext");
+                $gambar->storeAs('public/images/gunung/',"$name.$ext");
+                // $data = Gunung::where('id', $request->id_gunung)->first();
                 if($request->id_gunung != "null"){
                     $data = Gunung::where('id', $request->id_gunung)->first();
-                    if($data){
-                        if(file_exists(public_path().'/images/gunung/'.$data->gambar_gunung)){
-                            File::delete(public_path().'/images/gunung/'.$data->gambar_gunung);
-                        }
-                    }
+                    Storage::delete('public/images/gunung/'.$data->gambar_gunung);
+                    // if($data){
+                    //     if(file_exists(public_path().'/images/gunung/'.$data->gambar_gunung)){
+                    //         File::delete(public_path().'/images/gunung/'.$data->gambar_gunung);
+                    //     }
+                    // }
                     $data = Gunung::where('id',$request->id_gunung)->update([
                         'nama_gunung' => $request->nama_gunung,
                         'gambar_gunung' => $name.".".$ext,
@@ -139,9 +147,12 @@ class BasecampController extends Controller
     public function destroyGunung($id){
         $data = Gunung::where('id', $id)->first();
         if($data){
-            if(file_exists(public_path().'/images/gunung/'.$data->gambar_gunung)){
-                File::delete(public_path().'/images/gunung/'.$data->gambar_gunung);
-            }
+            // $gambar->storeAs('public/images/gunung/',"$name.$ext");
+            // $data = Gunung::where('id', $request->id_gunung)->first();
+            Storage::delete('public/images/gunung/'.$data->gambar_gunung);
+            // if(file_exists(public_path().'/images/gunung/'.$data->gambar_gunung)){
+            //     File::delete(public_path().'/images/gunung/'.$data->gambar_gunung);
+            // }
             $delete = Gunung::where('id', $id)->delete();
             if($delete){
                 return response()->json(['message'=>'Delete Succesfully','status' => true]);

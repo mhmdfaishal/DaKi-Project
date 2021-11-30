@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTokoTable extends Migration
+class CreateFollowersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,10 @@ class CreateTokoTable extends Migration
      */
     public function up()
     {
-        Schema::create('toko', function (Blueprint $table) {
+        Schema::create('followers', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('nama_toko');
-            $table->string('alamat');
-            $table->string('kotakabupaten');
-            $table->float('rating')->default(0);;
-            $table->integer('follower')->default(0);;
-            $table->string('kontak');
-            $table->string('url_gmaps');
-            $table->string('logo_toko');
+            $table->integer('toko_id');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
@@ -36,6 +29,6 @@ class CreateTokoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('toko');
+        Schema::dropIfExists('Followers');
     }
 }

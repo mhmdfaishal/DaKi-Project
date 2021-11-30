@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gunung;
+use App\Models\Toko;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -14,8 +15,10 @@ class HomeController extends Controller
     {
         $data_gunung = Gunung::latest()->take(3)->get();
         if(Auth::check()){
+            $user = Auth::user();
+            $has_toko = Toko::where('user_id',$user->id)->first();
             $nama = explode(" ",strval(Auth::user()->nama));
-            return view('index', compact('data_gunung','nama'));
+            return view('index', compact('data_gunung','nama','has_toko'));
         }
         return view('index', compact('data_gunung'));
     }
@@ -29,8 +32,10 @@ class HomeController extends Controller
         }
 
         if(Auth::check()){
+            $user = Auth::user();
+            $has_toko = Toko::where('user_id',$user->id)->first();
             $nama = explode(" ",strval(Auth::user()->nama));
-            return view('home', compact('nama','data_gunung','all_data','location'));
+            return view('home', compact('nama','data_gunung','all_data','location','has_toko'));
         }
         return view('home',compact('data_gunung','all_data','location'));
     }
@@ -79,8 +84,10 @@ class HomeController extends Controller
 
     public function detail(Gunung $gunung){
         if(Auth::check()){
+            $user = Auth::user();
+            $has_toko = Toko::where('user_id',$user->id)->first();
             $nama = explode(" ",strval(Auth::user()->nama));
-            return view('detail_gunung', compact('gunung','nama'));
+            return view('detail_gunung', compact('gunung','nama','has_toko'));
         }
         return view('detail_gunung',compact('gunung'));
     }
