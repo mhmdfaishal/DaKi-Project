@@ -23,3 +23,79 @@
 .card:hover{
     cursor: pointer;
 }
+.btn-tambah-barang{
+    background-color: #12372A;
+    padding: 10px;
+    border: none;
+    color: #C9DB43;
+    border-radius: 5px;
+}
+.btn-tambah-barang:hover{
+    color: #12372A;
+    background-color: #C9DB43;
+}
+.btn-sewa{
+    background-color: #12372A;
+    color: #C9DB43;
+}
+.btn-sewa:hover{
+    color: #12372A;
+    background-color: #C9DB43;
+}
+.modal-title{
+    margin-left: 35%;
+}
+.modal-header{
+    background-color: #12372A;
+    color: #C9DB43;
+    border-radius: 0px;
+}
+.close{
+    color: #C9DB43;
+}
+.empty-store{
+    text-align: center;
+    font-style: italic;
+}
+.btn-card{
+    margin: 2%;
+}
+.edit-barang-btn{
+    background-color: #12372A;
+    color: #C9DB43;
+    border: none;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+.edit-barang-btn:hover{
+    background-color: #C9DB43;
+    color: #12372A;
+}
+.delete-barang-btn{
+    background-color: #740a02;
+    color: #C9DB43;
+    border: none;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+.delete-barang-btn:hover{
+    background-color: #C9DB43;
+    color: #740a02;
+}
+#deskripsi{
+    padding: 2%;
+}
+.card-gambar-barang{
+    position: relative;
+    z-index: 1;
+    top: 0px;
+}
+.title-detail-barang{
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    z-index: 2;
+    color: #12372A;
+}

@@ -16,6 +16,114 @@ function fetch_data(page,id){
             var newUrl=updateQueryStringParameter(window.location.href,"page",page);
             window.history.pushState("", "Daki", newUrl);
             $('#list-barang').html(data);
+            var id = $('#id_barang').val();
+            $('.cart-btn').click(function(event){
+                event.preventDefault();
+                var id = $(this).data('id');                
+                let formData = new FormData();
+                event.preventDefault();
+                formData.append('id_barang', id);
+                formData.append('quantity', $('#quantity-'+id).val());
+                $.ajax({
+                    url: "/keranjang/add", 
+                    data: formData, 
+                    type: "POST", 
+                    dataType: 'json', 
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {  
+                        if(typeof(data.error) != "undefined"){
+                            iziToast.warning({
+                                title: data.error,
+                                message: 'Failed',
+                                position: 'topRight'
+                            });
+                        }else{
+                            iziToast.success({
+                                title: data.message,
+                                message: 'Success',
+                                position: 'topRight'
+                            });
+                        }
+                    },
+                    error: function (data) { le
+                        console.log('Error:', data);
+                    }
+                });
+              })
+            $("div.btn-set button:contains('Hapus')").click(function(event){
+                event.preventDefault(); 
+                var id = $(this).data('id');
+                $('#id_barang').val("");
+                $.ajax({
+                    url: "/toko/barang/delete/"+id, 
+                    type: "DELETE", 
+                    dataType: 'json', 
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {  
+                        if(typeof(data.error) != "undefined"){
+                            iziToast.warning({
+                                title: data.error,
+                                message: 'Failed',
+                                position: 'topRight'
+                            });
+                        }else{
+                            iziToast.warning({
+                                title: data.message,
+                                message: 'Success',
+                                position: 'topRight'
+                            });
+                            setTimeout(function(){
+                                location.reload();
+                            },
+                            500);
+                        }
+                    },
+                    error: function (data) { le
+                        console.log('Error:', data);
+                    }
+                });
+              });
+              $("div.btn-set button:contains('Edit')").click(function(event){
+                var id_barang = $(this).data('id');
+                event.preventDefault();
+                $.get("/toko/barang/edit/" + id_barang,                                   
+                    function (data) {
+                      $('#modal-tambah-barang').modal('show');
+                      $('#id_barang').val(data.id);
+                      $('#nama_barang').val(data.nama_barang);
+                      $('#harga').val(data.harga);
+                      $('#interval').val(data.interval);
+                      $('#interval_number').val(data.interval_number);
+                      $('#deskripsi').val(data.deskripsi);
+                      $('#gambar_barang').val(data.gambar_barang);
+                })
+            })
+            $("div#detail-barang").click(function(event){
+                var id_barang = $(this).data('id');
+                event.preventDefault();
+                $.get("/toko/barang/detailbarang/" + id_barang,                                   
+                    function (data) {
+                      $('#modal-detail-barang').modal('show');
+                      $('#gambar_barang').attr('src',`../storage/images/toko/`+data.nama_toko+`/barang/`+data.data.gambar_barang+``);
+                      $('#get_nama_barang').html(data.data.nama_barang);
+                      $('#harga_interval').html(`Rp `+data.data.harga+`/`+data.data.interval_number+` `+data.data.interval+``);
+                      $('#get_deskripsi').html(data.data.deskripsi);
+                })
+            })
+            
+            $("div#detail-barang").mouseenter(function() {
+                var id= $(this).data('id');
+                $('#title-detail-barang-'+id).show();
+                $('#card-gambar-barang-'+id).css("opacity", "0.5");
+            }).mouseleave(function() {
+                var id= $(this).data('id');
+                $('#title-detail-barang-'+id).hide();
+                $('#card-gambar-barang-'+id).css("opacity", "1");
+            });
     })
     
 }
@@ -37,6 +145,114 @@ $(document).ready(function(){
                 window.history.pushState("", "Daki", newUrl);
                 console.log(data);
             $('#list-barang').html(data);
+            var id = $('#id_barang').val();
+            $('.cart-btn').click(function(event){
+                event.preventDefault();
+                var id = $(this).data('id');                
+                let formData = new FormData();
+                event.preventDefault();
+                formData.append('id_barang', id);
+                formData.append('quantity', $('#quantity-'+id).val());
+                $.ajax({
+                    url: "/keranjang/add", 
+                    data: formData, 
+                    type: "POST", 
+                    dataType: 'json', 
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {  
+                        if(typeof(data.error) != "undefined"){
+                            iziToast.warning({
+                                title: data.error,
+                                message: 'Failed',
+                                position: 'topRight'
+                            });
+                        }else{
+                            iziToast.success({
+                                title: data.message,
+                                message: 'Success',
+                                position: 'topRight'
+                            });
+                        }
+                    },
+                    error: function (data) { le
+                        console.log('Error:', data);
+                    }
+                });
+              })
+            $("div.btn-set button:contains('Hapus')").click(function(event){
+                event.preventDefault(); 
+                var id = $(this).data('id');
+                $('#id_barang').val("");
+                $.ajax({
+                    url: "/toko/barang/delete/"+id, 
+                    type: "DELETE", 
+                    dataType: 'json', 
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {  
+                        if(typeof(data.error) != "undefined"){
+                            iziToast.warning({
+                                title: data.error,
+                                message: 'Failed',
+                                position: 'topRight'
+                            });
+                        }else{
+                            iziToast.warning({
+                                title: data.message,
+                                message: 'Success',
+                                position: 'topRight'
+                            });
+                            setTimeout(function(){
+                                location.reload();
+                            },
+                            500);
+                        }
+                    },
+                    error: function (data) { le
+                        console.log('Error:', data);
+                    }
+                });
+              });
+              $("div.btn-set button:contains('Edit')").click(function(event){
+                var id_barang = $(this).data('id');
+                event.preventDefault();
+                $.get("/toko/barang/edit/" + id_barang,                                   
+                    function (data) {
+                      $('#modal-tambah-barang').modal('show');
+                      $('#id_barang').val(data.id);
+                      $('#nama_barang').val(data.nama_barang);
+                      $('#harga').val(data.harga);
+                      $('#interval').val(data.interval);
+                      $('#interval_number').val(data.interval_number);
+                      $('#deskripsi').val(data.deskripsi);
+                      $('#gambar_barang').val(data.gambar_barang);
+                })
+            })
+            $("div#detail-barang").click(function(event){
+                var id_barang = $(this).data('id');
+                event.preventDefault();
+                $.get("/toko/barang/detailbarang/" + id_barang,                                   
+                    function (data) {
+                      $('#modal-detail-barang').modal('show');
+                      $('#gambar_barang').attr('src',`../storage/images/toko/`+data.nama_toko+`/barang/`+data.data.gambar_barang+``);
+                      $('#get_nama_barang').html(data.data.nama_barang);
+                      $('#harga_interval').html(`Rp `+data.data.harga+`/`+data.data.interval_number+` `+data.data.interval+``);
+                      $('#get_deskripsi').html(data.data.deskripsi);
+                })
+            })
+            
+            $("div#detail-barang").mouseenter(function() {
+                var id= $(this).data('id');
+                $('#title-detail-barang-'+id).show();
+                $('#card-gambar-barang-'+id).css("opacity", "0.5");
+            }).mouseleave(function() {
+                var id= $(this).data('id');
+                $('#title-detail-barang-'+id).hide();
+                $('#card-gambar-barang-'+id).css("opacity", "1");
+            });
         })
       });
 });

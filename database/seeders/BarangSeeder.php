@@ -21,6 +21,7 @@ class BarangSeeder extends Seeder
             'harga' => '25000',
             'interval' => 'hari',
             'interval_number' => '1',
+            'Deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -31,6 +32,7 @@ class BarangSeeder extends Seeder
             'harga' => '30000',
             'interval' => 'hari',
             'interval_number' => '1',
+            'Deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -41,6 +43,7 @@ class BarangSeeder extends Seeder
             'harga' => '25000',
             'interval' => 'hari',
             'interval_number' => '1',
+            'Deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -51,6 +54,7 @@ class BarangSeeder extends Seeder
             'harga' => '10000',
             'interval' => 'hari',
             'interval_number' => '1',
+            'Deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -61,6 +65,7 @@ class BarangSeeder extends Seeder
             'harga' => '10000',
             'interval' => 'hari',
             'interval_number' => '1',
+            'Deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -71,6 +76,7 @@ class BarangSeeder extends Seeder
             'harga' => '10000',
             'interval' => 'hari',
             'interval_number' => '1',
+            'Deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -81,6 +87,7 @@ class BarangSeeder extends Seeder
             'harga' => '10000',
             'interval' => 'hari',
             'interval_number' => '1',
+            'Deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -91,6 +98,7 @@ class BarangSeeder extends Seeder
             'harga' => '10000',
             'interval' => 'hari',
             'interval_number' => '1',
+            'Deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -101,6 +109,7 @@ class BarangSeeder extends Seeder
             'harga' => '10000',
             'interval' => 'hari',
             'interval_number' => '1',
+            'Deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -111,6 +120,7 @@ class BarangSeeder extends Seeder
             'harga' => '10000',
             'interval' => 'hari',
             'interval_number' => '1',
+            'Deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -121,6 +131,7 @@ class BarangSeeder extends Seeder
             'harga' => '10000',
             'interval' => 'hari',
             'interval_number' => '1',
+            'Deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -131,6 +142,7 @@ class BarangSeeder extends Seeder
             'harga' => '10000',
             'interval' => 'hari',
             'interval_number' => '1',
+            'Deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -141,6 +153,7 @@ class BarangSeeder extends Seeder
             'harga' => '10000',
             'interval' => 'hari',
             'interval_number' => '1',
+            'Deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -151,6 +164,7 @@ class BarangSeeder extends Seeder
             'harga' => '10000',
             'interval' => 'hari',
             'interval_number' => '1',
+            'Deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -161,6 +175,7 @@ class BarangSeeder extends Seeder
             'harga' => '10000',
             'interval' => 'hari',
             'interval_number' => '1',
+            'Deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -171,6 +186,7 @@ class BarangSeeder extends Seeder
             'harga' => '10000',
             'interval' => 'hari',
             'interval_number' => '1',
+            'Deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -181,6 +197,7 @@ class BarangSeeder extends Seeder
             'harga' => '10000',
             'interval' => 'hari',
             'interval_number' => '1',
+            'Deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -191,6 +208,7 @@ class BarangSeeder extends Seeder
             'harga' => '10000',
             'interval' => 'hari',
             'interval_number' => '1',
+            'Deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -201,6 +219,7 @@ class BarangSeeder extends Seeder
             'harga' => '10000',
             'interval' => 'hari',
             'interval_number' => '1',
+            'Deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
             'created_at' => now(),
             'updated_at' => now()
         ]);

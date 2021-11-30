@@ -53,6 +53,7 @@ class StoreController extends Controller
                     'kontak' => $request->kontak,
                     'url_gmaps' => $request->url_gmaps
                 ]);
+                
                 return response()->json(['data' => $cektoko,'message'=>'Update Succesfully','status' => true]);
             }
         } else {
@@ -71,14 +72,66 @@ class StoreController extends Controller
                     'rating' => 0,
                     'follower' => 0
                 ]);
+                $user = Auth::user();
+                if($user->role == '1'){
+                    $update_status = User::where('id',$user->id)->update([
+                        'role' => '2'
+                    ]);
+                }
                 return response()->json(['data' => $cektoko,'message'=>'Update Succesfully','status' => true]);
             }
-            $user = Auth::user();
-            if($user->role == '1'){
-                $update_status = User::where('id',$user->id)->update([
-                    'role' => '2'
-                ]);
+        }
+    }
+    public function storeBarang(Request $request){
+        $cektoko = Toko::where('user_id',Auth::user()->id)->first();
+        if($request->id_barang){
+            $cekbarang = Barang::where('id', $request->id_barang)->first();
+            if($cekbarang){
+                if($request->file('gambar_barang')){
+                    $gambar = $request->file('gambar_barang');
+                    $name_picture= time(). "_". $gambar->getClientOriginalName();
+                    $gambar->storeAs('public/images/toko/'.$cektoko->nama_toko.'/barang',$name_picture);
+                    Storage::delete('public/images/toko/'.$cektoko->nama_toko.'/barang'.'/'.$cekbarang->gambar_barang);
+                    Barang::where('id',$request->id_barang)->update([
+                        'nama_barang' => $request->nama_barang,
+                        'gambar_barang' => $name_picture,
+                        'harga' => $request->harga,
+                        'interval' => $request->interval,
+                        'interval_number' => $request->interval_number,
+                        'deskripsi' => $request->deskripsi
+                    ]);
+                    return response()->json(['data' => $cektoko,'message'=>'Berhasil mengedit barang','status' => true]);
+                } else {
+                    Barang::where('id',$request->id_barang)->update([
+                        'nama_barang' => $request->nama_barang,
+                        'harga' => $request->harga,
+                        'interval' => $request->interval,
+                        'interval_number' => $request->interval_number,
+                        'deskripsi' => $request->deskripsi
+                    ]);
+                    
+                    return response()->json(['data' => $cektoko,'message'=>'Berhasil mengedit barang','status' => true]);
+                }
+                return response()->json(['data' => NULL,'error'=>'Gagal mengedit barang','status' => false]);
             }
+            return response()->json(['data' => NULL,'error'=>'Gagal store barang','status' => false]);
+        } else {
+            if($request->file('gambar_barang')){
+                $gambar = $request->file('gambar_barang');
+                $name_picture= time(). "_". $gambar->getClientOriginalName();
+                $gambar->storeAs('public/images/toko/'.$cektoko->nama_toko.'/barang',$name_picture);
+                Barang::create([
+                    'toko_id' => $cektoko->id,
+                    'nama_barang' => $request->nama_barang,
+                    'gambar_barang' => $name_picture,
+                    'harga' => $request->harga,
+                    'interval' => $request->interval,
+                    'interval_number' => $request->interval_number,
+                    'deskripsi' => $request->deskripsi
+                ]);
+                return response()->json(['data' => $cektoko,'message'=>'Berhasil menambahkan barang','status' => true]);
+            }
+            return response()->json(['data' => NULL,'error'=>'Gagal menambahkan barang','status' => false]);
         }
     }
     public function followUnfollow(Request $request){
@@ -113,6 +166,22 @@ class StoreController extends Controller
         }
     }
 
+    public function getBarang($id){
+        $data = Barang::where('id', $id)->first();
+        if($data){
+            return response()->json($data);
+        }else{
+            return response()->json(['error'=>'Data not found!','status' => false]);
+        }
+    }
+    public function detailBarang($id){
+        $data = Barang::where('id', $id)->first();
+        if($data){
+            return response()->json(['data'=>$data,'nama_toko'=>$data->toko->nama_toko]);
+        }else{
+            return response()->json(['error'=>'Data not found!','status' => false]);
+        }
+    }
     public function destroyToko($id){
         $data = Toko::where('id', $id)->first();
         if($data && Auth::check()){
@@ -125,13 +194,30 @@ class StoreController extends Controller
                     'role'=>'1',
                 ]);
                 if($delete && $update_status){
-                    return response()->json(['message'=>'Delete Succesfully','status' => true]);
+                    return response()->json(['message'=>'Berhasil hapus','status' => true]);
                 }else{
-                    return response()->json(['error'=>'Delete Failed','status' => false]);
+                    return response()->json(['error'=>'Gagal hapus','status' => false]);
                 }
             }
         }else{
-            return response()->json(['error'=>'Data not found!','status' => false]);
+            return response()->json(['error'=>'Tidak ada data!','status' => false]);
+        }
+    }
+    public function destroyBarang($id){
+        $data = Barang::where('id', $id)->first();
+        if($data && Auth::check()){
+            $user = Auth::user();
+            if($data->toko->user->email == $user->email){
+                Storage::delete('public/images/toko/'.$data->toko->nama_toko.'/barang'.'/'.$data->gambar_barang);
+                $delete_barang = Barang::where('id',$id)->delete();
+                if($delete_barang){
+                    return response()->json(['message'=>'Berhasil hapus','status' => true]);
+                }else{
+                    return response()->json(['error'=>'Gagal hapus','status' => false]);
+                }
+            }
+        }else{
+            return response()->json(['error'=>'Tidak ada data!','status' => false]);
         }
     }
 }

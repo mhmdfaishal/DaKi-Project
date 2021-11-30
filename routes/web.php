@@ -6,6 +6,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RentController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\BasecampController;
+use App\Http\Controllers\KeranjangController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,13 +41,17 @@ Route::prefix('basecamp')->group(function() {
 });
 Route::prefix('sewa')->group(function () {
     Route::get('/', [RentController::class, 'index'])->name('index.marketplace');
-    Route::get('/{toko}', [RentController::class, 'detailToko'])->name('detail.toko');
+    Route::get('/{toko:nama_toko}', [RentController::class, 'detailToko'])->name('detail.toko');
 });
 
 Route::prefix('toko')->group(function () {
     Route::get('/info', [StoreController::class, 'detail'])->name('admin.detail.toko');
+    Route::get('/barang/edit/{id}', [StoreController::class, 'getBarang']);
+    Route::get('/barang/detailbarang/{id}', [StoreController::class, 'detailBarang']);
+    Route::delete('/barang/delete/{id}', [StoreController::class, 'destroyBarang']);
     Route::delete('/delete/{id}', [StoreController::class, 'destroyToko']);
     Route::post('/detail/save-detail', [StoreController::class, 'storeToko']);
+    Route::post('/barang/store', [StoreController::class, 'storeBarang']);
     Route::post('/followunfollow', [StoreController::class, 'followUnfollow']);
 });
 
@@ -59,3 +64,7 @@ Route::get('/auth/callback', [RegisterController::class, 'handleGoogleCallback']
 
 // Pesanan
 Route::get('/cart', [OrderController::class, 'Cart'])->name('pesanan');
+
+
+Route::get('/keranjang', [KeranjangController::class, 'index']);
+Route::post('/keranjang/add', [KeranjangController::class, 'addBarang'])->name('add.cart');

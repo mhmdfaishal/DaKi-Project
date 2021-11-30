@@ -72,7 +72,7 @@
                     @endif
                     <div id="myDropdown" class="dropdown-content">
                         <a class="first-menu" href="#home"><i class="fas fa-user"></i> Profile</a>
-                        @if(Auth::user()->role == 1 || !$has_toko)
+                        @if(Auth::user()->role == 1 && !$has_toko || Auth::user()->role == 2 && !$has_toko)
                         <a href="{{route('admin.detail.toko')}}"><i class="fas fa-store"></i> Buat Toko</a>
                         @elseif(Auth::user()->role == 2 && $has_toko)
                         <a href="{{route('pesanan')}}"><i class="fas fa-shopping-cart"></i> Pesanan</a>
@@ -258,8 +258,9 @@
         <div class="container">
             <h1 class="title-footer">Dasbor Pendaki</h1>
             <p class="desc-title">Platform untuk para pendaki sejati yang ingin menentukan destinasi pendakian dengan tepat.</p>
-
             <p class="email-footer"><i class="far fa-envelope"></i> : DaKi@gmail.com</p>
+            <p class="phone-footer"><i class="fa-thin fa-mobile-notch"></i> : +6281345679810</p>
+            <p class="diamond-text"><b>"Tidak ada yang lebih mengesankan daripada mendaki gunung"</b></p>
             <div class="socmed">
                 <h2>Reach Us</h2>
                 <a href="https://facebook.com/DaKi"><i class="fab fa-facebook-f"></i></a>
