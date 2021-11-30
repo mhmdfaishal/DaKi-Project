@@ -74,13 +74,14 @@ class RentController extends Controller
     }
     public function fetchBarang(Request $request){
         if($request->ajax())
-        {
+        {            
+            $has_barang = Barang::where('toko_id',request('id'))->get();
             $barangs = Barang::latest()->where('toko_id',request('id'))->search(request(['search']))->paginate(16);
             if(Auth::check()){
                 $nama = explode(" ",strval(Auth::user()->nama));
-                return view('list_barang', compact('barangs','nama'));
+                return view('list_barang', compact('barangs','nama','has_barang'));
             }
-            return view('list_barang', compact('barangs'))->render();
+            return view('list_barang', compact('barangs','has_barang'))->render();
         }
     }
 }
