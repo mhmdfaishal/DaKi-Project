@@ -41,7 +41,7 @@ Route::prefix('basecamp')->group(function() {
 });
 Route::prefix('sewa')->group(function () {
     Route::get('/', [RentController::class, 'index'])->name('index.marketplace');
-    Route::get('/{toko}', [RentController::class, 'detailToko'])->name('detail.toko');
+    Route::get('/{toko:nama_toko}', [RentController::class, 'detailToko'])->name('detail.toko');
 });
 
 Route::prefix('toko')->group(function () {
