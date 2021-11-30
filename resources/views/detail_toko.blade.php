@@ -78,6 +78,95 @@
         </div>
 
         <div class="content-body">
+            <div class="container d-flex">
+                @if(Auth::check() && Auth::user()->email == $data_toko->user->email)
+                    <button class="btn-tambah-barang" id="btn-tambah-barang" data-toggle="modal" data-target="#modal-tambah-barang"><i class="fas fa-plus-square"></i> Tambah barang</button>
+                    <div class="modal fade" id="modal-tambah-barang" aria-hidden="true">
+                        <div class="modal-dialog ">
+                            <div class="modal-content modal-dialog-scrollable">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-center">Tambah barang</h5>
+                                    <button type="close" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="form-tambah-barang" class="form-horizontal" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-sm-12">                                    
+                                                <div class="form-group">
+                                                    <label for="nama_barang" class="col-sm-12 control-label">Nama Barang</label>
+                                                    <div class="col-sm-12">
+                                                        <input type="hidden" name="id_barang" id="id_barang" value="">
+                                                        <input type="text" class="form-control" id="nama_barang" name="nama_barang" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="harga" class="col-sm-12 control-label">Harga</label>
+                                                    <div class="col-sm-12">
+                                                        <input type="number" class="form-control" id="harga" name="harga" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="interval" class="col-sm-12 control-label">Interval Penyewaan</label>
+                                                    <div class="col-sm-12">
+                                                        <select class="form-select" id="interval" name="interval" aria-label="Default select example" required>
+                                                            <option selected>Pilih interval</option>
+                                                            <option value="hari">Hari</option>
+                                                            <option value="minggu">Minggu</option>
+                                                            <option value="bulan">Bulan</option>
+                                                          </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="interval_number" class="col-sm-12 control-label">Lama interval</label>
+                                                    <div class="col-sm-12">
+                                                        <input type="number" class="form-control" id="interval_number" name="interval_number" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="deskripsi" class="col-sm-12 control-label">Deskripsi Barang</label>
+                                                    <div class="col-sm-12">
+                                                        <textarea name="deskripsi" id="deskripsi" cols="28" rows="10" placeholder="(ex : Ukuran 2m x 2m)" required></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="gambar_barang" class="col-sm-12 control-label">Gambar Barang</label>
+                                                    <div class="col-sm-12">
+                                                        <input type="file" class="form-control" name="gambar_barang" id="gambar_barang" accept="image/*" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+            
+                                            <div class="col-sm-offset-2 col-sm-12">
+                                                <button type="submit" class="btn btn-block btn-sewa" id="tombol-sewa"><i class="far fa-caret-square-up"></i> Sewakan barang</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                @endif  
+            </div>
+            <div class="modal fade" id="modal-detail-barang" aria-hidden="true">
+                <div class="modal-dialog ">
+                    <div class="modal-content modal-dialog-scrollable">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center">Detail barang</h5>
+                            <button type="close" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="" class="detail-gambar-barang" id="gambar_barang" alt="">
+                            <h2 class="detail-nama-barang" id="get_nama_barang"></h2>
+                            <hr>
+                            <h4 class="text-center">Deskripsi barang : </h4>
+                            <h2 class="detail-deskripsi-barang" name="get_deskripsi" id="get_deskripsi"></h2>
+                            <hr>
+                            <h3 class="detail-harga-barang" id="harga_interval"></h3>
+                        </div>
+                    </div>
+                </div>
+              </div>
             <div class="d-flex justify-content-center">
                 <div class="title-list">
                     <h2 class="title-daftar-barang">Daftar Barang</h2>

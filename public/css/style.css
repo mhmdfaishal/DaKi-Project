@@ -586,6 +586,7 @@ hr{
   /* background-color: #247257; */
   padding-bottom: 20%;
   padding-top: 5%;
+  margin-top: 100px;
 }
 .title-footer{
   text-align: center;
@@ -601,9 +602,26 @@ hr{
   font-size: 20px;
   margin-top: 5%;
 }
+.phone-footer{
+  text-align: center;
+  color: white;
+  font-size: 20px;
+}
+.diamond-text{
+  text-align: center;
+  font-size: 25px;
+  margin-top: 7%;
+  color: white;
+}
+.diamond-text:hover{
+  text-align: center;
+  font-size: 25px;
+  margin-top: 7%;
+  color:#C9DB43;
+}
 .socmed{
   text-align: center;
-  margin-top: 16%;
+  margin-top: 2%;
   color: white;
 }
 .socmed a{
@@ -617,8 +635,8 @@ hr{
 .copyright-footer{
   text-align: center;
   color: white;
-  margin-bottom: -25%;
-  margin-top: 10%;
+  margin-bottom: -24%;
+  margin-top: 5%;
   font-style: italic;
 }
 .card-quantity {

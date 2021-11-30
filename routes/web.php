@@ -46,8 +46,12 @@ Route::prefix('sewa')->group(function () {
 
 Route::prefix('toko')->group(function () {
     Route::get('/info', [StoreController::class, 'detail'])->name('admin.detail.toko');
+    Route::get('/barang/edit/{id}', [StoreController::class, 'getBarang']);
+    Route::get('/barang/detailbarang/{id}', [StoreController::class, 'detailBarang']);
+    Route::delete('/barang/delete/{id}', [StoreController::class, 'destroyBarang']);
     Route::delete('/delete/{id}', [StoreController::class, 'destroyToko']);
     Route::post('/detail/save-detail', [StoreController::class, 'storeToko']);
+    Route::post('/barang/store', [StoreController::class, 'storeBarang']);
     Route::post('/followunfollow', [StoreController::class, 'followUnfollow']);
 });
 
