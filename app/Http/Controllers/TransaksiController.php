@@ -1,12 +1,13 @@
 <?php
 
-use App\Models\Tansaksi;
-use App\Models\Keranjang;
-use App\Models\Barang;
-use DateTime;
 namespace App\Http\Controllers;
 
+use App\Models\Keranjang;
+use App\Models\Transaksi;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class TransaksiController extends Controller
 {

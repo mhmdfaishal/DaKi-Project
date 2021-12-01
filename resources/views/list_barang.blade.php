@@ -2,7 +2,7 @@
 <div class="row row-cols-5">
     @foreach($barangs as $barang)
         <div class="card" id="detail-barang" data-id="{{$barang->id}}">
-            <img class="card-img-top card-gambar-barang" id="card-gambar-barang-{{$barang->id}}" src="{{asset('storage/images/toko/'.$barang->toko->nama_toko.'/barang'.'/'.$barang->gambar_barang)}}" alt="Gambar barang">
+            <img class="card-img-top card-gambar-barang" data-id="{{$barang->id}}"  id="card-gambar-barang-{{$barang->id}}" src="{{asset('storage/images/toko/'.$barang->toko->nama_toko.'/barang'.'/'.$barang->gambar_barang)}}" alt="Gambar barang">
             <p class="title-detail-barang" id="title-detail-barang-{{$barang->id}}" style="display: none;"><i class="far fa-eye"></i> Detail Barang</p>
             <div class="card-body">
                 <div class="detail-other">

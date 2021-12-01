@@ -78,7 +78,7 @@ class StoreController extends Controller
                         'role' => '2'
                     ]);
                 }
-                return response()->json(['data' => $cektoko,'message'=>'Update Succesfully','status' => true]);
+                return response()->json(['data' => $cektoko,'message'=>'Create Succesfully','status' => true]);
             }
         }
     }

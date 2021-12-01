@@ -9,14 +9,14 @@ class Keranjang extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id_barang',
+        'barang_id',
         'user_id',
         'no_transaksi',
         'kuantitas'
     ];
 
     public function barang() {
-        return $this->hasMany(Barang::class);
+        return $this->belongsTo(Barang::class);
     }
 
     public function user() {

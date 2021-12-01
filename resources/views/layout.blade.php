@@ -73,9 +73,10 @@
                     <div id="myDropdown" class="dropdown-content">
                         <a class="first-menu" href="#home"><i class="fas fa-user"></i> Profile</a>
                         @if(Auth::user()->role == 1 && !$has_toko || Auth::user()->role == 2 && !$has_toko)
+                        <a href="{{ route('keranjang') }}"><i class="fas fa-shopping-cart"></i> Keranjang</a>
                         <a href="{{route('admin.detail.toko')}}"><i class="fas fa-store"></i> Buat Toko</a>
                         @elseif(Auth::user()->role == 2 && $has_toko)
-                        <a href="{{route('pesanan')}}"><i class="fas fa-shopping-cart"></i> Pesanan</a>
+                        <a href="{{route('pesanan')}}"><i class="fas fa-scroll"></i> Pesanan</a>
                         <a href="{{route('detail.toko',str_replace(' ', '-', strtolower(Auth::user()->toko[0]->nama_toko)))}}"><i class="fas fa-store"></i> Toko Ku</a>
                         @elseif(Auth::user()->role == 3)
                         <a href="{{route('index.admin.gunung')}}"><i class="fas fa-campground"></i> Basecamp</a>

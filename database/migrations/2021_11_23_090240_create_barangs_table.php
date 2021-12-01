@@ -18,7 +18,7 @@ class CreateBarangsTable extends Migration
             $table->integer('toko_id');
             $table->string('nama_barang');
             $table->string('gambar_barang');
-            $table->string('harga');
+            $table->integer('harga');
             $table->string('interval');
             $table->integer('interval_number');
             $table->string('deskripsi');

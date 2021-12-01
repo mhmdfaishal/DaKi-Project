@@ -29,7 +29,6 @@ Route::get('/fetchbarang', [RentController::class, 'fetchBarang']);
 Route::prefix('home')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/{gunung:id}', [HomeController::class, 'detail'])->name('detail.gunung');
-    // Route::get('/gunung/getdata', [HomeController::class, 'getGunung'])->name('get.gunung');
 });
 
 //routes sewa (toko)
@@ -62,9 +61,15 @@ Route::get('/logout', [LoginController::class, 'onLogout'])->middleware('useres'
 Route::get('/auth/google/redirect', [LoginController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('/auth/callback', [RegisterController::class, 'handleGoogleCallback']);
 
-// Pesanan
+// Pesanan (Admin toko)
 Route::get('/cart', [OrderController::class, 'Cart'])->name('pesanan');
 
-
-Route::get('/keranjang', [KeranjangController::class, 'index']);
-Route::post('/keranjang/add', [KeranjangController::class, 'addBarang'])->name('add.cart');
+// Keranjang
+Route::prefix('keranjang')->group(function () {
+    Route::get('/', [KeranjangController::class, 'index'])->name('keranjang');
+    Route::get('/checkout', [KeranjangController::class, 'checkout'])->name('checkout');
+    Route::post('/add', [KeranjangController::class, 'addBarang'])->name('add.cart');
+    Route::post('/store/minus', [KeranjangController::class, 'storeMinus'])->name('storeminus.cart');
+    Route::post('/store/plus', [KeranjangController::class, 'storePlus'])->name('storeplus.cart');
+    Route::delete('/barang/delete/{id}', [KeranjangController::class, 'deleteBarang'])->name('delete.barang.cart');
+});

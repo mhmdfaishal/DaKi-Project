@@ -1,0 +1,198 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.head-title{
+  text-align: center;
+  margin-bottom: 5%;
+}
+.wrap-keranjang{
+  margin-top: 15%;
+  background-color: white;
+  padding: 2%;
+  border-radius: 20px;
+}
+.menu{
+  margin: 0px 20px;
+  vertical-align: middle;
+}
+.menu a{
+  text-decoration: none;
+  color: #C9DB43;
+}
+.menu a:hover{
+  text-decoration: none;
+  color: #9caa35;
+}
+.menu img{
+  position: relative;
+  float: right;
+}
+.title{
+  margin-top: 90px;
+  text-decoration: solid;
+  font-size: 40px;
+  text-align: center;
+}
+table{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.table-title{
+  border-bottom: 3px solid #247257;
+  border-top: 3px solid #247257;
+  font-size: 20px;
+  color: #247257;
+}
+td{
+  padding: 10px 40px;
+}
+.list-barangs td{
+  font-size: 18px;
+}
+td img{
+  width: 150px;
+  height: 170px;
+}
+.jumlah-barang{
+  width: 15%;
+}
+.jumlah-barang div button{
+  margin: 3%;
+}
+.kuantitas-barang{
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 1%;
+}
+.harga{
+  width: 15%;
+}
+.total-harga{
+  width:15%;
+}
+.btn-minus{
+  background: none;
+  border: none;
+}
+.btn-plus{
+  background: none;
+  border: none;
+}
+.btn-minus:hover, .btn-plus:hover{
+  color: #C9DB43;
+}
+.content tr:nth-child(even){
+  background-color: #247257;
+}
+
+.checkout{
+  background-color: #C9DB43;
+  border-radius: 10px;
+  border: none;
+  width: 150%;
+  padding: 5%;
+  color: #247257;
+}
+
+.checkout:hover{
+  background-color: #8c992d;
+  border-radius: 10px;
+  border: none;
+  width: 150%;
+  padding: 5%;
+}
+
+.back{
+  margin-left: 90px;
+  text-decoration: none;
+}
+
+.footer{
+    z-index: -1 !important;
+    padding-bottom: 20%;
+    padding-top: 5%;
+    margin-top: 100px;
+  }
+  .title-footer{
+    text-align: center;
+    color: white;
+  }
+  .desc-title{
+    text-align: center;
+    color: white;
+  }
+  .email-footer{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    margin-top: 5%;
+  }
+  .phone-footer{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+  }
+  .diamond-text{
+    text-align: center;
+    font-size: 25px;
+    margin-top: 7%;
+    color: white;
+  }
+  .diamond-text:hover{
+    text-align: center;
+    font-size: 25px;
+    margin-top: 7%;
+    color:#C9DB43;
+  }
+  .socmed{
+    text-align: center;
+    margin-top: 2%;
+    color: white;
+  }
+  .socmed a{
+    margin: 5px;
+    font-size: 25px;
+    color: white;
+  }
+  .socmed a:hover{
+    color: #C9DB43;
+  }
+  .copyright-footer{
+    text-align: center;
+    color: white;
+    margin-bottom: -24%;
+    margin-top: 5%;
+    font-style: italic;
+  }
+
+  @media(max-width: 1000px){
+    .table-title{
+      border-bottom: 4px solid black;
+      border-top: 4px solid black;
+      font-size: 20px;
+    }
+    td img{
+      display: none;
+    }
+  }
+
+  @media(max-width: 837px){
+    .table-title{
+      border-bottom: 4px solid black;
+      border-top: 4px solid black;
+      font-size: 15px;
+    }
+    td img{
+      display: none;
+    }
+    td{
+      padding: 10px 20px;
+      font-size: 10x;
+    }
+  }

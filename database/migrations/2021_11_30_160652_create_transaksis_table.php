@@ -17,13 +17,14 @@ class CreateTransaksisTable extends Migration
             $table->id();
             $table->string('no_transaksi');
             $table->integer('toko_id');
-            $table->string('user_id');
+            $table->integer('user_id');
             $table->integer('total_harga');
             $table->string('bukti_pembayaran');
             $table->datetime('tangal_mulai_penyewaan');
             $table->datetime('taggal_selesai_penyewaan');
             $table->string('total_hari');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

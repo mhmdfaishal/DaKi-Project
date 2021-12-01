@@ -102,7 +102,7 @@ function fetch_data(page,id){
                       $('#gambar_barang').val(data.gambar_barang);
                 })
             })
-            $("div#detail-barang").click(function(event){
+            $("img.card-gambar-barang").click(function(event){
                 var id_barang = $(this).data('id');
                 event.preventDefault();
                 $.get("/toko/barang/detailbarang/" + id_barang,                                   
@@ -110,7 +110,7 @@ function fetch_data(page,id){
                       $('#modal-detail-barang').modal('show');
                       $('#gambar_barang').attr('src',`../storage/images/toko/`+data.nama_toko+`/barang/`+data.data.gambar_barang+``);
                       $('#get_nama_barang').html(data.data.nama_barang);
-                      $('#harga_interval').html(`Rp `+data.data.harga+`/`+data.data.interval_number+` `+data.data.interval+``);
+                      $('#harga_interval').html(`Rp `+data.data.harga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")+`/`+data.data.interval_number+` `+data.data.interval+``);
                       $('#get_deskripsi').html(data.data.deskripsi);
                 })
             })
@@ -231,7 +231,7 @@ $(document).ready(function(){
                       $('#gambar_barang').val(data.gambar_barang);
                 })
             })
-            $("div#detail-barang").click(function(event){
+            $("img.card-gambar-barang").click(function(event){
                 var id_barang = $(this).data('id');
                 event.preventDefault();
                 $.get("/toko/barang/detailbarang/" + id_barang,                                   
@@ -239,7 +239,7 @@ $(document).ready(function(){
                       $('#modal-detail-barang').modal('show');
                       $('#gambar_barang').attr('src',`../storage/images/toko/`+data.nama_toko+`/barang/`+data.data.gambar_barang+``);
                       $('#get_nama_barang').html(data.data.nama_barang);
-                      $('#harga_interval').html(`Rp `+data.data.harga+`/`+data.data.interval_number+` `+data.data.interval+``);
+                      $('#harga_interval').html(`Rp `+data.data.harga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")+`/`+data.data.interval_number+` `+data.data.interval+``);
                       $('#get_deskripsi').html(data.data.deskripsi);
                 })
             })

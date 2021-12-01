@@ -15,11 +15,12 @@ class CreateKeranjangsTable extends Migration
     {
         Schema::create('keranjangs', function (Blueprint $table) {
             $table->id();
-            $table->string('id_barang');
-            $table->string('user_id');
+            $table->integer('barang_id');
+            $table->integer('user_id');
             $table->string('no_transaksi')->nullable();
             $table->string('kuantitas');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
