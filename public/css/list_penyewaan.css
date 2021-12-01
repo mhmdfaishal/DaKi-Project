@@ -1,0 +1,41 @@
+
+.navbar{
+    background: none !important;
+    position:absolute !important;
+    width: 100%;
+}
+.header{
+    text-align: center;
+    color: #C9DB43;
+    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.548)), url('../images/penyewaan.jpg') !important;
+    object-fit: cover;
+    background-position: 50% 25% !important;
+    background-size: 100% !important;
+    background-repeat: no-repeat !important;
+    /* filter: brightness(10%); */
+    padding: 20%;
+    width:auto;
+    height: 100%;
+}
+.header .head-title{
+    margin-bottom: -20%;
+}
+.head-title h3{
+    font-size: 38px;
+}
+.body-content{
+    padding:2%;
+}
+.box-container{
+    background-color: white;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border-radius: 0px 0px 20px 20px;
+}
+
+@media(max-width : 768px){
+    .head-title h3{
+        font-size: 28px;
+    }
+}
+/*End*/

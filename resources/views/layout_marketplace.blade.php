@@ -58,8 +58,12 @@
             </a>
             <ul class="nav-menu">
                 <span class="nav-item">
-                    <a class="nav-link material-icons" href="#">shopping_cart</a>
+                    <a class="nav-link" href="/home">Home</a>
                 </span>
+                <span class="nav-item">
+                    <a class="nav-link" href="/sewa">Sewa</a>
+                </span>
+                <span class="nav-item" id="navSplit"></span>
                 @if (Auth::check())
                 <div class="dropdown1">
                     @if(count($nama) > 1 )
@@ -72,6 +76,8 @@
                         @if(Auth::user()->role == 1 && !$has_toko || Auth::user()->role == 2 && !$has_toko)
                         <a href="{{ route('keranjang') }}"><i class="fas fa-shopping-cart"></i> Keranjang</a>
                         <a href="{{route('admin.detail.toko')}}"><i class="fas fa-store"></i> Buat Toko</a>
+                        <a href=""><i class="fas fa-shopping-cart"></i> Keranjang</a>
+                        <a href=""><i class="fas fa-clipboard-list"></i> Transaksi</a>
                         @elseif(Auth::user()->role == 2 && $has_toko)
                         <a href="{{route('pesanan')}}"><i class="fas fa-scroll"></i> Pesanan</a>
                         <a href="{{route('detail.toko',str_replace(' ', '-', strtolower(Auth::user()->toko[0]->nama_toko)))}}"><i class="fas fa-store"></i> Toko Ku</a>
