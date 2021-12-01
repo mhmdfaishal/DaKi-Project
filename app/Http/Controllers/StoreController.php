@@ -29,6 +29,10 @@ class StoreController extends Controller
     }
     public function storeToko(Request $request){
         $cektoko = Toko::where('user_id',Auth::user()->id)->first();
+        $cek_nama_toko = Toko::where('nama_toko',$request->nama_toko)->first();
+        if($cek_nama_toko){
+            return response()->json(['error'=>'Nama toko sudah terdaftar!','status' => false]);
+        }
         if($cektoko){
             if($request->file('gambar_toko')){
                 $gambar = $request->file('gambar_toko');
