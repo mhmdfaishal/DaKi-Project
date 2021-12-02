@@ -48,7 +48,7 @@ $(document).ready(function(){
             contentType: false,
             success: function (data) {  
                 if(typeof(data.error) != "undefined"){
-                    
+                    $('#validation').html(data.error);
                 }else{
                     var url = $('meta[name="url"]').attr('content');
                     window.location.href=""+url+"/sewa/penyewaan";

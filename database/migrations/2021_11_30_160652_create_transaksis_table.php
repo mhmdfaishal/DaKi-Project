@@ -23,6 +23,7 @@ class CreateTransaksisTable extends Migration
             $table->datetime('tangal_mulai_penyewaan');
             $table->datetime('taggal_selesai_penyewaan');
             $table->string('total_hari');
+            $table->integer('status');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

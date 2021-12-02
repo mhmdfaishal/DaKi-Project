@@ -33,14 +33,24 @@ class RentController extends Controller
     public function getPenyewaan(Request $request){
         if(Auth::check()){
             $user = Auth::user();
-            $listpenyewaans = Transaksi::where('user_id', $user->id)->get();
+            $listpenyewaans = Transaksi::where('user_id', $user->id)->orderBy('status','ASC')->get();
             foreach($listpenyewaans as $listpenyewaan){
                 $getkeranjang = Keranjang::where('no_transaksi',$listpenyewaan->no_transaksi)->get();
                 $listpenyewaan->total_produk = $getkeranjang->count();
                 $listpenyewaan->total_harga = "Rp ". number_format($listpenyewaan->total_harga,0,',','.');
                 $listpenyewaan->hari = date('d-m-Y',strtotime($listpenyewaan->created_at));
-                // $listpenyewaan->tanggal_mulai_penyewaan = new DateTime($listpenyewaan->tanggal_mulai_penyewaan);
-                // $listpenyewaan->hari = $listpenyewaan->tanggal_mulai_penyewaan->d;
+                if($listpenyewaan->status == "0"){
+                    $listpenyewaan->status = "Pengecekan";
+                }
+                elseif($listpenyewaan->status == "1"){
+                    $listpenyewaan->status = "Pembayaran ditolak";
+                }
+                elseif($listpenyewaan->status == "2"){
+                    $listpenyewaan->status = "Sedang dikemas";
+                }
+                elseif($listpenyewaan->status == "3"){
+                    $listpenyewaan->status = "Barang siap diambil";
+                }
 
             }
             if($request->ajax()){
@@ -54,10 +64,11 @@ class RentController extends Controller
                             ->make(true);
             }
                 
-                $has_toko = Toko::where('user_id',$user->id)->first();
-                $nama = explode(" ",strval($user->nama));
-                return view('list_penyewaan', compact('nama','has_toko'));
+            $has_toko = Toko::where('user_id',$user->id)->first();
+            $nama = explode(" ",strval($user->nama));
+            return view('list_penyewaan', compact('nama','has_toko'));
         }
+        return redirect()->back();
 
     }
     public function detailPenyewaan($id){
@@ -70,7 +81,7 @@ class RentController extends Controller
                 $alat[$k] = $barang->barang;
             }
             $tanggal = date('d-m-Y',strtotime($transaksi->tanggal_mulai_penyewaan))." s.d. ".date('d-m-Y',strtotime($transaksi->tanggal_selesai_penyewaan));
-            return response()->json(['alat'=>$alat,'keranjang'=>$barangs,'nama'=>$user->nama,'alamat'=>$transaksi->toko->alamat,'tanggal'=>$tanggal,'lama_penyewaan'=>$transaksi->total_hari]);
+            return response()->json(['total_semua_harga'=>$transaksi->total_harga,'alat'=>$alat,'keranjang'=>$barangs,'nama'=>$user->nama,'alamat'=>$transaksi->toko->alamat,'nama_toko'=>$transaksi->toko->nama_toko,'tanggal'=>$tanggal,'lama_penyewaan'=>$transaksi->total_hari]);
         }
 
     }

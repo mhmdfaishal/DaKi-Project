@@ -63,7 +63,7 @@
             <div class="detail-store d-flex">
                 <div class="flex-direction-column detail-first">
                     <input type="hidden" name="id_toko" id="id_toko" value="{{$data_toko->id}}">
-                    <h5><i class="fas fa-map-marker-alt"></i> {{$data_toko->alamat}}</h5>
+                    <h5 class="alamat"><i class="fas fa-map-marker-alt"></i> {{$data_toko->alamat}}</h5>
                     <h5><i class="fas fa-box-open"></i> Produk: {{$jumlah->count()}}</h5>
                     <h5><i class="fas fa-user-check"></i> Bergabung: {{$data_toko->created_at->diffForHumans();}}</h5>
                 </div>

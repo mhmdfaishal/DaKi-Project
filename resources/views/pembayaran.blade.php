@@ -58,6 +58,9 @@
                 <td class="answer"><input type="file" id="bukti_pembayaran" name="bukti_pembayaran" required></td>
             </tr>
         </table>
+
+        <p id="validation" style="color: rgb(250, 106, 106);"></p>
+
     </div>
     <div class="navigation">
         <a href="/keranjang" class="back"><i class="fas fa-chevron-left"></i> Kembali</a>

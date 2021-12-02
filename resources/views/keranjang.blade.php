@@ -50,16 +50,17 @@
             </tr>
             @endforeach
             <div class="container">
+                @if(isset($data[0]))
                 <tr style="background-color: white;">
-                    
                     <td colspan="4"></td>
                     <td colspan="0">Total Harga :</td>
                     <td class="d-flex">
                         <div id="total-keseluruhan-harga">
                             Rp  {{number_format($total_harga,0,',','.')}}</td>
                         </div>
-                    <td><a href="{{route('checkout')}}"><button class="checkout">Checkout <i class="fas fa-chevron-circle-right"></i></button></a></td>
-                </tr>
+                        <td><a href="{{route('checkout')}}"><button class="checkout">Checkout <i class="fas fa-chevron-circle-right"></i></button></a></td>
+                    </tr>
+                @endif
             </div>
         </table>
     </div>

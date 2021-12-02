@@ -110,13 +110,16 @@ hr {
     padding: 2%;
     margin-right: 0;
 }
+.alamat{
+    width: 130%;
+}
 .detail-first{
-    max-width: 90%;
+    max-width: 50%;
     margin-right: 20%;
 }
 .detail-end {
     margin: auto;
-    width: 35%;
+    width: 50%;
     margin-right: -25%;
 }
 /*end*/

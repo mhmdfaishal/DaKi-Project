@@ -36,6 +36,11 @@
                         <td class="detail-sewa" id="nama-user"></td>
                     </tr>
                     <tr>
+                        <td class="data">Nama Toko</td>
+                        <td> : </td>
+                        <td class="detail-sewa" id="nama-toko"></td>
+                    </tr>
+                    <tr>
                         <td class="data">Alamat toko</td>
                         <td> : </td>
                         <td class="detail-sewa" id="alamat-toko"></td>
@@ -129,6 +134,7 @@
                 $('#modal-detail-penyewaan').modal('show');
                 $('#tgl-sewa').html(data.tanggal);
                 $('#nama-user').html(data.nama);
+                $('#nama-toko').html(data.nama_toko);
                 $('#alamat-toko').html(data.alamat);
                 $("#detail-transaksi tbody").html('');
                 $.each(data.keranjang, function (i, barang) {
@@ -144,6 +150,16 @@
                       </tr>`
                   ) 
                 });
+                $("#detail-transaksi tbody").append(
+                      `<tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><b>Total Pembayaran</b></td>
+                        <td>Rp ${(data.total_semua_harga).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</td>
+                      </tr>`
+                  ) 
               })
           });
     });

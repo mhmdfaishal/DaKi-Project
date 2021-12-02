@@ -120,6 +120,7 @@ class KeranjangController extends Controller
             }
             return view('pembayaran',compact('user','nama','has_toko','keranjangs','total_harga'));
         }
+        return redirect()->back();
     }
     public function tanggalSewa(Request $request){
         if(Auth::check()){
@@ -134,8 +135,8 @@ class KeranjangController extends Controller
                 $total_harga += $barang->barang->harga * $barang->kuantitas;
             }
             $total_harga = $total_harga * $selisih_hari;
+
             return response()->json($total_harga);
-            
         }
     }
 }
