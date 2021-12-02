@@ -22,9 +22,52 @@
 }
 .head-title h3{
     font-size: 38px;
+    text-align: center;
+    margin-bottom: 5%;
+}
+table td{
+    text-align: center;
+}
+#detail-user{
+ 
+}
+#detail-user tr .data{
+    text-align: left;
+    /* padding: 1%; */
+    width: 23%;
+}
+#detail-user tr .detail-sewa{
+    text-align: left;
+    padding-left: 2%;
+    /* padding: 1%; */
+}
+/* .modal-content{
+    width: 135%;
+} */
+#detail-transaksi{
+    width: 100%;
+}
+#detail-transaksi tr , #detail-transaksi th, #detail-transaksi td {
+    border: 2px solid black;
+    padding: 1%;
+    text-align: center;
+}
+.data{
+    margin-right: 2%;
+}
+#btn-detail-penyewaan{
+    background-color: #C9DB43;
+    border: none;
+    padding: 2% !important;
+    width: 75%;
+    border-radius: 10px;
+}
+#btn-detail-penyewaan:hover{
+    background-color: #808b2a;
+    color: white;
 }
 .body-content{
-    padding:2%;
+    padding:5%;
 }
 .box-container{
     background-color: white;

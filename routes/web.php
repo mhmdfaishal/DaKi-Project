@@ -7,6 +7,7 @@ use App\Http\Controllers\RentController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\BasecampController;
 use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,8 @@ Route::prefix('basecamp')->group(function() {
 });
 Route::prefix('sewa')->group(function () {
     Route::get('/', [RentController::class, 'index'])->name('index.marketplace');
+    Route::get('/penyewaan', [RentController::class, 'getPenyewaan'])->name('penyewaan.user');
+    Route::get('/detailpenyewaan/{id}', [RentController::class, 'detailPenyewaan']);
     Route::get('/{toko:nama_toko}', [RentController::class, 'detailToko'])->name('detail.toko');
 });
 
@@ -68,8 +71,11 @@ Route::get('/cart', [OrderController::class, 'Cart'])->name('pesanan');
 Route::prefix('keranjang')->group(function () {
     Route::get('/', [KeranjangController::class, 'index'])->name('keranjang');
     Route::get('/checkout', [KeranjangController::class, 'checkout'])->name('checkout');
+    Route::post('/checkout/tanggalsewa', [KeranjangController::class, 'tanggalSewa']);
     Route::post('/add', [KeranjangController::class, 'addBarang'])->name('add.cart');
     Route::post('/store/minus', [KeranjangController::class, 'storeMinus'])->name('storeminus.cart');
     Route::post('/store/plus', [KeranjangController::class, 'storePlus'])->name('storeplus.cart');
     Route::delete('/barang/delete/{id}', [KeranjangController::class, 'deleteBarang'])->name('delete.barang.cart');
+
+    Route::post('/checkout/bayar', [TransaksiController::class, 'store']);
 });

@@ -13,4 +13,7 @@ class Transaksi extends Model
     public function keranjang(){
         return $this->hasMany(keranjang::class);
     }
+    public function toko(){
+        return $this->belongsTo(Toko::class);
+    }
 }

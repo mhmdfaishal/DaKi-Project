@@ -39,43 +39,53 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $gambar = $request->file('bukti_pembayaran');
-        $name= $gambar->getClientOriginalName();
-        $namafile = uniqid();
-        $name= substr(md5($namafile), 6, 6) . '_' . time();
-        $ext = $gambar->getClientOriginalExtension();
-        $gambar->storeAs('public/images/pembayaran/',"$name.$ext");
+        if(Auth::check()){
+            $gambar = $request->file('bukti_pembayaran');
+            $name= $gambar->getClientOriginalName();
+            $namafile = uniqid();
+            $name= substr(md5($namafile), 6, 6) . '_' . time();
+            $ext = $gambar->getClientOriginalExtension();
+            $gambar->storeAs('public/images/pembayaran_user/',"$name.$ext");
 
-        $random_string = Str::random(10);
+            $random_string = Str::random(10);
 
-        $keranjang = Keranjang::where('user_id',Auth::user()->id)->first();
-        $getbarang = Keranjang::where('user_id',Auth::user()->id)->get();
+            $user = Auth::user();
 
-        $total_harga = 0;
-        foreach($getbarang as $barang){
-            $total_harga += $barang->barang->harga;
+            $toko_barang = Keranjang::where('user_id',Auth::user()->id)->first();
+            $getbarang = Keranjang::where('user_id',Auth::user()->id)->where('no_transaksi',NULL)->get();
+
+            $total_harga = 0;
+            foreach($getbarang as $barang){
+                $total_harga += $barang->barang->harga * $barang->kuantitas;
+            }
+            $tanggal=explode("-", $request->tanggal_sewa);
+
+            $tanggal_mulai= $tanggal[0];
+            $tanggal_kembali= $tanggal[1];
+
+            $tanggal_mulai = new DateTime($tanggal_mulai);
+            $tanggal_kembali = new DateTime($tanggal_kembali);
+            $selisih_hari = $tanggal_kembali->diff($tanggal_mulai)->format('%a');
+            
+            $total_harga = $total_harga * $selisih_hari;
+            $data = Transaksi::create([
+                'no_transaksi' => $random_string,
+                'toko_id' => $toko_barang->barang->toko_id,
+                'user_id' => $user->id,
+                'bukti_pembayaran' => $name.".".$ext,
+                'total_harga' => $total_harga,
+                'tanggal_mulai_penyewaan' => $tanggal_mulai,
+                'tanggal_selesai_penyewaan' => $tanggal_kembali,
+                'total_hari' => $selisih_hari,
+                'status' => "checking",
+            ]);
+            $data = Keranjang::where('user_id',Auth::user()->id)->where('no_transaksi',NULL)->update([
+                'no_transaksi' => $data->no_transaksi,
+            ]);
+            if($data){
+                return response()->json($data);
+            }
         }
-
-        $fdate = $request->tanggal_mulai_penyewaan;
-        $tdate = $request->tanggal_selesai_penyewaan;
-        $datetime1 = new DateTime($fdate);
-        $datetime2 = new DateTime($tdate);
-        $interval = $datetime1->diff($datetime2);
-        $days = $interval->format('%a');
-
-        $data = Transaksi::create([
-            'no_transaksi' => $random_string,
-            'toko_id' => $keranjang->barang->toko_id,
-            'user_id' => Auth::user()->id,
-            'bukti_pembayaran' => $name.".".$ext,
-            'total_harga' => $total_harga,
-            'tanggal_mulai_penyewaan' => $request->tanggal_mulai_penyewaan,
-            'tanggal_selesai_penyewaan' => $request->tanggal_selesai_penyewaan,
-            'total_hari' => $days,
-        ]);
-
-        return $data;
     }
 
     /**

@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Keranjang;
 use App\Models\Toko;
+use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 
 class KeranjangController extends Controller
 {
     public function index(){
         if(Auth::check()){
-            $data = Keranjang::where('user_id', Auth::user()->id)->get();
+            $data = Keranjang::where('user_id', Auth::user()->id)->where('no_transaksi',NULL)->get();
             if($data){
                 $user = Auth::user();
                 $has_toko = Toko::where('user_id',$user->id)->first();
@@ -27,7 +29,7 @@ class KeranjangController extends Controller
     }
 
     public function addBarang(Request $request){
-        $check_barang = Keranjang::where('barang_id', $request->barang_id)->where('user_id',Auth::user()->id)->first();
+        $check_barang = Keranjang::where('barang_id', $request->barang_id)->where('user_id',Auth::user()->id)->where('no_transaksi', NULL)->first();
         if($check_barang){
             $kuantitas = $check_barang->kuantitas + $request->quantity;
             $query = $check_barang->update([
@@ -51,7 +53,7 @@ class KeranjangController extends Controller
     }
     public function storeMinus(Request $request){
         if(Auth::check()){
-            $check_barang = Keranjang::where('barang_id', $request->barang_id)->where('user_id',Auth::user()->id)->first();
+            $check_barang = Keranjang::where('barang_id', $request->barang_id)->where('user_id',Auth::user()->id)->where('no_transaksi',NULL)->first();
             if($check_barang){
                 $kuantitas = $check_barang->kuantitas - 1;
                 if($kuantitas < 0){
@@ -60,7 +62,7 @@ class KeranjangController extends Controller
                 $query = $check_barang->update([
                     'kuantitas' => $kuantitas
                 ]);
-                $keranjangs = Keranjang::where('user_id',Auth::user()->id)->get();
+                $keranjangs = Keranjang::where('user_id',Auth::user()->id)->where('no_transaksi',NULL)->get();
                 $total_harga = $check_barang->barang->harga*$kuantitas;
                 $total_keseluruhan_harga = 0;
                 foreach($keranjangs as $keranjang){
@@ -75,13 +77,13 @@ class KeranjangController extends Controller
     }
     public function storePlus(Request $request){
         if(Auth::check()){
-            $check_barang = Keranjang::where('barang_id', $request->barang_id)->where('user_id',Auth::user()->id)->first();
+            $check_barang = Keranjang::where('barang_id', $request->barang_id)->where('user_id',Auth::user()->id)->where('no_transaksi',NULL)->first();
             if($check_barang){
                 $kuantitas = $check_barang->kuantitas + 1;
                 $query = $check_barang->update([
                     'kuantitas' => $kuantitas
                 ]);
-                $keranjangs = Keranjang::where('user_id',Auth::user()->id)->get();
+                $keranjangs = Keranjang::where('user_id',Auth::user()->id)->where('no_transaksi',NULL)->get();
                 $total_harga = $check_barang->barang->harga*$kuantitas;
                 $total_keseluruhan_harga = 0;
                 foreach($keranjangs as $keranjang){
@@ -96,7 +98,7 @@ class KeranjangController extends Controller
     }
     public function deleteBarang($id){
         if(Auth::check()){
-            $check_barang = Keranjang::where('barang_id', $id)->first();
+            $check_barang = Keranjang::where('barang_id', $id)->where('no_transaksi',NULL)->first();
             if($check_barang){
                 $query = $check_barang->delete();
                 if ($query){
@@ -108,6 +110,31 @@ class KeranjangController extends Controller
     }
     public function checkout(){
         if(Auth::check()){
+            $user = Auth::user();
+            $has_toko = Toko::where('user_id',$user->id)->first();
+            $nama = explode(" ",strval(Auth::user()->nama));
+            $keranjangs = Keranjang::where('user_id',$user->id)->where('no_transaksi', NULL)->get();
+            $total_harga = 0;
+            foreach($keranjangs as $barang){
+                $total_harga += $barang->barang->harga * $barang->kuantitas;
+            }
+            return view('pembayaran',compact('user','nama','has_toko','keranjangs','total_harga'));
+        }
+    }
+    public function tanggalSewa(Request $request){
+        if(Auth::check()){
+            $user = Auth::user();
+            $keranjangs = Keranjang::where('user_id',$user->id)->where('no_transaksi',NULL)->get();
+            $total_harga = 0;
+            $tanggal_start = new DateTime($request->mulai);
+            $tanggal_end = new DateTime($request->selesai);
+            $selisih_hari = $tanggal_end->diff($tanggal_start)->format("%a");
+
+            foreach($keranjangs as $barang){
+                $total_harga += $barang->barang->harga * $barang->kuantitas;
+            }
+            $total_harga = $total_harga * $selisih_hari;
+            return response()->json($total_harga);
             
         }
     }

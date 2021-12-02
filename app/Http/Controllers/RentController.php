@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Follower;
+use App\Models\Keranjang;
 use App\Models\Toko;
+use App\Models\Transaksi;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\DataTables;
 
 class RentController extends Controller
 {
@@ -24,6 +29,50 @@ class RentController extends Controller
             return view('marketplace', compact('data_toko','nama','all_data','location','has_toko'));
         }
         return view('marketplace',compact('data_toko','all_data','location'));
+    }
+    public function getPenyewaan(Request $request){
+        if(Auth::check()){
+            $user = Auth::user();
+            $listpenyewaans = Transaksi::where('user_id', $user->id)->get();
+            foreach($listpenyewaans as $listpenyewaan){
+                $getkeranjang = Keranjang::where('no_transaksi',$listpenyewaan->no_transaksi)->get();
+                $listpenyewaan->total_produk = $getkeranjang->count();
+                $listpenyewaan->total_harga = "Rp ". number_format($listpenyewaan->total_harga,0,',','.');
+                $listpenyewaan->hari = date('d-m-Y',strtotime($listpenyewaan->created_at));
+                // $listpenyewaan->tanggal_mulai_penyewaan = new DateTime($listpenyewaan->tanggal_mulai_penyewaan);
+                // $listpenyewaan->hari = $listpenyewaan->tanggal_mulai_penyewaan->d;
+
+            }
+            if($request->ajax()){
+                return DataTables::of($listpenyewaans)
+                        ->addColumn('detail', function($data){
+                                $button = '<button type="button" data-id="'.$data->no_transaksi.'" id="btn-detail-penyewaan"><i class="fas fa-eye"></i> Detail</button>';   
+                                return $button;
+                            })
+                            ->rawColumns(['detail'])
+                            ->addIndexColumn()
+                            ->make(true);
+            }
+                
+                $has_toko = Toko::where('user_id',$user->id)->first();
+                $nama = explode(" ",strval($user->nama));
+                return view('list_penyewaan', compact('nama','has_toko'));
+        }
+
+    }
+    public function detailPenyewaan($id){
+        if(Auth::check()){
+            $user = Auth::user();
+            $transaksi = Transaksi::where('no_transaksi',$id)->first();
+            $barangs = Keranjang::where('no_transaksi',$id)->get();
+            $alat = [];
+            foreach($barangs as $k => $barang){
+                $alat[$k] = $barang->barang;
+            }
+            $tanggal = date('d-m-Y',strtotime($transaksi->tanggal_mulai_penyewaan))." s.d. ".date('d-m-Y',strtotime($transaksi->tanggal_selesai_penyewaan));
+            return response()->json(['alat'=>$alat,'keranjang'=>$barangs,'nama'=>$user->nama,'alamat'=>$transaksi->toko->alamat,'tanggal'=>$tanggal,'lama_penyewaan'=>$transaksi->total_hari]);
+        }
+
     }
     public function fetchToko(Request $request){
         if($request->ajax())

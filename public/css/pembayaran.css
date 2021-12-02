@@ -1,0 +1,238 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.wrap-pembayaran{
+  margin-top: 15%;
+  background: white;
+  padding: 2%;
+  border-radius: 20px;
+}
+#total-harga-penyewaan{
+  background: #174736;
+}
+#tgl_penyewaan:hover{
+  cursor: pointer;
+}
+.menu{
+  margin: 0px 20px;
+  vertical-align: middle;
+}
+.menu a{
+  text-decoration: none;
+  color: #C9DB43;
+}
+.menu a:hover{
+  text-decoration: none;
+  color: #9caa35;
+}
+.menu img{
+  position: relative;
+  float: right;
+}
+
+.title{
+  margin-top: 90px;
+  margin-bottom: 50px;
+  font-weight: bold;
+  font-size: 40px;
+  text-align: center;
+}
+.content{
+  background-color: #247257;
+  border-radius: 10px;
+  padding: 2%;
+}
+table{
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  height: 400px;
+}
+td{
+  font-size: 20px;
+  color: white;
+}
+td img{
+  width: 200px;
+  height: 210px;
+  border-radius: 10px;
+}
+input[type="date"]{
+  margin: 2%;
+}
+.data, .answer{
+  text-align: justify;
+  padding: 5px 5px;
+}
+.data{
+  font-weight: bold;
+}
+.navigation{
+  margin-top: 50px;
+}
+.back{
+  margin-left: 90px;
+  text-decoration: none;
+  background-color: #247257;
+  width: 120px;
+  display: inline-block;
+  border-radius: 10px;
+  text-align: center;
+  color: black;
+  padding: 1%;
+}
+.back:hover{
+  margin-left: 90px;
+  text-decoration: none;
+  background-color: #174736;
+  width: 120px;
+  display: inline-block;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+}
+.submit{
+  float: right;
+  text-decoration: none;
+  margin-right: 90px;
+  background-color: #C9DB43;
+  width: 120px;
+  border-radius: 10px;
+  text-align: center;
+  color: black;
+  padding: 1%;
+}
+.submit:hover{
+  float: right;
+  text-decoration: none;
+  margin-right: 90px;
+  background-color: #9caa33;
+  width: 120px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+}
+
+.footer{
+    z-index: -1 !important;
+    padding-bottom: 20%;
+    padding-top: 5%;
+    margin-top: 100px;
+  }
+  .title-footer{
+    text-align: center;
+    color: white;
+  }
+  .desc-title{
+    text-align: center;
+    color: white;
+  }
+  .email-footer{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    margin-top: 5%;
+  }
+  .phone-footer{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+  }
+  .diamond-text{
+    text-align: center;
+    font-size: 25px;
+    margin-top: 7%;
+    color: white;
+  }
+  .diamond-text:hover{
+    text-align: center;
+    font-size: 25px;
+    margin-top: 7%;
+    color:#C9DB43;
+  }
+  .socmed{
+    text-align: center;
+    margin-top: 2%;
+    color: white;
+  }
+  .socmed a{
+    margin: 5px;
+    font-size: 25px;
+    color: white;
+  }
+  .socmed a:hover{
+    color: #C9DB43;
+  }
+  .copyright-footer{
+    text-align: center;
+    color: white;
+    margin-bottom: -24%;
+    margin-top: 5%;
+    font-style: italic;
+  }
+
+  @media(max-width: 700px){
+    td{
+      font-size: 17px;
+      color: white;
+    }
+  }
+
+  @media(max-width: 500px){
+    td{
+      font-size: 15px;
+      color: white;
+    }
+    .title{
+      margin-top: 90px;
+      margin-bottom: 50px;
+      font-weight: bold;
+      font-size: 30px;
+      text-align: center;
+    }
+    .back{
+      margin-left: 20px;
+      text-decoration: none;
+      background-color: #247257;
+      width: 120px;
+      display: inline-block;
+      border-radius: 10px;
+      text-align: center;
+      color: black;
+    }
+    .back:hover{
+      margin-left: 20px;
+      text-decoration: none;
+      background-color: #174736;
+      width: 120px;
+      display: inline-block;
+      border-radius: 10px;
+      text-align: center;
+      color: white;
+    }
+    .submit{
+      float: right;
+      text-decoration: none;
+      margin-right: 20px;
+      background-color: #C9DB43;
+      width: 120px;
+      border-radius: 10px;
+      text-align: center;
+      color: black;
+    }
+    .submit:hover{
+      float: right;
+      text-decoration: none;
+      margin-right: 20px;
+      background-color: #9caa33;
+      width: 120px;
+      border-radius: 10px;
+      text-align: center;
+      color: white;
+    }
+  }

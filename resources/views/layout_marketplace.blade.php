@@ -75,6 +75,7 @@
                         <a class="first-menu" href="#home"><i class="fas fa-user"></i> Profile</a>
                         @if(Auth::user()->role == 1 && !$has_toko || Auth::user()->role == 2 && !$has_toko)
                         <a href="{{ route('keranjang') }}"><i class="fas fa-shopping-cart"></i> Keranjang</a>
+                        <a href="{{ route('penyewaan.user') }}"><i class="fas fa-file-invoice-dollar"></i> Penyewaan</a>
                         <a href="{{route('admin.detail.toko')}}"><i class="fas fa-store"></i> Buat Toko</a>
                         @elseif(Auth::user()->role == 2 && $has_toko)
                         <a href=""><i class="fas fa-clipboard-list"></i> Transaksi</a>
