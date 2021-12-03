@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
 use App\Models\Keranjang;
 use App\Models\Toko;
 use DateTime;
@@ -29,6 +30,13 @@ class KeranjangController extends Controller
     }
 
     public function addBarang(Request $request){
+        $check_if_diff_store = Keranjang::where('user_id', Auth::user()->id)->where('no_transaksi', NULL)->get();
+        foreach($check_if_diff_store as $item) {
+            $get_data_barang = Barang::where('id', $request->barang_id)->first();
+            if ($item->barang->toko_id != $get_data_barang->toko_id) {
+                Keranjang::where('barang_id', $item->barang_id)->where('no_transaksi', NULL)->delete();
+            }
+        }
         $check_barang = Keranjang::where('barang_id', $request->barang_id)->where('user_id',Auth::user()->id)->where('no_transaksi', NULL)->first();
         if($check_barang){
             $kuantitas = $check_barang->kuantitas + $request->quantity;
