@@ -65,7 +65,11 @@ Route::get('/auth/google/redirect', [LoginController::class, 'redirectToGoogle']
 Route::get('/auth/callback', [RegisterController::class, 'handleGoogleCallback']);
 
 // Pesanan (Admin toko)
-Route::get('/cart', [OrderController::class, 'Cart'])->name('pesanan');
+Route::prefix('cart')->group(function (){
+Route::get('/', [OrderController::class, 'Cart'])->name('pesanan');
+Route::get('/detailpesanan/{id}', [OrderController::class, 'detailPesanan']);
+Route::post('update_status', [OrderController::class, 'updateStatus']);
+});
 
 // Keranjang
 Route::prefix('keranjang')->group(function () {
