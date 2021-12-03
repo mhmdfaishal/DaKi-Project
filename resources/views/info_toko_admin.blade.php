@@ -85,6 +85,24 @@
               </div>
             </div>
             <div class="mb-3 row">
+              <label for="kota_kabupaten" class="col-sm-2 col-form-label">No Rekening</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="no_rek" @if(isset($data)) value="{{ $data->no_rek }}" @endif style="border-radius: 12px">
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="kota_kabupaten" class="col-sm-2 col-form-label">Bank Rekening</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="provider_rek" @if(isset($data)) value="{{ $data->provider_rek }}" @endif style="border-radius: 12px">
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="kota_kabupaten" class="col-sm-2 col-form-label">Nama Rekening</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="nama_rek" @if(isset($data)) value="{{ $data->nama_rek }}" @endif style="border-radius: 12px">
+              </div>
+            </div>
+            <div class="mb-3 row">
               <label for="kontak" class="col-sm-2 col-form-label">Kontak</label>
               <div class="col-sm-10">
                 <input type="number" class="form-control" id="kontak" @if(isset($data)) value="{{ $data->kontak }}" @endif style="border-radius: 12px" required>

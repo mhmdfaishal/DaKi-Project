@@ -108,7 +108,7 @@ function fetch_data(page,id){
                 $.get("/toko/barang/detailbarang/" + id_barang,                                   
                     function (data) {
                       $('#modal-detail-barang').modal('show');
-                      $('#gambar_barang').attr('src',`../storage/images/toko/`+data.nama_toko+`/barang/`+data.data.gambar_barang+``);
+                      $('#gambar_barang_detail').attr('src',`../storage/images/toko/`+data.nama_toko+`/barang/`+data.data.gambar_barang+``);
                       $('#get_nama_barang').html(data.data.nama_barang);
                       $('#harga_interval').html(`Rp `+data.data.harga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")+`/`+data.data.interval_number+` `+data.data.interval+``);
                       $('#get_deskripsi').html(data.data.deskripsi);
@@ -237,7 +237,7 @@ $(document).ready(function(){
                 $.get("/toko/barang/detailbarang/" + id_barang,                                   
                     function (data) {
                       $('#modal-detail-barang').modal('show');
-                      $('#gambar_barang').attr('src',`../storage/images/toko/`+data.nama_toko+`/barang/`+data.data.gambar_barang+``);
+                      $('#gambar_barang_detail').attr('src',`../storage/images/toko/`+data.nama_toko+`/barang/`+data.data.gambar_barang+``);
                       $('#get_nama_barang').html(data.data.nama_barang);
                       $('#harga_interval').html(`Rp `+data.data.harga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")+`/`+data.data.interval_number+` `+data.data.interval+``);
                       $('#get_deskripsi').html(data.data.deskripsi);

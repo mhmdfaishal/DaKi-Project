@@ -156,7 +156,7 @@
                             <button type="close" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                         </div>
                         <div class="modal-body">
-                            <img src="" class="detail-gambar-barang" id="gambar_barang" alt="">
+                            <img src="" class="detail-gambar-barang" id="gambar_barang_detail" alt="">
                             <h2 class="detail-nama-barang" id="get_nama_barang"></h2>
                             <hr>
                             <h4 class="text-center">Deskripsi barang : </h4>

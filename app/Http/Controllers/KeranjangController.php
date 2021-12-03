@@ -117,8 +117,11 @@ class KeranjangController extends Controller
             $total_harga = 0;
             foreach($keranjangs as $barang){
                 $total_harga += $barang->barang->harga * $barang->kuantitas;
+                $no_rek = $barang->barang->toko->no_rek;
+                $nama_rek = $barang->barang->toko->nama_rek;
+                $provider_rek = $barang->barang->toko->provider_rek;
             }
-            return view('pembayaran',compact('user','nama','has_toko','keranjangs','total_harga'));
+            return view('pembayaran',compact('user','nama','has_toko','keranjangs','total_harga','no_rek','nama_rek','provider_rek'));
         }
         return redirect()->back();
     }

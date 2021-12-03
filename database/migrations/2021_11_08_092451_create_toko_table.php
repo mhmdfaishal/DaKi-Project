@@ -19,6 +19,9 @@ class CreateTokoTable extends Migration
             $table->string('nama_toko');
             $table->string('alamat');
             $table->string('kotakabupaten');
+            $table->integer('no_rek');
+            $table->string('provider_rek');
+            $table->string('nama_rek');
             $table->float('rating')->default(0);;
             $table->integer('follower')->default(0);;
             $table->string('kontak');

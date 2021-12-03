@@ -10,6 +10,9 @@ if ($("#form-toko").length > 0) {
           formData.append('nama_toko', $('#nama_toko').val());
           formData.append('alamat', $('#alamat').val());
           formData.append('kotakabupaten', $('#kota_kabupaten').val());
+          formData.append('no_rek', $('#no_rek').val());
+          formData.append('nama_rek', $('#nama_rek').val());
+          formData.append('provider_rek', $('#provider_rek').val());
           formData.append('url_gmaps', $('#url_gmaps').val());
           formData.append('kontak', $('#kontak').val());
           

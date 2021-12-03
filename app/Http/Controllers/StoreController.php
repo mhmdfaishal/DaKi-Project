@@ -29,7 +29,7 @@ class StoreController extends Controller
     }
     public function storeToko(Request $request){
         $cektoko = Toko::where('user_id',Auth::user()->id)->first();
-        $cek_nama_toko = Toko::where('nama_toko',$request->nama_toko)->first();
+        $cek_nama_toko = Toko::where('nama_toko',$request->nama_toko)->where('user_id','!=',Auth::user()->id)->first();
         if($cek_nama_toko){
             return response()->json(['error'=>'Nama toko sudah terdaftar!','status' => false]);
         }
@@ -40,19 +40,29 @@ class StoreController extends Controller
                 $gambar->storeAs('public/images/toko/',$name_picture);
 
                 Storage::delete('public/images/toko/'.$cektoko->logo_toko);
+                $get_toko = Toko::where('user_id',Auth::user()->id)->first();
+                $rename = rename(public_path().'/storage/images/toko/'.$get_toko->nama_toko, public_path().'/storage/images/toko/'.$request->nama_toko);
                 Toko::where('user_id',Auth::user()->id)->update([
                     'nama_toko' => $request->nama_toko,
                     'logo_toko' => $name_picture,
                     'kotakabupaten' => $request->kotakabupaten,
+                    'no_rek' => $request->no_rek,
+                    'provider_rek' => $request->provider_rek,
+                    'nama_rek' => $request->nama_rek,
                     'alamat' => $request->alamat,
                     'kontak' => $request->kontak,
                     'url_gmaps' => $request->url_gmaps
                 ]);
                 return response()->json(['data' => $cektoko,'message'=>'Update Succesfully','status' => true]);
             } else {
+                $get_toko = Toko::where('user_id',Auth::user()->id)->first();
+                $rename = rename(public_path().'/storage/images/toko/'.$get_toko->nama_toko, public_path().'/storage/images/toko/'.$request->nama_toko);
                 Toko::where('user_id',Auth::user()->id)->update([
                     'nama_toko' => $request->nama_toko,
                     'kotakabupaten' => $request->kotakabupaten,
+                    'no_rek' => $request->no_rek,
+                    'provider_rek' => $request->provider_rek,
+                    'nama_rek' => $request->nama_rek,
                     'alamat' => $request->alamat,
                     'kontak' => $request->kontak,
                     'url_gmaps' => $request->url_gmaps
@@ -65,11 +75,18 @@ class StoreController extends Controller
                 $gambar = $request->file('gambar_toko');
                 $name_picture= time(). "_". $gambar->getClientOriginalName();
                 $gambar->storeAs('public/images/toko/',$name_picture);
+                $path = public_path().'/storage/images/toko/'.$request->nama_toko;
+                if (!mkdir($path, 0, true)) {
+                    // die('Gagal membuat folder...');
+                }
                 Toko::create([
                     'user_id' => Auth::user()->id,
                     'nama_toko' => $request->nama_toko,
                     'logo_toko' => $name_picture,
                     'kotakabupaten' => $request->kotakabupaten,
+                    'no_rek' => $request->no_rek,
+                    'provider_rek' => $request->provider_rek,
+                    'nama_rek' => $request->nama_rek,
                     'alamat' => $request->alamat,
                     'kontak' => $request->kontak,
                     'url_gmaps' => $request->url_gmaps,

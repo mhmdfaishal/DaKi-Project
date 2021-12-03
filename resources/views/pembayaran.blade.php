@@ -50,7 +50,7 @@
             <tr>
                 <td class="data">No. Rekening</td>
                 <td>:</td>
-                <td class="answer" id="no-rek">{{env('PROVIDER_REK')}} / {{env('NO_REK')}} a.n. {{env('NAMA_REK')}}</td>
+                <td class="answer" id="no-rek">{{$provider_rek}} / {{$no_rek}} a.n. {{$nama_rek}}</td>
             </tr>
             <tr>
                 <td class="data">Bukti Pembayaran</td>
