@@ -19,7 +19,7 @@ function fetch_data(page,id){
             var id = $('#id_barang').val();
             $('.cart-btn').click(function(event){
                 event.preventDefault();
-                var id = $(this).data('id');                
+                var id = $(this).data('id');        
                 let formData = new FormData();
                 event.preventDefault();
                 formData.append('id_barang', id);
@@ -40,6 +40,13 @@ function fetch_data(page,id){
                                 position: 'topRight'
                             });
                         }else{
+                            if(data.jumlah>0){
+                                $('#btn-popup-cart').show();
+                                $('#jumlah-barang-popup-cart').html(data.jumlah);
+                            }else if(data.jumlah<=0){
+                                $('#btn-popup-cart').hide();
+                            }
+                            console.log(data.jumlah);
                             iziToast.success({
                                 title: data.message,
                                 message: 'Success',
@@ -169,6 +176,12 @@ $(document).ready(function(){
                                 position: 'topRight'
                             });
                         }else{
+                            if(data.jumlah>0){
+                                $('#btn-popup-cart').show();
+                                $('#jumlah-barang-popup-cart').html(data.jumlah);
+                            }else if(data.jumlah<=0){
+                                $('#btn-popup-cart').hide();
+                            }
                             iziToast.success({
                                 title: data.message,
                                 message: 'Success',

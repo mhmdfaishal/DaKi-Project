@@ -115,6 +115,12 @@ $(document).ready(function(){
                     position: 'topRight'
                 });
             }else{
+                if(data.jumlah>0){
+                    $('#btn-popup-cart').show();
+                    $('#jumlah-barang-popup-cart').html(data.jumlah);
+                }else if(data.jumlah<=0){
+                    $('#btn-popup-cart').hide();
+                }
                 iziToast.success({
                     title: data.message,
                     message: 'Success',

@@ -258,6 +258,21 @@
         </div>
     </div>
     @yield('main')
+    @if(isset($jumlah_barang))
+        @if($jumlah_barang <= 0)
+        <a href="/keranjang" id="btn-popup-cart" style="display:none;">
+            <button aria-label="btn-popup-cart this restaurant" class="btn-popup-cart">
+                <i class="fas fa-shopping-bag"></i><span class="jumlah-barang-popup-cart" id="jumlah-barang-popup-cart"></span>
+            </button>
+        </a>
+        @else
+        <a href="/keranjang" id="btn-popup-cart">
+            <button aria-label="btn-popup-cart this restaurant" class="btn-popup-cart">
+                <i class="fas fa-shopping-bag"></i><span class="jumlah-barang-popup-cart" id="jumlah-barang-popup-cart">{{$jumlah_barang}}</span>
+            </button>
+        </a>
+        @endif
+    @endif
     <footer class="footer">
         <div class="container">
             <h1 class="title-footer">Dasbor Pendaki</h1>
