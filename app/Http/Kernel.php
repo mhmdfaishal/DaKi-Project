@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\isBackpacker;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -67,5 +68,8 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'useres' => \App\Http\Middleware\RedirectIfNotUser::class,
         'useres.guest' => \App\Http\Middleware\RedirectIfUser::class,
+        'is_backpacker' => \App\Http\Middleware\IsBackpacker::class,
+        'is_admin_toko' => \App\Http\Middleware\IsAdminToko::class,
+        'is_admin_basecamp' => \App\Http\Middleware\IsAdminBasecamp::class,
     ];
 }
