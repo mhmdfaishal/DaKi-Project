@@ -65,7 +65,7 @@ Route::middleware(['auth'])->group(function () {
 //Filtering for Backpacker
 Route::middleware(['auth', 'is_backpacker'])->group(function () {
     Route::post('/pendaki/store', [PendakiController::class, 'store'])->name('user.store.profile');
-    Route::get('/pendaki/profile', [PendakiController::class, 'index']);
+    Route::get('/pendaki/profile', [PendakiController::class, 'index'])->name('user.profile');
     // Keranjang
     Route::prefix('keranjang')->group(function () {
         Route::get('/', [KeranjangController::class, 'index'])->name('keranjang');

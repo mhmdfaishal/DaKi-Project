@@ -32,7 +32,10 @@
               <label for="alamat" class="col-sm-2 col-form-label">Alamat Lengkap</label>
               <div class="col-sm-10">
                 <textarea class="form-control" id="alamat_user"  style="border-radius: 12px" required>@if(isset($getuser)) {{ $getuser->alamat }} @endif</textarea>
-              </div>
+                @if (session('is_alamat_not_filled'))
+                <p><b style="color: red;">Alamat harus diisi terlebih dahulu!</b> </p>
+                @endif
+            </div>
             </div>
             <div class="mb-3 row">
               <label for="old_password" class="col-sm-2 col-form-label">Old Password</label>

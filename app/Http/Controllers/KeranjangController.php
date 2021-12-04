@@ -144,6 +144,9 @@ class KeranjangController extends Controller
             $user = Auth::user();
             $has_toko = Toko::where('user_id',$user->id)->first();
             $nama = explode(" ",strval(Auth::user()->nama));
+            if($user->alamat == NULL){
+                return redirect()->route('user.profile')->withInput()->with('is_alamat_not_filled', 'true');
+            }
             $keranjangs = Keranjang::where('user_id',$user->id)->where('no_transaksi', NULL)->get();
             $total_harga = 0;
             foreach($keranjangs as $barang){
