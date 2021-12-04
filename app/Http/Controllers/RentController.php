@@ -48,13 +48,16 @@ class RentController extends Controller
                     $listpenyewaan->status = "Pengecekan";
                 }
                 elseif($listpenyewaan->status == "1"){
-                    $listpenyewaan->status = "Pembayaran ditolak";
+                    $listpenyewaan->status = "Pembayaran Ditolak";
                 }
                 elseif($listpenyewaan->status == "2"){
-                    $listpenyewaan->status = "Sedang dikemas";
+                    $listpenyewaan->status = "Sedang Dikemas";
                 }
                 elseif($listpenyewaan->status == "3"){
-                    $listpenyewaan->status = "Barang siap diambil";
+                    $listpenyewaan->status = "Barang Siap Diambil";
+                }
+                elseif($listpenyewaan->status == "4"){
+                    $listpenyewaan->status = "Sudah dikembalikan";
                 }
 
             }
@@ -86,7 +89,7 @@ class RentController extends Controller
                 $alat[$k] = $barang->barang;
             }
             $tanggal = date('d-m-Y',strtotime($transaksi->tanggal_mulai_penyewaan))." s.d. ".date('d-m-Y',strtotime($transaksi->tanggal_selesai_penyewaan));
-            return response()->json(['total_semua_harga'=>$transaksi->total_harga,'alat'=>$alat,'keranjang'=>$barangs,'nama'=>$user->nama,'alamat'=>$transaksi->toko->alamat,'nama_toko'=>$transaksi->toko->nama_toko,'tanggal'=>$tanggal,'lama_penyewaan'=>$transaksi->total_hari]);
+            return response()->json(['total_semua_harga'=>$transaksi->total_harga,'alat'=>$alat,'keranjang'=>$barangs,'nama'=>$user->nama,'alamat'=>$transaksi->toko->alamat,'kontak'=>$transaksi->toko->kontak,'nama_toko'=>$transaksi->toko->nama_toko,'tanggal'=>$tanggal,'lama_penyewaan'=>$transaksi->total_hari]);
         }
 
     }

@@ -91,46 +91,98 @@ $(document).ready(function(){
             }
         });
     })
+    $('#btn-lanjutkan').click(function(event){
+        var id = $(this).data('id');
+        event.preventDefault();
+        let formData = new FormData();
+                event.preventDefault();
+                formData.append('barang_id', id);
+                formData.append('quantity', $('#quantity-'+id).val());
+                $.ajax({
+                    url: "/keranjang/add", 
+                    data: formData, 
+                    type: "POST", 
+                    dataType: 'json', 
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {  
+                        if(typeof(data.error) != "undefined"){
+                            iziToast.warning({
+                                title: data.error,
+                                message: 'Failed',
+                                position: 'topRight'
+                            });
+                        }else{
+                            if(data.jumlah>0){
+                                $('#btn-popup-cart').show();
+                                $('#jumlah-barang-popup-cart').html(data.jumlah);
+                            }else if(data.jumlah<=0){
+                                $('#btn-popup-cart').hide();
+                            }
+                            iziToast.success({
+                                title: data.message,
+                                message: 'Success',
+                                position: 'topRight'
+                            });
+                            $('#modal-diff-store').modal('hide');
+                            
+                        }
+                    },
+                    error: function (data) { le
+                        console.log('Error:', data);
+                    }
+                });
+    })
     $('.cart-btn').click(function(event){
     event.preventDefault();
     var id = $(this).data('id');
-    
-    let formData = new FormData();
-    event.preventDefault();
-    formData.append('barang_id', id);
-    formData.append('quantity', $('#quantity-'+id).val());
-    $.ajax({
-        url: "/keranjang/add", 
-        data: formData, 
-        type: "POST", 
-        dataType: 'json', 
-        cache: false,
-        processData: false,
-        contentType: false,
-        success: function (data) {  
-            if(typeof(data.error) != "undefined"){
-                iziToast.warning({
-                    title: data.error,
-                    message: 'Failed',
-                    position: 'topRight'
-                });
+    $.get("/keranjang/cekbarang/" + id,                                   
+        function (data) {
+            if(data.is_diff_store){
+                $('#modal-diff-store').modal('show');
+                $('#btn-lanjutkan').attr('data-id',id);
             }else{
-                if(data.jumlah>0){
-                    $('#btn-popup-cart').show();
-                    $('#jumlah-barang-popup-cart').html(data.jumlah);
-                }else if(data.jumlah<=0){
-                    $('#btn-popup-cart').hide();
-                }
-                iziToast.success({
-                    title: data.message,
-                    message: 'Success',
-                    position: 'topRight'
+                let formData = new FormData();
+                event.preventDefault();
+                formData.append('barang_id', id);
+                formData.append('quantity', $('#quantity-'+id).val());
+                $.ajax({
+                    url: "/keranjang/add", 
+                    data: formData, 
+                    type: "POST", 
+                    dataType: 'json', 
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {  
+                        if(typeof(data.error) != "undefined"){
+                            iziToast.warning({
+                                title: data.error,
+                                message: 'Failed',
+                                position: 'topRight'
+                            });
+                        }else{
+                            if(data.jumlah>0){
+                                $('#btn-popup-cart').show();
+                                $('#jumlah-barang-popup-cart').html(data.jumlah);
+                            }else if(data.jumlah<=0){
+                                $('#btn-popup-cart').hide();
+                            }
+                            iziToast.success({
+                                title: data.message,
+                                message: 'Success',
+                                position: 'topRight'
+                            });
+                        }
+                    },
+                    error: function (data) { le
+                        console.log('Error:', data);
+                    }
                 });
             }
-        },
-        error: function (data) { le
-            console.log('Error:', data);
-        }
-    });
+    })
+    
+    
     })
 });

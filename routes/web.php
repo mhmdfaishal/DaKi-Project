@@ -7,6 +7,7 @@ use App\Http\Controllers\RentController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\BasecampController;
 use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\PendakiController;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
@@ -56,16 +57,19 @@ Route::prefix('toko')->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [LoginController::class, 'onLogout'])->middleware('useres')->name('logout');
     
-    Route::prefix('toko')->group(function () {
-        Route::post('/followunfollow', [StoreController::class, 'followUnfollow']);
-    });
+ 
+    Route::post('/followunfollow', [StoreController::class, 'followUnfollow']);
+
 });
 
 //Filtering for Backpacker
 Route::middleware(['auth', 'is_backpacker'])->group(function () {
+    Route::post('/pendaki/store', [PendakiController::class, 'store'])->name('user.store.profile');
+    Route::get('/pendaki/profile', [PendakiController::class, 'index']);
     // Keranjang
     Route::prefix('keranjang')->group(function () {
         Route::get('/', [KeranjangController::class, 'index'])->name('keranjang');
+        Route::get('/cekbarang/{id}', [KeranjangController::class, 'checkBarang']);
         Route::get('/checkout', [KeranjangController::class, 'checkout'])->name('checkout');
         Route::post('/checkout/tanggalsewa', [KeranjangController::class, 'tanggalSewa']);
         Route::post('/add', [KeranjangController::class, 'addBarang'])->name('add.cart');
@@ -107,5 +111,9 @@ Route::middleware(['auth', 'is_admin_toko'])->group(function () {
     });
 
     // Pesanan (Admin toko)
-    Route::get('/cart', [OrderController::class, 'Cart'])->name('pesanan'); 
+    Route::prefix('cart')->group(function (){
+        Route::get('/', [OrderController::class, 'Cart'])->name('pesanan');
+        Route::get('/detailpesanan/{id}', [OrderController::class, 'detailPesanan']);
+        Route::post('update_status', [OrderController::class, 'updateStatus']);
+        });
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gunung;
 use App\Models\Provinces;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -105,6 +106,9 @@ class BasecampController extends Controller
                         'kuota_pendaki' => $request->kuota_pendaki,
                         'kontak' => $request->kontak,
                         'url_gmaps' => $request->url_gmaps,
+                    ]);
+                    $update_alamat_user = User::where('id',Auth::user()->id)->update([
+                        'alamat' => $request->lokasi
                     ]);
                 }
             }

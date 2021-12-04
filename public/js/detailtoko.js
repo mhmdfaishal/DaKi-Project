@@ -5,7 +5,7 @@ $(document).ready(function(){
         formData.append('toko_id', id);
         setTimeout(function(){  
             $.ajax({
-                url: "/toko/followunfollow", 
+                url: "/followunfollow", 
                 data: formData, 
                 type: "POST", 
                 dataType: 'json', 

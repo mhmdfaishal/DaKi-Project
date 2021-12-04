@@ -29,12 +29,25 @@ class KeranjangController extends Controller
         return redirect()->back();
     }
 
+    public function checkBarang($id){
+        $check_if_diff_store = Keranjang::where('user_id', Auth::user()->id)->where('no_transaksi', NULL)->get();
+        foreach($check_if_diff_store as $item) {
+            $get_data_barang = Barang::where('id', $id)->first();
+            if ($item->barang->toko_id != $get_data_barang->toko_id) {
+                return response()->json(['is_diff_store'=>true]);
+            }else{
+                return response()->json(['is_diff_store'=>false]);
+            }
+        }
+        return response()->json(['is_diff_store'=>false]);
+    }
+
     public function addBarang(Request $request){
         $check_if_diff_store = Keranjang::where('user_id', Auth::user()->id)->where('no_transaksi', NULL)->get();
         foreach($check_if_diff_store as $item) {
             $get_data_barang = Barang::where('id', $request->barang_id)->first();
             if ($item->barang->toko_id != $get_data_barang->toko_id) {
-                Keranjang::where('barang_id', $item->barang_id)->where('no_transaksi', NULL)->delete();
+                Keranjang::where('user_id', Auth::user()->id)->where('barang_id', $item->barang_id)->where('no_transaksi', NULL)->delete();
             }
         }
         $check_barang = Keranjang::where('barang_id', $request->barang_id)->where('user_id',Auth::user()->id)->where('no_transaksi', NULL)->first();

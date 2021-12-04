@@ -184,6 +184,23 @@
                     </form>
                 </div>
             </div>
+            <div class="modal fade" id="modal-diff-store" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Barang</h5>
+                        <button type="close" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Barang yang anda pilih terdapat di <b>toko yang berbeda</b> dengan yang sebelumnya anda pilih. Jika anda ingin <b>melanjutkan</b> maka barang sebelumnya akan <b style="color:red;">terhapus dari keranjang.</b></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="close" class="btn btn-danger" data-bs-dismiss="modal">Batalkan</button>
+                        <button type="button" class="btn btn-success" id="btn-lanjutkan">Lanjutkan</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
             <div id="list-barang">
                 @include('list_barang')
             </div>
