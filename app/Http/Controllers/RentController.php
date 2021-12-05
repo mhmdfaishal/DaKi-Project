@@ -24,9 +24,14 @@ class RentController extends Controller
         }
         if(Auth::check()){
             $user = Auth::user();
+            $cek_keranjang = Keranjang::where('user_id',$user->id)->where('no_transaksi',NULL)->get();
+            $jumlah_barang=0;
+            foreach($cek_keranjang as $barang){
+                $jumlah_barang+=$barang->kuantitas;
+            }
             $has_toko = Toko::where('user_id',$user->id)->first();
             $nama = explode(" ",strval($user->nama));
-            return view('marketplace', compact('data_toko','nama','all_data','location','has_toko'));
+            return view('marketplace', compact('data_toko','nama','all_data','location','has_toko','jumlah_barang'));
         }
         return view('marketplace',compact('data_toko','all_data','location'));
     }
@@ -43,13 +48,16 @@ class RentController extends Controller
                     $listpenyewaan->status = "Pengecekan";
                 }
                 elseif($listpenyewaan->status == "1"){
-                    $listpenyewaan->status = "Pembayaran ditolak";
+                    $listpenyewaan->status = "Pembayaran Ditolak";
                 }
                 elseif($listpenyewaan->status == "2"){
-                    $listpenyewaan->status = "Sedang dikemas";
+                    $listpenyewaan->status = "Sedang Dikemas";
                 }
                 elseif($listpenyewaan->status == "3"){
-                    $listpenyewaan->status = "Barang siap diambil";
+                    $listpenyewaan->status = "Barang Siap Diambil";
+                }
+                elseif($listpenyewaan->status == "4"){
+                    $listpenyewaan->status = "Sudah dikembalikan";
                 }
 
             }
@@ -81,7 +89,7 @@ class RentController extends Controller
                 $alat[$k] = $barang->barang;
             }
             $tanggal = date('d-m-Y',strtotime($transaksi->tanggal_mulai_penyewaan))." s.d. ".date('d-m-Y',strtotime($transaksi->tanggal_selesai_penyewaan));
-            return response()->json(['total_semua_harga'=>$transaksi->total_harga,'alat'=>$alat,'keranjang'=>$barangs,'nama'=>$user->nama,'alamat'=>$transaksi->toko->alamat,'nama_toko'=>$transaksi->toko->nama_toko,'tanggal'=>$tanggal,'lama_penyewaan'=>$transaksi->total_hari]);
+            return response()->json(['total_semua_harga'=>$transaksi->total_harga,'alat'=>$alat,'keranjang'=>$barangs,'nama'=>$user->nama,'alamat'=>$transaksi->toko->alamat,'kontak'=>$transaksi->toko->kontak,'nama_toko'=>$transaksi->toko->nama_toko,'tanggal'=>$tanggal,'lama_penyewaan'=>$transaksi->total_hari]);
         }
 
     }
@@ -125,10 +133,15 @@ class RentController extends Controller
         $jumlah = $data_toko->barang;
         if(Auth::check()){
             $user = Auth::user();
+            $cek_keranjang = Keranjang::where('user_id',$user->id)->where('no_transaksi',NULL)->get();
+            $jumlah_barang=0;
+            foreach($cek_keranjang as $barang){
+                $jumlah_barang+=$barang->kuantitas;
+            }
             $has_toko = Toko::where('user_id',$user->id)->first();
             $hasfollow = Follower::where('user_id',$user->id)->where('toko_id',$data_toko->id)->first();
             $nama = explode(" ",strval(Auth::user()->nama));
-            return view('detail_toko', compact('data_toko','nama','barangs','jumlah','hasfollow','has_toko','has_barang'));
+            return view('detail_toko', compact('data_toko','nama','barangs','jumlah','hasfollow','has_toko','has_barang','jumlah_barang'));
         }
         return view('detail_toko',compact('data_toko','barangs','jumlah','has_barang'));
     }

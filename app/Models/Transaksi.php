@@ -16,4 +16,7 @@ class Transaksi extends Model
     public function toko(){
         return $this->belongsTo(Toko::class);
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

@@ -37,10 +37,10 @@ class StoreController extends Controller
             if($request->file('gambar_toko')){
                 $gambar = $request->file('gambar_toko');
                 $name_picture= time(). "_". $gambar->getClientOriginalName();
-                $gambar->storeAs('public/images/toko/',$name_picture);
+                $get_toko = Toko::where('user_id',Auth::user()->id)->first();
+                $gambar->storeAs('public/images/toko/'.$get_toko->nama_toko.'/logo'.'/',$name_picture);
 
                 Storage::delete('public/images/toko/'.$cektoko->logo_toko);
-                $get_toko = Toko::where('user_id',Auth::user()->id)->first();
                 $rename = rename(public_path().'/storage/images/toko/'.$get_toko->nama_toko, public_path().'/storage/images/toko/'.$request->nama_toko);
                 Toko::where('user_id',Auth::user()->id)->update([
                     'nama_toko' => $request->nama_toko,
@@ -74,11 +74,11 @@ class StoreController extends Controller
             if($request->file('gambar_toko')){
                 $gambar = $request->file('gambar_toko');
                 $name_picture= time(). "_". $gambar->getClientOriginalName();
-                $gambar->storeAs('public/images/toko/',$name_picture);
                 $path = public_path().'/storage/images/toko/'.$request->nama_toko;
                 if (!mkdir($path, 0, true)) {
                     // die('Gagal membuat folder...');
                 }
+                $gambar->storeAs('public/images/toko/'.$request->nama_toko.'/logo'.'/',$name_picture);
                 Toko::create([
                     'user_id' => Auth::user()->id,
                     'nama_toko' => $request->nama_toko,
@@ -92,6 +92,9 @@ class StoreController extends Controller
                     'url_gmaps' => $request->url_gmaps,
                     'rating' => 0,
                     'follower' => 0
+                ]);
+                $update_alamat_user = User::where('id',Auth::user()->id)->update([
+                    'alamat' => $request->alamat
                 ]);
                 $user = Auth::user();
                 if($user->role == '1'){

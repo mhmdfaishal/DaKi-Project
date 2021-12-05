@@ -72,10 +72,11 @@
                     <button onclick="myFunction()" class="btn dropbtn nav-item">{{ $nama[0]; }}</button>
                     @endif
                     <div id="myDropdown" class="dropdown-content">
-                        <a class="first-menu" href="#home"><i class="fas fa-user"></i> Profile</a>
-                        @if(Auth::user()->role == 1 && !$has_toko || Auth::user()->role == 2 && !$has_toko)
+                        @if(Auth::user()->role == 1 && !$has_toko)
+                        <a class="first-menu" href="/pendaki/profile"><i class="fas fa-user"></i> Profile</a>
                         <a href="{{ route('keranjang') }}"><i class="fas fa-shopping-cart"></i> Keranjang</a>
                         <a href="{{ route('penyewaan.user') }}"><i class="fas fa-file-invoice-dollar"></i> Penyewaan</a>
+                        @elseif(Auth::user()->role == 2 && !$has_toko)
                         <a href="{{route('admin.detail.toko')}}"><i class="fas fa-store"></i> Buat Toko</a>
                         @elseif(Auth::user()->role == 2 && $has_toko)
                         <a href=""><i class="fas fa-clipboard-list"></i> Transaksi</a>
@@ -258,6 +259,21 @@
         </div>
     </div>
     @yield('main')
+    @if(isset($jumlah_barang))
+        @if($jumlah_barang <= 0)
+        <a href="/keranjang" id="btn-popup-cart" style="display:none;">
+            <button aria-label="btn-popup-cart this restaurant" class="btn-popup-cart">
+                <i class="fas fa-shopping-bag"></i><span class="jumlah-barang-popup-cart" id="jumlah-barang-popup-cart"></span>
+            </button>
+        </a>
+        @else
+        <a href="/keranjang" id="btn-popup-cart">
+            <button aria-label="btn-popup-cart this restaurant" class="btn-popup-cart">
+                <i class="fas fa-shopping-bag"></i><span class="jumlah-barang-popup-cart" id="jumlah-barang-popup-cart">{{$jumlah_barang}}</span>
+            </button>
+        </a>
+        @endif
+    @endif
     <footer class="footer">
         <div class="container">
             <h1 class="title-footer">Dasbor Pendaki</h1>

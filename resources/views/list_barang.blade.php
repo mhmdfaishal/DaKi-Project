@@ -9,7 +9,7 @@
                     <h5 class="card-title nama-barang">{{$barang->nama_barang}}</h5>
                     <p class="card-text"></p>
                     <p class="card-text"><small class="text-muted"><i class="fas fa-money-bill-wave"></i> Rp {{number_format($barang->harga,0,',','.') }}/{{$barang->interval_number}} {{$barang->interval}}</small></p>
-                    @if (Auth::check() && $barang->toko->user->email != Auth::user()->email)
+                    @if (Auth::check() && $barang->toko->user->email != Auth::user()->email && Auth::user()->role == 1 )
                     <form class="d-flex" id="form-cart-{{$barang->id}}">
                         <input type="text" name="id_barang" id="id_barang" value="{{$barang->id}}" hidden>
                         <input type="number" class="card-quantity" id="quantity-{{$barang->id}}" name="quantity" value="1" min="1" max="20">
