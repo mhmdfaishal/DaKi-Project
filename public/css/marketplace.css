@@ -246,4 +246,40 @@ input[type=checkbox]:hover{
 .material-icons:visited{
     color: white;
 }
+
+@media(max-width : 768px){
+    .slider-one img{
+        min-height: 555px;
+    }
+    .banner2 img{
+        object-position: 50% 0%;
+    }
+    .banner3 img{
+        object-position: 65% 70%;
+    }
+    .banner1 img{
+        object-position: 10% 100%;
+    }
+    .sidebar-left h2{
+        font-size: 18px;
+    }
+    .location_filter label{
+        font-size: 14px;
+    }
+    .location-title h2{
+        font-size: 17px;
+    }
+    .head-title h3{
+        font-size: 30px;
+    }
+    .list-toko .detail h3{
+        font-size: 22px;
+    }
+    .detail-other{
+        font-size: 15px;
+    }
+    .detail .fa-map-marker-alt{
+        font-size: 15px;
+    }
+}
 /*End*/
