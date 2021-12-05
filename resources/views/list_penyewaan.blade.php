@@ -73,21 +73,23 @@
     </div>
     <div class="head-title" data-aos="fade-up">
       <h3><a href="/sewa" class="btn-back"><i class="fas fa-chevron-left"></i></a> Riwayat Penyewaan Produk</h3>
-      <table class="table table-bordered" id="tablepenyewaan">
-        <thead>
-          <tr>
-            <th class="text-center">No Transaksi</th>
-            <th class="text-center">Tanggal Pesan</th>
-            <th class="text-center">Total Produk</th>
-            <th class="text-center">Total Harga</th>
-            <th class="text-center">Detail</th>
-            <th class="text-center">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-      </table>    
+      <div class="table-responsive">
+        <table class="table table-bordered" id="tablepenyewaan" style="width: 100%">
+          <thead>
+            <tr>
+              <th class="text-center" id="noTransaksi">No Transaksi</th>
+              <th class="text-center" id="tanggalPesan">Tanggal Pesan</th>
+              <th class="text-center" id="totalProduk">Total Produk</th>
+              <th class="text-center" id="totalHarga">Total Harga</th>
+              <th class="text-center" id="detail">Detail</th>
+              <th class="text-center" id="status">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+  
+          </tbody>
+        </table>    
+      </div>
     </div>
   </div>
 </div>
@@ -117,10 +119,7 @@
           $('#tablepenyewaan').DataTable({
               processing : true,
               serverSide : true,
-              ajax : {
-                  url : "{{ route('penyewaan.user') }}",
-                  type : "GET"
-              },
+              responsive : true,
               columns: [
                   { data: 'no_transaksi', name: 'no_transaksi' },
                   { data: 'hari', name: 'hari' },

@@ -161,7 +161,7 @@ hr {
     text-align: center;
 }
 .btn-edit-toko {
-    margin-left: 35%;
+    margin-left: -40%;
     width: 155%;
     padding: 2px;
     background: none;
@@ -197,4 +197,42 @@ hr {
 }
 .modal-content{
     border-radius: 20px;
+}
+@media(max-width:1060px){
+    .navbar{
+        height: 15% !important;
+    }
+    .navbar-brand{
+        margin-top: -1.5%;
+    }
+    .head-title h3 {
+        font-size: 34px;
+    }
+    .title-list h2{
+        font-size: 30px;
+    }
+}
+@media(max-width:768px){
+    .navbar{
+        height: 11% !important;
+    }
+    .container-nav{
+        margin-left: -5%;
+    }
+    .navbar-brand img{
+        width: 25% !important;
+        height: 25% !important;
+    }
+    .head-title h3 {
+        font-size: 24px;
+    }
+    .btn-back {
+        font-size: 25px;
+    }
+    .store-profile h4{
+        font-size: 22px;
+    }
+    .detail-store h5 {
+        font-size: 16px;
+    }
 }

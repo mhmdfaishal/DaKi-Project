@@ -12,10 +12,10 @@
         <h3><a href="/sewa" class="btn-back"><i class="fas fa-chevron-left"></i></a> KERANJANG</h3>
       </div>
     <div>
-        <table class="content">
+        <table class="content" style="width: 100%">
             <tr class="table-title">
                 <th>No</th>
-                <th class="img">Gambar</th>
+                <th class="img" id="img-barang">Gambar</th>
                 <th>Nama Produk</th>
                 <th>Jumlah</th>
                 <th>Harga</th>
@@ -25,7 +25,7 @@
             @foreach($data as $k => $barang)
             <tr class="list-barangs">
                 <td>{{$k+1}}</td>
-                <td><img src="{{asset('storage/images/toko/'.$barang->barang->toko->nama_toko.'/barang'.'/'.$barang->barang->gambar_barang.'')}}" alt=""></td>
+                <td id="img-barang"><img src="{{asset('storage/images/toko/'.$barang->barang->toko->nama_toko.'/barang'.'/'.$barang->barang->gambar_barang.'')}}" alt=""></td>
                 <td>{{$barang->barang->nama_barang}}</td>
                 <td class="jumlah-barang">
                     <div id="jumlah-barang" class="d-flex justify-content-center">
@@ -52,7 +52,8 @@
             <div class="container">
                 @if(isset($data[0]))
                 <tr style="background-color: white;">
-                    <td colspan="4"></td>
+                    <td colspan="3"></td>
+                    <td colspan="1" id="img-barang-after"></td>
                     <td colspan="0">Total Harga :</td>
                     <td class="d-flex">
                         <div id="total-keseluruhan-harga">
