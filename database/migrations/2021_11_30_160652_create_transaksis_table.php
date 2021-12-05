@@ -20,8 +20,8 @@ class CreateTransaksisTable extends Migration
             $table->integer('user_id');
             $table->integer('total_harga');
             $table->string('bukti_pembayaran');
-            $table->datetime('tangal_mulai_penyewaan');
-            $table->datetime('taggal_selesai_penyewaan');
+            $table->datetime('tanggal_mulai_penyewaan');
+            $table->datetime('tanggal_selesai_penyewaan');
             $table->string('total_hari');
             $table->integer('status');
             $table->timestamp('created_at')->useCurrent();
