@@ -143,12 +143,6 @@ $(document).ready(function(){
                 $('#modal-diff-store').modal('show');
                 $('#btn-lanjutkan').attr('data-id',id);
             }else{
-<<<<<<< HEAD
-                iziToast.success({
-                    title: data.message,
-                    message: 'Success',
-                    position: 'topRight'
-=======
                 let formData = new FormData();
                 event.preventDefault();
                 formData.append('barang_id', id);
@@ -185,7 +179,6 @@ $(document).ready(function(){
                     error: function (data) { le
                         console.log('Error:', data);
                     }
->>>>>>> origin/main
                 });
             }
     })
