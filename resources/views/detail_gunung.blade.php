@@ -28,8 +28,24 @@
                 <h6>Ketinggian : {{ $gunung->ketinggian }} mdpl</h6>
             </div>
             <div class="mount-detail">
+                <i class="fas fa-cloud"></i>
+                @if($gunung->cuaca == 0)
+                <h6>Cuaca : <i class="fas fa-cloud-sun"></i> Cerah</h6>
+                @elseif($gunung->cuaca == 1)
+                <h6>Cuaca : <i class="fas fa-cloud-sun-rain"></i> <span> (Terkadang hujan)</h6>
+                @elseif($gunung->cuaca == 2)
+                <h6>Cuaca : <i class="fas fa-cloud-showers-heavy"></i> Sering hujan</h6>
+                @elseif($gunung->cuaca == 3)
+                <h6>Cuaca : <i class="fas fa-house-damage"></i>  Bencana Alam</h6>
+                @endif
+            </div>
+            <div class="mount-detail">
                 <i class="material-icons-outlined">remove_circle_outline</i>
-                <h6>Status : {{ $gunung->status }}</h6>
+                @if($gunung->status == 0)
+                <h6>Status : Buka</h6>
+                @elseif($gunung->status == 1)
+                <h6>Status : Tutup</h6>
+                @endif
             </div>
             <div class="mount-detail">
                 <i class="material-icons-outlined">person</i>

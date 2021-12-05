@@ -52,7 +52,6 @@
                   <option value="{{$provinsi->id}}">{{$provinsi->nama_provinsi}}</option>
                   @endforeach
                 </select>
-                {{-- <input type="text" class="form-control" id="provinsi" @if(isset($getgunung)) placeholder="{{ $getgunung->provinsi }}" @endif style="border-radius: 12px"> --}}
               </div>
             </div>
             <div class="mb-3 row">
@@ -74,9 +73,33 @@
               </div>
             </div>
             <div class="mb-3 row">
+              <label for="status" class="col-sm-2 col-form-label">Cuaca</label>
+              <div class="col-sm-10">
+                <select class="form-select" id="cuaca" aria-label="Default select example" value="3"  style="border-radius: 12px" required>
+                  <option selected disabled>Cuaca</option>
+                  @for ($i = 0; $i <= 3; $i++)
+                  @if($i == 0)
+                  <option value="{{$i}}" @if(isset($getgunung)){{($i == $getgunung->cuaca) ? 'selected' : ''}}@endif ><i class="fas fa-cloud-sun"></i> Cerah</option>
+                  @elseif($i == 1)
+                  <option value="{{$i}}" @if(isset($getgunung)){{($i == $getgunung->cuaca) ? 'selected' : ''}}@endif ><i class="fas fa-cloud-sun-rain"></i> Terkadang hujan</option>
+                  @elseif($i == 2)
+                  <option value="{{$i}}" @if(isset($getgunung)){{($i == $getgunung->cuaca) ? 'selected' : ''}}@endif ><i class="fas fa-cloud-showers-heavy"></i> Sering hujan</option>
+                  @elseif($i == 3)
+                  <option value="{{$i}}" @if(isset($getgunung)){{($i == $getgunung->cuaca) ? 'selected' : ''}}@endif ><i class="fas fa-house-damage"></i> Bencana alam</option>
+                  @endif
+                  @endfor 
+                </select>
+              </div>
+            </div>
+            <div class="mb-3 row">
               <label for="status" class="col-sm-2 col-form-label">Status</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="status" @if(isset($getgunung)) value="{{$getgunung->status}}" @endif style="border-radius: 12px" required>
+                <select class="form-select" id="status" aria-label="Default select example" @if(isset($getgunung)) value="{{$getgunung->status}}" @endif  style="border-radius: 12px" required>
+                  <option selected disabled>Status</option>
+                  @for ($i = 0; $i <= 1; $i++)
+                  <option value="{{$i}}" @if(isset($getgunung)) {{($i == $getgunung->status) ? 'selected' : ''}}@endif>{{($i==0) ? 'Buka' : 'Tutup' }}</option>
+                  @endfor 
+                </select>
               </div>
             </div>
             <div class="mb-3 row">

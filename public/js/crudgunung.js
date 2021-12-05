@@ -10,6 +10,7 @@ if ($("#form-gunung").length > 0) {
             formData.append('url_gmaps', $('#url_gmaps').val());
             formData.append('ketinggian', $('#ketinggian').val());
             formData.append('htm', $('#htm').val());
+            formData.append('cuaca', $('#cuaca').val());
             formData.append('status', $('#status').val());
             formData.append('kuota_pendaki', $('#kuota_pendaki').val());
             formData.append('kontak', $('#kontak').val());

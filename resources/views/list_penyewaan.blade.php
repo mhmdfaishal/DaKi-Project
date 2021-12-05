@@ -120,6 +120,10 @@
               processing : true,
               serverSide : true,
               responsive : true,
+              ajax : {
+                  url : "{{ route('penyewaan.user') }}",
+                  type : "GET"
+              },
               columns: [
                   { data: 'no_transaksi', name: 'no_transaksi' },
                   { data: 'hari', name: 'hari' },

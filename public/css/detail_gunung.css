@@ -62,6 +62,9 @@ hr{
 .mount-detail .material-icons-outlined{
     margin-right: 1%;
 }
+.mount-detail .fa-cloud{
+    margin-right: 1%;
+}
 .mount-pict{
     max-width: 20%;
     height: auto;

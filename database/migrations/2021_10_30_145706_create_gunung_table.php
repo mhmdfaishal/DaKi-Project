@@ -21,6 +21,7 @@ class CreateGunungTable extends Migration
             $table->string('nama_gunung');
             $table->string('gambar_gunung');
             $table->string('lokasi');
+            $table->string('cuaca');
             $table->string('status');
             $table->string('ketinggian');
             $table->string('htm');
