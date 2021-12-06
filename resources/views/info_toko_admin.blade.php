@@ -15,41 +15,11 @@
       <hr class="under-split">
     </div>
   </div>
-{{-- <div class="content">
-    <div class="button">
-        <ul class="left">
-            <button>Edit</button>
-        </ul>
-    </div>
-    <table style="margin-left: auto; margin-right: auto;">
-        <tr>
-            <td colspan="2" style="text-align: center; padding-bottom: 30px;"><img src="{{asset('images/cam.png') }}" alt="Gambar Toko"></td>
-        </tr>
-        <tr>
-            <td>Nama Toko</td>
-            <td>
-                <input type="text">
-            </td>
-        </tr>
-        <tr>
-            <td>Lokasi</td>
-            <td>
-                <input type="text">
-            </td>
-        </tr>
-        <tr>
-            <td>Deskripsi Toko</td>
-            <td>
-                <input type="text" style="height: 70px;">
-            </td>
-        </tr>
-    </table>
-</div> --}}
 
 <div class="container-update">
     <div class="container-form">
       @if(isset($data))
-      <img class="form-img" src="{{ asset('storage/images/toko/'.$data->logo_toko)}}" alt="gambar">
+      <img class="form-img" src="{{ asset('storage/images/toko/'.$data->nama_toko.'/logo'.'/'.$data->logo_toko)}}" alt="gambar">
       @else
       <img class="form-img" src="{{asset('images/cam.png') }}" alt="gambar">
       @endif

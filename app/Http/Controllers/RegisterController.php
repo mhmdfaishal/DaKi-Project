@@ -24,7 +24,8 @@ class RegisterController extends Controller
                     'nama' => 'required',
                     'password' => 'required|min:8',
                     'confirm_password' => 'same:password|required',
-                    'token' => 'required'
+                    'token' => 'required',
+                    'role' => 'required'
                 ]);
                 if ($validator->fails()) {
                     return redirect()->route('landingpage')->withErrors($validator)->withInput()->with('validation_register', 'true');
@@ -38,7 +39,8 @@ class RegisterController extends Controller
                 'email' => 'required|email|unique:users',
                 'nama' => 'required',
                 'password' => 'required|min:8',
-                'confirm_password' => 'same:password|required'
+                'confirm_password' => 'same:password|required',
+                'role' => 'required'
             ]);
             if ($validator->fails()) {
                 return redirect()->route('landingpage')->withErrors($validator)->withInput()->with('validation_register', 'true');

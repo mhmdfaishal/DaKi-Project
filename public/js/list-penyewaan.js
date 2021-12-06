@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    var ratingValue = 0;
     $(document).on('click','button#btn-detail-penyewaan',function(event){
         var id = $(this).data('id');
         event.preventDefault();
@@ -36,4 +37,54 @@ $(document).ready(function() {
             ) 
         })
     });
+
+    $(document).on('click','a#btn-review', function(event){
+      var id = $(this).data('id');
+      event.preventDefault();
+      $('#modal-rating-penyewaan').modal('show');
+      $('#btn-lanjutkan').attr('data-id', id);
+      $('#btn-lanjutkan').attr('disabled');
+    })
+
+    $(':radio').change(function() {
+      ratingValue = this.value;
+      $('#btn-lanjutkan').removeAttr('disabled');
+    });
+
+    $(document).on('click', 'button#btn-lanjutkan', function(event){
+      var id = $(this).data('id');
+      // var value = $('#stars').val();
+      let formData = new FormData();
+      formData.append('no_transaksi', id);
+      formData.append('rating', ratingValue);
+      $.ajax({
+        url: '/rating/post',
+        data: formData,
+        type: 'POST',
+        dataType: 'json', 
+        cache: false,
+        processData: false,
+        contentType: false,
+        success: function (data) {  
+          if(typeof(data.error) != "undefined"){
+              iziToast.warning({
+                  title: data.error,
+                  message: 'Failed',
+                  position: 'topRight'
+              });
+          }else{
+              $('#modal-rating-penyewaan').modal('hide');
+              iziToast.success({
+                  title: data.message,
+                  message: 'Success',
+                  position: 'topRight'
+              });
+              location.reload();
+          }
+        },
+        error: function (data) { le
+            console.log('Error:', data);
+        }
+      })
+    })
 });

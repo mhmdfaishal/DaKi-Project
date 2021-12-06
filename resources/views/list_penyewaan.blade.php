@@ -71,6 +71,54 @@
           </div>
       </div>
     </div>
+    <div class="modal fade" id="modal-rating-penyewaan" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content  modal-dialog-scrollable">
+          <div class="modal-header">
+                  <h5 class="modal-title text-center">Review Penyewaan</h5>
+                  <button type="close" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              </div>
+              <div class="modal-body">
+                <form class="rating">
+                  <label>
+                    <input type="radio" name="stars" value="1" id="stars"/>
+                    <span class="icon">★</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="stars" value="2" id="stars"/>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="stars" value="3" id="stars"/>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>   
+                  </label>
+                  <label>
+                    <input type="radio" name="stars" value="4" id="stars"/>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="stars" value="5" id="stars"/>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                  </label>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="close" class="btn btn-danger" data-bs-dismiss="modal">Batalkan</button>
+                <button type="button" class="btn btn-success" id="btn-lanjutkan" disabled>Simpan</button>
+              </div>
+          </div>
+      </div>
+    </div>
     <div class="head-title" data-aos="fade-up">
       <h3><a href="/sewa" class="btn-back"><i class="fas fa-chevron-left"></i></a> Riwayat Penyewaan Produk</h3>
       <div class="table-responsive">

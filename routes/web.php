@@ -84,6 +84,7 @@ Route::middleware(['auth', 'is_backpacker'])->group(function () {
     Route::prefix('sewa')->group(function () {
         Route::get('/detailpenyewaan/{id}', [RentController::class, 'detailPenyewaan']);
     });
+    Route::post('/rating/post', [RentController::class, 'addReview']);
 });
 
 //Filtering for Basecamp Admin

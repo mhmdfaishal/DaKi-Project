@@ -198,6 +198,13 @@
                                 </div>
                                 @enderror
                                 @endif
+                                @if (session('validation_register'))
+                                @error('role')
+                                <div class="alert" role="alert">
+                                    Role required
+                                </div>
+                                @enderror
+                                @endif
                                 <div class="form-group d-flex">
                                     <label class="custom-switch">
                                         <input type="checkbox" name="role" id="role" value="1" class="custom-switch-input" >   

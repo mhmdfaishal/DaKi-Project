@@ -7,6 +7,7 @@ use App\Models\Follower;
 use App\Models\Keranjang;
 use App\Models\Toko;
 use App\Models\Transaksi;
+use App\Models\Review;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -56,9 +57,6 @@ class RentController extends Controller
                 elseif($listpenyewaan->status == "3"){
                     $listpenyewaan->status = "Barang Siap Diambil";
                 }
-                elseif($listpenyewaan->status == "4"){
-                    $listpenyewaan->status = "Sudah dikembalikan";
-                }
 
             }
             if($request->ajax()){
@@ -67,7 +65,16 @@ class RentController extends Controller
                                 $button = '<button type="button" data-id="'.$data->no_transaksi.'" id="btn-detail-penyewaan"><i class="fas fa-eye"></i> Detail</button>';   
                                 return $button;
                             })
-                            ->rawColumns(['detail'])
+                        ->addColumn('status', function($data){
+                            $check_if_exist = Review::where('no_transaksi', $data->no_transaksi)->first();
+                            if($check_if_exist && $data->status == 4){
+                                $data->status = "Sudah dikembalikan";
+                            } else if(!$check_if_exist && $data->status == 4) {
+                                $data->status = '<a href="" data-id="'.$data->no_transaksi.'" id="btn-review">Berikan Review</a>';
+                            } 
+                            return $data->status;
+                        }) 
+                            ->rawColumns(['detail','status'])
                             ->addIndexColumn()
                             ->make(true);
             }
@@ -156,5 +163,30 @@ class RentController extends Controller
             }
             return view('list_barang', compact('barangs','has_barang'))->render();
         }
+    }
+    public function addReview(Request $request){
+        $average = 0;
+        $check_if_exist = Review::where('no_transaksi', $request->no_transaksi)->first();
+        if($check_if_exist){
+            return response()->json(['message' => 'Sudah melakukan review', 'status' => true]);
+        }
+        $data_toko = Transaksi::where('no_transaksi', $request->no_transaksi)->first();
+        Review::create([
+            'no_transaksi' => $request->no_transaksi,
+            'user_id' => Auth::user()->id,
+            'toko_id' => $data_toko->toko_id,
+            'rating' => $request->rating
+        ]);
+
+        $data_rating = Review::where('toko_id', $data_toko->toko_id)->get();
+        foreach($data_rating as $data){
+            $average = $average + $data->rating;
+        }
+
+        $average = $average / $data_rating->count();
+
+        Toko::where('id', $data_toko->toko_id)->update(['rating' => $average]);
+
+        return response()->json(['message' => 'Berhasil melakukan review', 'status' => true]);
     }
 }
