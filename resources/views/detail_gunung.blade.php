@@ -32,11 +32,11 @@
                 @if($gunung->cuaca == 0)
                 <h6>Cuaca : <i class="fas fa-cloud-sun"></i> Cerah</h6>
                 @elseif($gunung->cuaca == 1)
-                <h6>Cuaca : <i class="fas fa-cloud-sun-rain"></i> <span> (Terkadang hujan)</h6>
+                <h6>Cuaca : <i class="fas fa-cloud-sun-rain"></i> Terkadang hujan</h6>
                 @elseif($gunung->cuaca == 2)
                 <h6>Cuaca : <i class="fas fa-cloud-showers-heavy"></i> Sering hujan</h6>
                 @elseif($gunung->cuaca == 3)
-                <h6>Cuaca : <i class="fas fa-house-damage"></i>  Bencana Alam</h6>
+                <h6 style="color: red;">Cuaca : <i class="fas fa-house-damage"></i> Bencana Alam</h6>
                 @endif
             </div>
             <div class="mount-detail">

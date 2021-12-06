@@ -21,7 +21,7 @@
                   @elseif($gunung->cuaca == 2)
                   <p class="weather-mount"><i class="fas fa-cloud"></i>  : <i class="fas fa-cloud-showers-heavy"></i><br/><span>(Sering hujan)</span></p>
                   @elseif($gunung->cuaca == 3)
-                  <p class="weather-mount"><i class="fas fa-cloud"></i>  : <i class="fas fa-house-damage"></i><br/><span>(Bencana Alam)</span></p>
+                  <p class="weather-mount"><i class="fas fa-cloud"></i>  : <i class="fas fa-house-damage"></i><br/><span style="color: red;">(Bencana Alam)</span></p>
                   @endif
                   @if($gunung->status == 0)
                   <p class="status-mount">Status : Buka</p>
