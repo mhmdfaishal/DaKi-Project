@@ -45,7 +45,7 @@
         <div class="container d-flex content-header">
             <div class="store-profile container">
                 <div class="d-flex">
-                    <img src="{{asset('storage/images/toko/'.$data_toko->logo_toko)}}" class="logo-toko" alt="">
+                    <img src="{{asset('storage/images/toko/'.$data_toko->nama_toko.'/logo'.'/'.$data_toko->logo_toko)}}" class="logo-toko" alt="">
                     <h4 class="nama-toko">{{$data_toko->nama_toko}}</h4>
                 </div>
                 <div class="d-flex container justify-content-center">

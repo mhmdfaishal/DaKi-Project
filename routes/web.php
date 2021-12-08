@@ -9,6 +9,7 @@ use App\Http\Controllers\BasecampController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\PendakiController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\PasswordController;
 use Illuminate\Support\Facades\Route;
 
 /*

@@ -7,7 +7,7 @@
       @foreach ($data_toko as $toko)
       <div class="list-toko" data-id="{{ str_replace(' ', '-', strtolower($toko->nama_toko)) }}" id="list_toko" data-aos="fade-up">
           <div class="wrap-list d-flex">
-              <img src="{{asset('storage/images/toko/'.$toko->logo_toko)}}" alt="" class="home_gambar_toko">
+              <img src="{{asset('storage/images/toko/'.$toko->nama_toko.'/logo'.'/'.$toko->logo_toko)}}" alt="" class="home_gambar_toko">
               <div class="detail" id="detail">
                 <h3>{{ $toko->nama_toko }}</h3>
                 <i class="fas fa-map-marker-alt"></i><a href="{{$toko->url_gmaps}}" target="_blank" class="location-mount"> {{ $toko->kotakabupaten }}</a>
